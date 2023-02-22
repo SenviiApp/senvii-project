@@ -1,4 +1,6 @@
 import React from "react";
+import PopUp from "../components/PopUp";
+import { AnimatePresence } from "framer-motion";
 
 const ForgotPassword = () => {
   return (
@@ -16,8 +18,13 @@ const ForgotPassword = () => {
             Reestablecer
           </button>
         </form>
-        <a href="/login" className="text-blue-200">Volver</a>
+        <a href="/login" className="text-blue-200">
+          Volver
+        </a>
       </div>
+      <AnimatePresence>
+        <PopUp />
+      </AnimatePresence>
     </div>
   );
 };

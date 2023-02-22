@@ -1,5 +1,4 @@
 import React from "react";
-import PopUp from "../components/PopUp"
 
 const Login = () => {
   return (
@@ -37,7 +36,7 @@ const Login = () => {
         </div>
       </div>
 
-      <PopUp/>
+
     </div>
   );
 };
