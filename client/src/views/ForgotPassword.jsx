@@ -1,13 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PopUp from "../components/PopUp";
 import { AnimatePresence } from "framer-motion";
 
 const ForgotPassword = () => {
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const modalHandler = (e) => {
+  const [open, setOpen] = useState(false);
+  const [success, setSucces] = useState(false);
+
+  const modalHandler = async (e) => {
     e.preventDefault();
     setOpen(true);
+    // setTimeout(() => {
+    //   navigate("/login");
+    // }, 5000);
+
+    const data = await fetch("/api/auth/forgot-password")
+      .then((res) => res.json())
+      .then((res) => {
+        res.success ? setSucces(true) : setSucces(false);
+        return res;
+      });
+
+    console.log(data);
   };
 
   return (
@@ -32,7 +48,7 @@ const ForgotPassword = () => {
           Volver
         </a>
       </div>
-      <AnimatePresence>{open && <PopUp />}</AnimatePresence>  
+      <AnimatePresence>{open && <PopUp state={success} />}</AnimatePresence>
     </div>
   );
 };
