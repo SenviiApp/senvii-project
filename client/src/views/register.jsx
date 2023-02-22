@@ -16,21 +16,18 @@ export default function Register() {
         </div>
       </div>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col w-[95%] mx-auto gap-y-3 mt-4 mb-8"
-      >
+      <form className="flex flex-col w-[95%] mx-auto gap-y-3 mt-4 mb-8">
         <div>
           <label>Nombres y apellidos</label>
-          <input type="text" {...register("fullname")} />
+          <input type="text" />
         </div>
         <div>
           <label>Número de identificación</label>
-          <input type="text" {...register("identificationNumber")} />
+          <input type="text" />
         </div>
         <div>
           <label>País de origen</label>
-          <input type="text" {...register("country")} />
+          <input type="text" />
         </div>
 
         <div>
@@ -42,7 +39,6 @@ export default function Register() {
                 id="private"
                 name="entityType"
                 value="private"
-                {...register("entityType")}
               />
               <label htmlFor="private">Privada</label>
             </div>
@@ -52,7 +48,6 @@ export default function Register() {
                 id="public"
                 name="entityType"
                 value="public"
-                {...register("entityType")}
               />
               <label htmlFor="public">Pública</label>
             </div>
@@ -60,15 +55,15 @@ export default function Register() {
         </div>
         <div>
           <label>Nombre de su entidad</label>
-          <input type="text" {...register("entityName")} />
+          <input type="text" />
         </div>
         <div>
           <label>Celular</label>
-          <input type="text" {...register("phone")} />
+          <input type="text" />
         </div>
         <div>
           <label>E-mail</label>
-          <input type="text" {...register("email")} />
+          <input type="text" />
         </div>
 
         <input
