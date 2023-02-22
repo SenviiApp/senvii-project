@@ -1,9 +1,12 @@
 import React from "react";
 
 const Login = () => {
+
+
+
   return (
-    <div className="h-screen bg-slate-800 grid items-center">
-      <div className="bg-zinc-500 text-white w-[90%] mx-auto text-center p-10 space-y-2 flex flex-col justify-center items-center rounded-lg">
+    <div className="h-screen bg-slate-800 grid items-center shadow-lg loginBg">
+      <div className="backdrop-blur-sm bg-slate-800/60 text-white w-[90%] mx-auto text-center p-10 space-y-2 flex flex-col justify-center items-center rounded-lg">
         <h1 className="text-3xl">SENVI</h1>
         <h2 className="">Tu consultor vial inteligente</h2>
 
