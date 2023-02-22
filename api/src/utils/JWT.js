@@ -45,15 +45,24 @@ const verifyEmailToken = (token) => {
 };
 
 const createForgotPasswordToken = (user) => {
-  const { password, id, email } = user;
+  const { id, email } = user;
 
   const token = sign({ email, id }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
 
-  const link = `http://localhost:3001/api/auth/forgot-password/${id}/${token}`;
+  const link = `http://localhost:3001/api/auth/reset-password/${id}/${token}`;
 
   return link;
+};
+
+const verifyResetPasswordToken = (token) => {
+  const data = verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return null;
+    return decoded;
+  });
+
+  return data;
 };
 
 module.exports = {
@@ -62,4 +71,5 @@ module.exports = {
   createForgotPasswordToken,
   validateLoginToken,
   verifyEmailToken,
+  verifyResetPasswordToken,
 };

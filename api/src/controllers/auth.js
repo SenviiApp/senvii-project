@@ -5,6 +5,7 @@ const {
   profile,
   forgotPasswordAuth,
   resetPasswordAuth,
+  resetPasswordPost,
 } = require("../utils/auth");
 
 // LOGIN
@@ -22,6 +23,8 @@ const forgotPassword = forgotPasswordAuth;
 
 const resetPassword = resetPasswordAuth;
 
+const resetPassPost = resetPasswordPost;
+
 module.exports = {
   postLogin,
   postRegister,
@@ -29,4 +32,5 @@ module.exports = {
   confirmAccount,
   forgotPassword,
   resetPassword,
+  resetPassPost,
 };

@@ -7,8 +7,9 @@ const {
   createEmailToken,
   verifyEmailToken,
   createForgotPasswordToken,
+  verifyResetPasswordToken,
 } = require("../utils/JWT");
-const { sendEmail } = require("../utils/mail.config");
+const { sendEmail, sendEmailToResetPassword } = require("../utils/mail.config");
 
 // FUNCTIONS
 const login = async (req, res) => {
@@ -140,7 +141,7 @@ const confirm = async (req, res) => {
     // update user
     User.update({ verified: true }, { where: { email } });
 
-    // redirect
+    // redirect to the component
     return res.json("VERIFIED");
   } catch (error) {
     return res.status(400).json({ err: "Something happened" });
@@ -164,13 +165,66 @@ const forgotPasswordAuth = async (req, res) => {
       return res.json({ success: false, msg: "User doesn't exist" });
 
     const link = createForgotPasswordToken(existingUser);
-    res.json(link);
+
+    // Send email
+    const testEmail = await sendEmailToResetPassword(email, link);
+
+    res.json({ success: true, msg: "Email Send" });
   } catch (error) {
     res.json(error);
   }
 };
 
-const resetPasswordAuth = async (req, res) => {};
+const resetPasswordAuth = async (req, res) => {
+  const { id, token } = req.params;
+
+  try {
+    const existingUser = await User.findOne({ where: { id } });
+
+    if (!existingUser)
+      return res.json({ success: false, msg: "User doesn't exist" });
+
+    const verify = verifyResetPasswordToken(token);
+
+    if (!verify) return res.send("Invalid Token");
+
+    res.redirect("http://localhost:5173/reset-password"); // change
+  } catch (error) {
+    res.json({ success: false, msg: "User doesn't verified" });
+  }
+};
+
+const resetPasswordPost = async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ where: { id } });
+
+    if (!existingUser)
+      return res.json({ success: false, msg: "User doesn't exist" });
+
+    // Hash password
+    bcrypt
+      .hash(password, 10)
+      .then(async (hash) => {
+        // Update user password
+        await User.update({ password: hash }, { where: { id } });
+      })
+      .then(() => {
+        res.json({ success: true, msg: "Password updated" });
+      })
+      .catch((err) => {
+        return res
+          .status(400)
+          .json({ success: false, msg: "Something went wrong" });
+      });
+
+    res.redirect("http://localhost:5173"); // change
+  } catch (error) {
+    res.json({ success: false, msg: "User doesn't verified" });
+  }
+};
 
 module.exports = {
   login,
@@ -179,4 +233,5 @@ module.exports = {
   profile,
   forgotPasswordAuth,
   resetPasswordAuth,
+  resetPasswordPost,
 };
