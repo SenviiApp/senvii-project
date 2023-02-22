@@ -13,3 +13,7 @@ input[type="text"] {
 label {
   @apply text-zinc-600 text-sm;
 }
+
+.loginBg{
+  background-image: url("../assets/bg-vector.avif");
+}
