@@ -1,3 +1,9 @@
-export default function App () {
-  return <h1>Template</h1>
+import Login from "./components/Login";
+
+export default function App() {
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
