@@ -24,25 +24,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      address: {
-        type: DataTypes.JSON({
-          country: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
-          state: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
-          city: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
-          streetAndNumber: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
-        }),
+      country: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       businessActivity: {
