@@ -21,18 +21,18 @@ const ForgotPassword = () => {
             placeholder="Ingrese su email"
             className="p-2 border-2 border-blue-400 text-slate-900 font-medium"
           />
-          <button
+          <input
+            type="submit"
             onClick={modalHandler}
             className="p-2 bg-blue-400 rounded-full shadow-lg"
-          >
-            Reestablecer
-          </button>
+            value="Restablecer"
+          />
         </form>
         <a href="/login" className="text-blue-200">
           Volver
         </a>
       </div>
-      <AnimatePresence>{open && <PopUp />}</AnimatePresence>
+      <AnimatePresence>{open && <PopUp />}</AnimatePresence>  
     </div>
   );
 };
