@@ -188,7 +188,7 @@ const resetPasswordAuth = async (req, res) => {
 
     if (!verify) return res.send("Invalid Token");
 
-    res.redirect("http://localhost:5173"); // change
+    res.redirect("http://localhost:5173/reset-password"); // change
   } catch (error) {
     res.json({ success: false, msg: "User doesn't verified" });
   }
