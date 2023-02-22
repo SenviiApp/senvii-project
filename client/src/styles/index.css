@@ -6,20 +6,15 @@
 
 :root {
   font-family: "Inter", sans-serif;
-  scroll-behavior: smooth;
 }
 input[type="text"] {
-  @apply border-2 border-zinc-300 w-full h-10 rounded-md mt-1 px-2;
+  @apply border-2 border-zinc-300 w-full h-10 rounded-md mt-1 px-2 focus:border-zinc-800 transition-all duration-200 ease-out;
 }
-label {
-  @apply text-zinc-600 text-sm;
+@media (max-width: 1024px) {
+  button {
+    pointer-events: none !important;
+  }
 }
-
-.loginBg{
+.loginBg {
   background-image: url("../assets/bg-vector.avif");
-}
-
-.loginBgBack{
-  background-image: url("../assets/bg-vector.avif");
-  object-position: top;
 }
