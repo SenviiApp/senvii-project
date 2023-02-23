@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       entity: {
-        type: DataTypes.ENUM(["Privado", "Público"]),
+        type: DataTypes.ENUM(["Privada", "Pública"]),
         allowNull: false,
       },
       institutionName: {
