@@ -1,10 +1,6 @@
 import styles from "../styles/register.module.css";
 import { BiChevronLeft, BiError } from "react-icons/bi";
-import {
-  BsFillFileEarmarkTextFill,
-  BsEyeFill,
-  BsEyeSlashFill,
-} from "react-icons/bs";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { registerFormModel } from "../models";
 import {
@@ -12,8 +8,10 @@ import {
   isFormCompleted,
   validateFields,
   simulateDelay,
+  getImageData,
 } from "../utils";
-import MiniLoader from "../components/MiniLoader";
+import { MiniLoader } from "../components";
+import logo from "../assets/senvii-logo.svg";
 
 export default function Register() {
   const image_placeholder =
@@ -34,11 +32,11 @@ export default function Register() {
     country: null,
     entityType: "Pública",
     entityName: null,
-    phone: null,
+    phoneNumber: null,
     email: null,
     password: null,
     _confirmed_password: null,
-    image: null,
+    image: "no_image",
   });
 
   const onChange = (name, value) => {
@@ -46,12 +44,19 @@ export default function Register() {
       return { ...data, [name]: value };
     });
   };
+
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await validateRegisterSubmit(form);
+    let image = document.querySelector("#profile_image").files[0];
+    if (image) {
+      image = await getImageData(image);
+    }
+    const parsedUser = await validateRegisterSubmit({ ...form, image });
+
     event.target.reset();
     await simulateDelay(3);
+    console.table(parsedUser);
     setLoading(false);
   };
 
@@ -73,28 +78,38 @@ export default function Register() {
       {/* bg-zinc-300 */}
       <header className="bg-light-500 py-8">
         <div className="mx-auto w-form relative">
-          {/* login anchor */}
-          <a
-            href="/login"
-            className="flex items-center gap-x-2 absolute top-0 left-0 rounded-full max-sm:bg-zinc-300/40 hover:bg-zinc-300/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer text-snow"
-          >
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-zinc-600 text-2xl grid place-items-center rounded-full">
-              <BiChevronLeft />
-            </div>
-            <span className="text-sm">Login</span>
-          </a>
-          {/* icon */}
+          {/* floating elements */}
+
+          <div className="absolute w-full flex justify-between items-center">
+            {/* login anchor */}
+            <a
+              href="/login"
+              className="w-fit flex items-center gap-x-2 rounded-full max-sm:bg-zinc-300/40 hover:bg-zinc-300/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer text-snow"
+            >
+              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-zinc-600 text-2xl grid place-items-center rounded-full">
+                <BiChevronLeft />
+              </div>
+              <span className="text-sm">Login</span>
+            </a>
+            {/* icon */}
+            <img
+              src={logo}
+              alt="logo"
+              className="w-[5.4rem] object-contain p-1"
+            />
+          </div>
+
           {/* image load */}
           <div className="pt-8">
             <label
-              htmlFor="image"
+              htmlFor="profile_image"
               className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-snow transition-colors ease-out duration-300 cursor-pointer"
             >
               <input
                 type="file"
                 accept="image/*"
                 hidden
-                id="image"
+                id="profile_image"
                 onChange={onImageChange}
               />
               <img
@@ -113,13 +128,10 @@ export default function Register() {
           className="flex flex-col gap-y-4 mt-12 mb-20 mx-auto w-form"
           onSubmit={onSubmit}
         >
-          <h2 className="mb-4 text-zinc-700 flex gap-x-2 items-center text-sm">
-            <BsFillFileEarmarkTextFill className="text-sm" />
-            <span>
-              {
-                "Completa el formulario con tus datos (todos los campos son requeridos)"
-              }
-            </span>
+          <h2 className="mb-4 text-sky-700 flex gap-x-2 items-center text-sm">
+            {
+              "Completa el formulario con tus datos (todos los campos son requeridos)"
+            }
           </h2>
           {/* user name */}
           <div>
@@ -281,14 +293,16 @@ export default function Register() {
             menos un número, una letra mayúscula y una letra minúscula. No se
             permiten espacios en blanco ni otros caracteres especiales.
           </p>
-          <button
-            type="submit"
+          {/* submit btn */}
+          <label
+            htmlFor="submit"
             disabled={!completedForm}
-            className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 transition-colors flex gap-x-3 items-center justify-center"
+            className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 flex gap-x-3 items-center justify-center transition-colors"
           >
+            <input type="submit" id="submit" hidden />
             Registrarse
             {isLoading && <MiniLoader />}
-          </button>
+          </label>
         </form>
       </section>
     </>

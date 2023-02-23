@@ -6,7 +6,7 @@ let registerSchema = object({
   country: string().required(),
   entityType: string().required(),
   entityName: string().required(),
-  phone: number().required(),
+  phoneNumber: number().required(),
   email: string().required().email(),
   password: string().required(),
   _confirmed_password: string().required(),
@@ -17,10 +17,10 @@ export const validateRegisterSubmit = async (data) => {
   let parsedUser;
   try {
     parsedUser = await registerSchema.validate(data);
-    if (data.password !== data._confirmed_password) {
+    if (parsedUser.password !== parsedUser._confirmed_password) {
       throw new ValidationError("Passwords doesn't match");
     }
-    console.table(parsedUser);
+    return parsedUser;
   } catch (error) {
     console.error(error.message);
   }
