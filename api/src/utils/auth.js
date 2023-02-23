@@ -92,15 +92,17 @@ const register = async (req, res) => {
         where: { entityName },
         defaults: { country, entityType },
       });
+      let jsonProfilePicture = null;
 
-      const upToCloud = await cloudinary.uploader.upload(image, {
-        folder: "userPicture",
-      });
-      const jsonProfilePicture = {
-        public_id: upToCloud.public_id,
-        url: upToCloud.secure_url,
-      };
-
+      if (image) {
+        const upToCloud = await cloudinary.uploader.upload(image, {
+          folder: "userPicture",
+        });
+        jsonProfilePicture = {
+          public_id: upToCloud.public_id,
+          url: upToCloud.secure_url,
+        };
+      }
       // Create user
       const user = await User.create({
         userName,
@@ -108,7 +110,12 @@ const register = async (req, res) => {
         password: hash,
         email,
         phoneNumber,
-        image: jsonProfilePicture,
+        image: image
+          ? jsonProfilePicture
+          : {
+              public_id: "userPicture/sp5dq8c8igvxki0b8kaq",
+              url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png",
+            },
         institutionId: institution.id,
       });
 
@@ -151,7 +158,7 @@ const confirm = async (req, res) => {
     User.update({ verified: true }, { where: { email } });
 
     // redirect to the component
-    return res.json("VERIFIED");
+    res.redirect("http://localhost:5173/mail-confirmed");
   } catch (error) {
     return res.status(400).json({ err: "Something happened" });
   }
