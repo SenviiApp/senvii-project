@@ -12,10 +12,14 @@ import {
   validateRegisterSubmit,
   isFormCompleted,
   validateFields,
+  simulateDelay,
 } from "../utils";
+import MiniLoader from "../components/MiniLoader";
 
 export default function Register() {
   // form handlers
+  const [isLoading, setLoading] = useState(false);
+
   const [completedForm, setFormStatus] = useState(false);
   const [errors, setErrors] = useState({
     password: false,
@@ -42,8 +46,11 @@ export default function Register() {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     await validateRegisterSubmit(form);
     event.target.reset();
+    await simulateDelay(3);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -272,12 +279,14 @@ export default function Register() {
             menos un número, una letra mayúscula y una letra minúscula. No se
             permiten espacios en blanco ni otros caracteres especiales.
           </p>
-          <input
+          <button
             type="submit"
             disabled={!completedForm}
-            value="Registrarse"
-            className="bg-zinc-800 text-zinc-200 rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 transition-colors"
-          />
+            className="bg-zinc-800 text-zinc-200 rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 transition-colors flex gap-x-3 items-center justify-center"
+          >
+            Registrarse
+            {isLoading && <MiniLoader />}
+          </button>
         </form>
       </section>
     </>
