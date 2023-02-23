@@ -7,14 +7,14 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-  const [success, setSucces] = useState(false);
+  const [success, setSucces] = useState(true);
 
   const modalHandler = async(e) => {
     e.preventDefault();
     setOpen(true);
-    // setTimeout(() => {
-    //   navigate("/login");
-    // }, 5000);setSucces
+    setTimeout(() => {
+      navigate("/login");
+    }, 5000);
 
     const data = await fetch("http://localhost:3001/api/auth/forgot-password")
       .then((res) => res.json())
