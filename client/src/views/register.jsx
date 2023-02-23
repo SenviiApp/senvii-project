@@ -69,14 +69,14 @@ export default function Register() {
   return (
     <>
       {/* bg-zinc-300 */}
-      <header className="bg-zinc-300 py-8">
+      <header className="bg-light-400 py-8">
         <div className="mx-auto w-form relative">
           {/* login anchor */}
           <a
             href="/login"
-            className="flex items-center gap-x-2 absolute top-0 left-0 rounded-full max-sm:bg-zinc-100/40 hover:bg-zinc-100 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer"
+            className="flex items-center gap-x-2 absolute top-0 left-0 rounded-full max-sm:bg-zinc-200/40 hover:bg-zinc-200/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer"
           >
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-zinc-400 text-2xl grid place-items-center rounded-full">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-light-100 text-2xl grid place-items-center rounded-full">
               <BiChevronLeft />
             </div>
             <span className="text-sm">Login</span>
@@ -86,7 +86,7 @@ export default function Register() {
           <div className="pt-8">
             <label
               htmlFor="image"
-              className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-zinc-600 transition-colors ease-out duration-300 cursor-pointer"
+              className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-dark-600 transition-colors ease-out duration-300 cursor-pointer"
             >
               <input
                 type="file"
