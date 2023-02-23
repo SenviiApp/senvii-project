@@ -48,10 +48,10 @@ const Login = () => {
           />
         </form>
         <div className="text-sm flex flex-col pt-4">
-          <a href="/forgot-password" className="text-blue-200">
+          <a href="/forgot-password" className="text-blue-100">
             ¿Olvidaste tu contraseña?
           </a>
-          <a href="/register" className="text-blue-200 ">
+          <a href="/register" className="text-blue-100 ">
             ¿No tenés cuenta?
           </a>
         </div>
