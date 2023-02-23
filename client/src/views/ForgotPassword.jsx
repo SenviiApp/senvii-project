@@ -7,7 +7,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-  const [success, setSucces] = useState(true);
+  const [success, setSucces] = useState(false);
 
   const modalHandler = async(e) => {
     e.preventDefault();

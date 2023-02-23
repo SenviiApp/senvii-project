@@ -19,5 +19,9 @@ input[type="password"] {
   }
 }
 .loginBg {
-  background-image: url("../assets/bg-vector.avif");
+  background-image: url("../assets/bg-phone.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @apply h-screen
 }

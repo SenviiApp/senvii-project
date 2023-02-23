@@ -1,9 +1,11 @@
+import logo from "../assets/logo.png"
+
 const Login = () => {
   return (
     <div className="h-screen bg-slate-800 grid items-center shadow-lg loginBg">
       <div className="backdrop-blur-sm bg-slate-800/60 text-white w-[90%] mx-auto text-center p-10 space-y-2 flex flex-col justify-center items-center rounded-lg">
         <div>
-          <h1 className="text-3xl">SENVI</h1>
+          <img src={logo} alt="logo" className="pr-2"/>
           <h2 className="">Tu consultor vial inteligente</h2>
         </div>
 
