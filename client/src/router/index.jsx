@@ -1,5 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Login, Register, ForgotPassword, ResetPassword, MailConfirmed } from "../views";
+import {
+  Home,
+  Login,
+  Register,
+  ForgotPassword,
+  ResetPassword,
+  MailConfirmed,
+} from "../views";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,7 +31,7 @@ const router = createBrowserRouter([
   {
     path: "/mail-confirmed",
     element: <MailConfirmed />,
-  }, 
+  },
 ]);
 
 export default router;
