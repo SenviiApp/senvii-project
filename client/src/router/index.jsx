@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword />,
-  }, 
+  },
   {
     path: "/mail-confirmed",
     element: <MailConfirmed />,

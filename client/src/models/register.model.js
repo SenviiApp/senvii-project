@@ -4,7 +4,7 @@ export const registerFormModel = {
   country: "country",
   entityType: "entityType",
   entityName: "entityName",
-  phone: "phone",
+  phoneNumber: "phoneNumber",
   email: "email",
   password: "password",
   _confirmed_password: "_confirmed_password",
