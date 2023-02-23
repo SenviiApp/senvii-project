@@ -16,9 +16,9 @@ const MailConfirmed = () => {
     loop: true
   });
 
-  useEffect(() => {
-    setTimeout(() => {navigate("/login")}, 5000)
-  }, [])
+//   useEffect(() => {
+//     setTimeout(() => {navigate("/login")}, 5000)
+//   }, [])
 
   return (
     <div className="h-screen bg-slate-800 grid items-center loginBg">
@@ -37,9 +37,9 @@ const MailConfirmed = () => {
             restDelta: 0.001,
           },
         }}
-        className="backdrop-blur-sm bg-light-500/60 text-white w-[90%] mx-auto text-center p-4 space-y-6 flex flex-col justify-center items-center rounded-lg"
+        className="backdrop-blur-sm bg-light-500/60 text-white w-[90%] md:w-[60%] lg:w-[50%] md:h-96 mx-auto text-center p-4 space-y-6 lg:space-y-10 xl:space-y-20 flex flex-col justify-center items-center rounded-lg"
       >
-        <motion.h1 className="text-2xl text-center">
+        <motion.h1 className="text-2xl lg:text-4xl text-center">
           Mail confirmado con éxito!
         </motion.h1>
 
@@ -48,9 +48,9 @@ const MailConfirmed = () => {
           animate={{ rotateZ: [0, 15, 30, 15, 0, -15, -30, -15, 0, 15, 30, 15, 0] }}
           transition={{ duration: .8, delay: 1 }}
         >
-          <BsEmojiSmile className="text-5xl" />
+          <BsEmojiSmile className="text-5xl lg:text-7xl " />
         </motion.div>
-        <h2 className="text-xl">
+        <h2 className="text-xl lg:text-3xl">
         <span>{text}</span>
         <Cursor cursorColor="#2A2E33" />    
         </h2>
