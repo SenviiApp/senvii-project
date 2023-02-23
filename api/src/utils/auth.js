@@ -1,6 +1,7 @@
 const { User, Institution } = require("../db");
 const bcrypt = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
+const cloudinary = require("../utils/cloudinary");
 
 const {
   createLoginToken,
@@ -61,11 +62,13 @@ const register = async (req, res) => {
 
   if (
     !userName ||
+    !email ||
     !password ||
     !identificationNumber ||
     !institutionName ||
     !phoneNumber ||
-    !entity
+    !entity ||
+    !country
   )
     return res.status(400).json({ error: "Not Enough Data" });
 
@@ -90,6 +93,14 @@ const register = async (req, res) => {
         defaults: { country, entity },
       });
 
+      const upToCloud = await cloudinary.uploader.upload(image, {
+        folder: "userPicture",
+      });
+      const jsonProfilePicture = {
+        public_id: upToCloud.public_id,
+        url: upToCloud.secure_url,
+      };
+
       // Create user
       const user = await User.create({
         userName,
@@ -97,7 +108,7 @@ const register = async (req, res) => {
         password: hash,
         email,
         phoneNumber,
-        image,
+        image: jsonProfilePicture,
         institutionId: institution.id,
       });
 
@@ -111,7 +122,7 @@ const register = async (req, res) => {
       res.json({ success: true });
     })
     .catch((err) => {
-      return res.status(400).json({ err: "Something happened" });
+      return res.status(400).json({ err });
     });
 };
 
