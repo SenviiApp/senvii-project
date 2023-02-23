@@ -20,15 +20,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
-      phoneNumber: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       country: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      businessActivity: {
         type: DataTypes.STRING,
         allowNull: false,
       },

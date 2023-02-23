@@ -52,24 +52,19 @@ const register = async (req, res) => {
     identificationNumber,
     email,
     password,
-    role,
     image,
     institutionName,
     phoneNumber,
-    address,
-    businessActivity,
     entity,
+    country,
   } = req.body;
 
   if (
     !userName ||
     !password ||
     !identificationNumber ||
-    !role ||
     !institutionName ||
     !phoneNumber ||
-    !address ||
-    !businessActivity ||
     !entity
   )
     return res.status(400).json({ error: "Not Enough Data" });
@@ -78,8 +73,11 @@ const register = async (req, res) => {
   const existingIdentification = await User.findOne({
     where: { identificationNumber },
   });
+  const existingPhoneNumber = await User.findOne({
+    where: { phoneNumber },
+  });
 
-  if (existingUser || existingIdentification)
+  if (existingUser || existingIdentification || existingPhoneNumber)
     return res.status(400).json({ error: "User Already Exist" });
 
   // Hash password
@@ -89,7 +87,7 @@ const register = async (req, res) => {
       // find or create an institution
       const [institution, created] = await Institution.findOrCreate({
         where: { institutionName },
-        defaults: { phoneNumber, address, businessActivity, entity },
+        defaults: { country, entity },
       });
 
       // Create user
@@ -98,7 +96,7 @@ const register = async (req, res) => {
         identificationNumber,
         password: hash,
         email,
-        role,
+        phoneNumber,
         image,
         institutionId: institution.id,
       });
