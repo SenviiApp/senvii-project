@@ -16,9 +16,9 @@ const MailConfirmed = () => {
     loop: true
   });
 
-//   useEffect(() => {
-//     setTimeout(() => {navigate("/login")}, 5000)
-//   }, [])
+  useEffect(() => {
+    setTimeout(() => {navigate("/login")}, 5000)
+  }, [])
 
   return (
     <div className="h-screen bg-slate-800 grid items-center loginBg">
