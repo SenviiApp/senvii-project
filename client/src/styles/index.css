@@ -11,7 +11,7 @@ input[type="text"],
 input[type="number"],
 input[type="email"],
 input[type="password"] {
-  @apply border-2 border-zinc-300 w-full h-10 rounded-md mt-1 px-2 focus:border-zinc-800 transition-all duration-200 ease-out outline-none text-zinc-700;
+  @apply border-2 border-zinc-300 w-full h-10 rounded-md mt-1 px-2 focus:border-light-500 transition-all duration-200 ease-out outline-none text-dark-400;
 }
 @media (max-width: 1024px) {
   button {

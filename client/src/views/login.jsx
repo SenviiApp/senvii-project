@@ -1,5 +1,3 @@
-import React from "react";
-
 const Login = () => {
   return (
     <div className="h-screen bg-slate-800 grid items-center shadow-lg loginBg">
@@ -35,8 +33,6 @@ const Login = () => {
           </a>
         </div>
       </div>
-
-
     </div>
   );
 };
