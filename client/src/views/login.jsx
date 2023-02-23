@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../assets/logo.png"
 
 const Login = () => {
@@ -36,8 +35,6 @@ const Login = () => {
           </a>
         </div>
       </div>
-
-
     </div>
   );
 };
