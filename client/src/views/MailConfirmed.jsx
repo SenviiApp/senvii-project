@@ -17,7 +17,7 @@ const MailConfirmed = () => {
   });
 
   useEffect(() => {
-    setTimeout(() => {navigate("/login")}, 4000)
+    setTimeout(() => {navigate("/login")}, 5000)
   }, [])
 
   return (
@@ -46,7 +46,7 @@ const MailConfirmed = () => {
         <motion.div
           initial={{ rotateZ: 0 }}
           animate={{ rotateZ: [0, 15, 30, 15, 0, -15, -30, -15, 0, 15, 30, 15, 0] }}
-          transition={{ duration: .5, delay: 1 }}
+          transition={{ duration: .8, delay: 1 }}
         >
           <BsEmojiSmile className="text-5xl" />
         </motion.div>
