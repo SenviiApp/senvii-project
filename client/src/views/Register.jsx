@@ -6,7 +6,6 @@ import {
   BsEyeSlashFill,
 } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import image_placeholder from "../assets/no_image.jpg";
 import { registerFormModel } from "../models";
 import {
   validateRegisterSubmit,
@@ -17,6 +16,9 @@ import {
 import MiniLoader from "../components/MiniLoader";
 
 export default function Register() {
+  const image_placeholder =
+    "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png";
+
   // form handlers
   const [isLoading, setLoading] = useState(false);
 
@@ -30,7 +32,7 @@ export default function Register() {
     userName: null,
     identificationNumber: null,
     country: null,
-    entityType: "public",
+    entityType: "Pública",
     entityName: null,
     phone: null,
     email: null,
@@ -69,24 +71,24 @@ export default function Register() {
   return (
     <>
       {/* bg-zinc-300 */}
-      <header className="bg-light-400 py-8">
+      <header className="bg-light-500 py-8">
         <div className="mx-auto w-form relative">
           {/* login anchor */}
           <a
             href="/login"
-            className="flex items-center gap-x-2 absolute top-0 left-0 rounded-full max-sm:bg-zinc-200/40 hover:bg-zinc-200/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer"
+            className="flex items-center gap-x-2 absolute top-0 left-0 rounded-full max-sm:bg-zinc-300/40 hover:bg-zinc-300/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer text-snow"
           >
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-light-100 text-2xl grid place-items-center rounded-full">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-zinc-600 text-2xl grid place-items-center rounded-full">
               <BiChevronLeft />
             </div>
             <span className="text-sm">Login</span>
           </a>
-
+          {/* icon */}
           {/* image load */}
           <div className="pt-8">
             <label
               htmlFor="image"
-              className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-dark-600 transition-colors ease-out duration-300 cursor-pointer"
+              className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-snow transition-colors ease-out duration-300 cursor-pointer"
             >
               <input
                 type="file"
@@ -98,7 +100,7 @@ export default function Register() {
               <img
                 src={imagePreview || image_placeholder}
                 alt="profile picture"
-                className="rounded-full h-28 w-28 bg-zinc-800 mb-2 shadow-lg object-cover object-center"
+                className="rounded-full h-28 w-28 bg-zinc-800 mb-2 shadow-md object-cover object-center shadow-black"
               />
               <span>{"Subir foto (opcional)"}</span>
             </label>
@@ -154,29 +156,29 @@ export default function Register() {
             <label className={styles.label}>
               Seleccione su tipo de entidad
             </label>
-            <div className="p-2 bg-zinc-300 rounded-md mt-1 h-12 text-sm">
+            <div className="p-2 bg-dark-400 rounded-md mt-1 h-12 text-sm">
               <div className="rounded-[4px] h-full relative z-10">
                 <div
-                  className={`absolute w-1/2 h-full bg-zinc-100 transition-transform duration-300 ease-out ${
-                    form.entityType === "private" && "translate-x-[100%]"
+                  className={`absolute w-1/2 h-full bg-light-500 transition-transform duration-300 ease-out ${
+                    form.entityType === "Privada" && "translate-x-[100%]"
                   } rounded-md`}
                 ></div>
                 <div className="w-full grid grid-cols-2 rounded-[4px] h-full z-20 absolute">
                   <span
                     onClick={() =>
-                      onChange(registerFormModel.entityType, "public")
+                      onChange(registerFormModel.entityType, "Pública")
                     }
-                    className="text-zinc-700 grid place-items-center cursor-default md:cursor-pointer"
-                    disabled={form.entityType === "public"}
+                    className="text-snow grid place-items-center cursor-default md:cursor-pointer"
+                    disabled={form.entityType === "Pública"}
                   >
                     Pública
                   </span>
                   <span
                     onClick={() =>
-                      onChange(registerFormModel.entityType, "private")
+                      onChange(registerFormModel.entityType, "Privada")
                     }
-                    className="text-zinc-700 grid place-items-center cursor-default md:cursor-pointer"
-                    disabled={form.entityType === "private"}
+                    className="text-snow grid place-items-center cursor-default md:cursor-pointer"
+                    disabled={form.entityType === "Privada"}
                   >
                     Privada
                   </span>
@@ -200,7 +202,7 @@ export default function Register() {
             <input
               type="number"
               onChange={({ target }) =>
-                onChange(registerFormModel.phone, target.value)
+                onChange(registerFormModel.phoneNumber, target.value)
               }
             />
           </div>
@@ -262,7 +264,7 @@ export default function Register() {
           </div>
 
           <span
-            className="flex items-center text-lg gap-x-2 ml-auto bg-zinc-300 px-2 py-3 rounded-md text-zinc-700 cursor-pointer"
+            className="flex items-center text-lg gap-x-2 ml-auto bg-light-500 px-2 py-3 rounded-md text-snow cursor-pointer"
             onClick={() => setVisible(!isVisible)}
           >
             {isVisible ? <BsEyeFill /> : <BsEyeSlashFill />}
@@ -282,7 +284,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={!completedForm}
-            className="bg-zinc-800 text-zinc-200 rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 transition-colors flex gap-x-3 items-center justify-center"
+            className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 transition-colors flex gap-x-3 items-center justify-center"
           >
             Registrarse
             {isLoading && <MiniLoader />}
