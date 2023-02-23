@@ -54,9 +54,9 @@ const register = async (req, res) => {
     email,
     password,
     image,
-    institutionName,
+    entityName,
     phoneNumber,
-    entity,
+    entityType,
     country,
   } = req.body;
 
@@ -65,9 +65,9 @@ const register = async (req, res) => {
     !email ||
     !password ||
     !identificationNumber ||
-    !institutionName ||
+    !entityName ||
     !phoneNumber ||
-    !entity ||
+    !entityType ||
     !country
   )
     return res.status(400).json({ error: "Not Enough Data" });
@@ -89,8 +89,8 @@ const register = async (req, res) => {
     .then(async (hash) => {
       // find or create an institution
       const [institution, created] = await Institution.findOrCreate({
-        where: { institutionName },
-        defaults: { country, entity },
+        where: { entityName },
+        defaults: { country, entityType },
       });
 
       const upToCloud = await cloudinary.uploader.upload(image, {

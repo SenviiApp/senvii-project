@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PopUp from "../components/PopUp";
 import { AnimatePresence } from "framer-motion";
 
-const ForgotPassword = () => {
+const MailConfirmed = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -52,4 +52,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default MailConfirmed;
