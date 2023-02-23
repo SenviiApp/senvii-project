@@ -1,6 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Login, Register, ForgotPassword, ResetPassword } from "../views";
-
+import {
+  Home,
+  Login,
+  Register,
+  ForgotPassword,
+  ResetPassword,
+  MailConfirmed,
+} from "../views";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword />,
+  },
+  {
+    path: "/mail-confirmed",
+    element: <MailConfirmed />,
   },
 ]);
 

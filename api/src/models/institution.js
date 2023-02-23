@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      entity: {
+      entityType: {
         type: DataTypes.ENUM(["Privada", "Pública"]),
         allowNull: false,
       },
-      institutionName: {
+      entityName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
