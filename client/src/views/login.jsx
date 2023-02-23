@@ -36,8 +36,6 @@ const Login = () => {
           </a>
         </div>
       </div>
-
-
     </div>
   );
 };
