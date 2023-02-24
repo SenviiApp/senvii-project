@@ -56,7 +56,12 @@ const postLogin = async (req, res) => {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
+    domain: "localhost",
+    sameSite: "Strict",
+    path: "/",
   });
+
+  console.log("COOKIE", req.cookies["Access-token"]);
 
   res.json({
     success: true,
