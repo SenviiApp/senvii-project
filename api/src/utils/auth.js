@@ -53,7 +53,7 @@ const login = async (req, res) => {
 
   const accessToken = createLoginToken(existingUser);
 
-  res.cookie("Access-token", JSON.stringify({ token: accessToken }), {
+  res.cookie("Access-token", accessToken, {
     // httpOnly: true,
     // secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
