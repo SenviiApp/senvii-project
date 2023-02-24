@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  Route,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   App,
   Home,
@@ -12,6 +8,7 @@ import {
   ResetPassword,
   MailConfirmed,
 } from "../views";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,14 +41,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Layout>
-//       <Route path="/" element={<Home />}></Route>
-//       <Route path="/login" element={<Login />} />
-//       <Route path="/register" element={<Register />} />
-//     </Layout>
-//   )
-// );
 
 export default router;

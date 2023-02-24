@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-export default function App() {
+//here the providers, contexts, etc
+export function App() {
   return (
     <>
       <Outlet />
