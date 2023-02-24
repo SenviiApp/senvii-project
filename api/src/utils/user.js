@@ -1,9 +1,9 @@
-const { Client } = require("../db");
+const { User } = require("../db");
 
-const findClient = async (client) => {
-  const result = await Client.findOne({
+const findClientById = async (id) => {
+  const result = await User.findOne({
     where: {
-      userName: client,
+      id: id,
     },
   });
 
@@ -11,5 +11,5 @@ const findClient = async (client) => {
 };
 
 module.exports = {
-  findClient,
+  findClientById,
 };
