@@ -2,11 +2,11 @@ import { number, object, string, ValidationError } from "yup";
 
 let registerSchema = object({
   userName: string().required(),
-  identificationNumber: number().required(),
+  identificationNumber: string().required(),
   country: string().required(),
   entityType: string().required(),
   entityName: string().required(),
-  phoneNumber: number().required(),
+  phoneNumber: string().required(),
   email: string().required().email(),
   password: string().required(),
   _confirmed_password: string().required(),

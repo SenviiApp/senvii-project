@@ -7,13 +7,26 @@ import {
   validateRegisterSubmit,
   isFormCompleted,
   validateFields,
-  simulateDelay,
   getImageData,
 } from "../utils";
+import { register } from "../services";
 import { MiniLoader } from "../components";
 import logo from "../assets/senvii-logo.svg";
+import headerBg from "../assets/prama.jpg";
 
 export default function Register() {
+  const initialForm = {
+    userName: "",
+    identificationNumber: "",
+    country: "",
+    entityType: "Pública",
+    entityName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    _confirmed_password: "",
+    image: null,
+  };
   const image_placeholder =
     "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png";
 
@@ -26,18 +39,7 @@ export default function Register() {
     email: false,
     _confirmed_password: false,
   });
-  const [form, setForm] = useState({
-    userName: null,
-    identificationNumber: null,
-    country: null,
-    entityType: "Pública",
-    entityName: null,
-    phoneNumber: null,
-    email: null,
-    password: null,
-    _confirmed_password: null,
-    image: "no_image",
-  });
+  const [form, setForm] = useState(initialForm);
 
   const onChange = (name, value) => {
     setForm((data) => {
@@ -48,15 +50,16 @@ export default function Register() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    let image = document.querySelector("#profile_image").files[0];
+    let image = document.querySelector("#profile_image").files[0] || null;
     if (image) {
       image = await getImageData(image);
     }
     const parsedUser = await validateRegisterSubmit({ ...form, image });
 
-    event.target.reset();
-    await simulateDelay(3);
-    console.table(parsedUser);
+    setForm(initialForm);
+    const response = await register(parsedUser);
+    // await simulateDelay(3);
+    console.log(response);
     setLoading(false);
   };
 
@@ -76,7 +79,13 @@ export default function Register() {
   return (
     <>
       {/* bg-zinc-300 */}
-      <header className="bg-light-500 py-8">
+      <header className="bg-light-500 py-8 relative overflow-hidden">
+        <img
+          src={headerBg}
+          alt="prama"
+          className="absolute w-full h-full object-cover top-0"
+        />
+        <div className="absolute w-full h-full bg-black/60 top-0"></div>
         <div className="mx-auto w-form relative">
           {/* floating elements */}
 
@@ -103,7 +112,7 @@ export default function Register() {
           <div className="pt-8">
             <label
               htmlFor="profile_image"
-              className="hover:underline lg:hover:bg-zinc-200/80 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-snow transition-colors ease-out duration-300 cursor-pointer"
+              className="hover:underline lg:hover:bg-zinc-300/40 flex flex-col items-center justify-center w-fit mx-auto p-2 rounded-lg text-sm text-snow transition-colors ease-out duration-300 cursor-pointer"
             >
               <input
                 type="file"
@@ -125,12 +134,12 @@ export default function Register() {
 
       <section>
         <form
-          className="flex flex-col gap-y-4 mt-12 mb-20 mx-auto w-form"
+          className="flex flex-col gap-y-4 pt-12 pb-20 mx-auto w-form"
           onSubmit={onSubmit}
         >
           <h2 className="mb-4 text-sky-700 flex gap-x-2 items-center text-sm">
             {
-              "Completa el formulario con tus datos (todos los campos son requeridos)"
+              "Completa el formulario para registrarte (todos los campos son requeridos)"
             }
           </h2>
           {/* user name */}
@@ -141,6 +150,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.userName, target.value)
               }
+              value={form.userName}
             />
           </div>
           {/* identification number */}
@@ -151,6 +161,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.identificationNumber, target.value)
               }
+              value={form.identificationNumber}
             />
           </div>
           {/* country */}
@@ -161,6 +172,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.country, target.value)
               }
+              value={form.country}
             />
           </div>
           {/* entity type */}
@@ -206,6 +218,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.entityName, target.value)
               }
+              value={form.entityName}
             />
           </div>
           {/* phone */}
@@ -216,6 +229,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.phoneNumber, target.value)
               }
+              value={form.phoneNumber}
             />
           </div>
           {/* email */}
@@ -234,6 +248,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.email, target.value)
               }
+              value={form.email}
             />
           </div>
           {/* password */}
@@ -252,6 +267,7 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel.password, target.value)
               }
+              value={form.password}
             />
           </div>
           {/* confirm password */}
@@ -272,9 +288,9 @@ export default function Register() {
               onChange={({ target }) =>
                 onChange(registerFormModel._confirmed_password, target.value)
               }
+              value={form._confirmed_password}
             />
           </div>
-
           <span
             className="flex items-center text-lg gap-x-2 ml-auto bg-light-500 px-2 py-3 rounded-md text-snow cursor-pointer"
             onClick={() => setVisible(!isVisible)}
@@ -294,15 +310,14 @@ export default function Register() {
             permiten espacios en blanco ni otros caracteres especiales.
           </p>
           {/* submit btn */}
-          <label
-            htmlFor="submit"
+          <button
+            type="submit"
             disabled={!completedForm}
             className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 flex gap-x-3 items-center justify-center transition-colors"
           >
-            <input type="submit" id="submit" hidden />
             Registrarse
             {isLoading && <MiniLoader />}
-          </label>
+          </button>
         </form>
       </section>
     </>
