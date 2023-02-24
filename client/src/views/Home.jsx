@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 export default function home() {
   return (
     <>
-      <main className="h-screen w-full loginBg flex flex-col items-center justify-evenly">
+      <main className="h-screen w-full mx-auto loginBg flex flex-col items-center justify-evenly">
         <header className="">
-          <img src={logo} alt="" className="w-28 mr-3" />
+          <img src={logo} alt="" className="w-28" />
         </header>
 
         <section id="user" className="w-full">
