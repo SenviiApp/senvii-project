@@ -8,21 +8,38 @@ const ForgotPassword = () => {
 
   const [open, setOpen] = useState(false);
   const [success, setSucces] = useState(true);
+  const [email, setEmail] = useState({ email: "" });
 
-  const modalHandler = async(e) => {
+  const modalHandler = async (e) => {
     e.preventDefault();
-    setOpen(true);
-    setTimeout(() => {
-      navigate("/login");
-    }, 5000);
+    const url = "http://localhost:3001/api/auth/forgot-password";
 
-    const data = await fetch("http://localhost:3001/api/auth/forgot-password")
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email), // body data type must match "Content-Type" header
+    })
       .then((res) => res.json())
       .then((res) => {
-        res.success ? setSucces(true) : setSucces(false)
+        res.success === true ? setSucces(true) : setSucces(false);
+        setOpen(true);
+        res.success === true
+          ? setTimeout(() => {
+              navigate("/login");
+            }, 5000)
+          : setTimeout(() => {
+              setOpen(false);
+            }, 3000);
+      })
+      .catch((error) => {
+        setSucces(false);
+        setOpen(false);
+        setTimeout(() => {
+          navigate("/login");
+        }, 5000)
       });
-
-    console.log(data);
   };
 
   return (
@@ -35,11 +52,13 @@ const ForgotPassword = () => {
             type="text"
             placeholder="Ingrese su email"
             className="p-2 border-2 border-blue-400 text-slate-900 font-medium"
+            value={email.email}
+            onChange={(e) => setEmail({ email: e.target.value })}
           />
           <input
             type="submit"
             onClick={modalHandler}
-            className="p-2 bg-blue-400 rounded-full shadow-lg"
+            className="p-2 bg-blue-400 rounded-full shadow-lg cursor-pointer"
             value="Restablecer"
           />
         </form>
