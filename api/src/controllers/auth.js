@@ -18,7 +18,7 @@ const postLogin = async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({
       success: false,
-      code: "incomplete",
+      code: "login_incomplete",
     });
   }
 
@@ -27,14 +27,14 @@ const postLogin = async (req, res) => {
   if (!existingUser) {
     return res.status(400).json({
       success: false,
-      code: "notfound",
+      code: "user_notfound",
     });
   }
 
   if (!existingUser.verified) {
     return res.status(400).json({
       success: false,
-      code: "unverified",
+      code: "user_unverified",
     });
   }
 
@@ -46,7 +46,7 @@ const postLogin = async (req, res) => {
   if (!match) {
     return res.status(400).json({
       success: false,
-      code: "notfound",
+      code: "user_notfound",
     });
   }
 
@@ -60,8 +60,6 @@ const postLogin = async (req, res) => {
     sameSite: "Strict",
     path: "/",
   });
-
-  console.log("COOKIE", req.cookies["Access-token"]);
 
   res.json({
     success: true,
@@ -93,7 +91,7 @@ const postRegister = async (req, res) => {
     !entityType ||
     !country
   )
-    return res.status(400).json({ error: "Not Enough Data" });
+    return res.status(400).json({ sucess: false, code: "register_incomplete" });
 
   const existingUser = await User.findOne({ where: { email } });
   const existingIdentification = await User.findOne({
@@ -104,7 +102,7 @@ const postRegister = async (req, res) => {
   });
 
   if (existingUser || existingIdentification || existingPhoneNumber)
-    return res.status(400).json({ error: "User Already Exist" });
+    return res.status(400).json({ success: false, code: "user_alreadyexist" });
 
   // Hash password
   bcrypt
@@ -115,7 +113,10 @@ const postRegister = async (req, res) => {
         where: { entityName },
         defaults: { country, entityType },
       });
-      let jsonProfilePicture = null;
+      let jsonProfilePicture = {
+        public_id: "userPicture/sp5dq8c8igvxki0b8kaq",
+        url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png",
+      };
 
       if (image) {
         const upToCloud = await cloudinary.uploader.upload(image, {
@@ -133,12 +134,7 @@ const postRegister = async (req, res) => {
         password: hash,
         email,
         phoneNumber,
-        image: image
-          ? jsonProfilePicture
-          : {
-              public_id: "userPicture/sp5dq8c8igvxki0b8kaq",
-              url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png",
-            },
+        image: jsonProfilePicture,
         institutionId: institution.id,
       });
 
@@ -149,10 +145,10 @@ const postRegister = async (req, res) => {
       const testEmail = await sendEmail(email, emailToken);
     })
     .then(() => {
-      res.json({ success: true });
+      res.status(201).json({ success: true, code: "user_created" });
     })
     .catch((err) => {
-      return res.status(400).json({ err });
+      return res.status(500).json({ err });
     });
 };
 
@@ -160,23 +156,23 @@ const postRegister = async (req, res) => {
 const confirmAccount = async (req, res) => {
   try {
     // get token
-    const { token } = req.params;
+    const { token } = req.query;
 
     // verify data
     const data = await verifyEmailToken(token);
 
     if (data === null)
-      return res.json({ success: false, msg: "Error al obtener data" });
+      return res.json({ success: false, code: "somethingwrong" });
 
     const { email, code } = data;
     // verify user
     const user = await User.findOne({ where: { email } });
 
-    if (!user) return res.json({ success: false, msg: "User doesn't exist" });
+    if (!user) return res.json({ success: false, code: "user_notfound" });
 
     // verify code
     if (code !== user.id)
-      return res.json({ success: false, msg: "Code ins't equal" });
+      return res.json({ success: false, msg: "somethingwrong" });
 
     // update user
     User.update({ verified: true }, { where: { email } });
@@ -184,7 +180,7 @@ const confirmAccount = async (req, res) => {
     // redirect to the component
     res.redirect("http://localhost:5173/mail-confirmed");
   } catch (error) {
-    return res.status(400).json({ err: "Something happened" });
+    return res.status(400).json({ success: false, code: "somethingwrong" });
   }
 };
 
@@ -202,14 +198,14 @@ const forgotPassword = async (req, res) => {
     const existingUser = await User.findOne({ where: { email } });
 
     if (!existingUser)
-      return res.json({ success: false, msg: "User doesn't exist" });
+      return res.json({ success: false, msg: "user_notfound" });
 
     const link = createForgotPasswordToken(existingUser);
 
     // Send email
     const testEmail = await sendEmailToResetPassword(email, link);
 
-    res.json({ success: true, msg: "Email Send" });
+    res.json({ success: true, code: "emailsended" });
   } catch (error) {
     res.json(error);
   }
@@ -222,15 +218,14 @@ const resetPassword = async (req, res) => {
     const existingUser = await User.findOne({ where: { id } });
 
     if (!existingUser)
-      return res.json({ success: false, msg: "User doesn't exist" });
+      return res.json({ success: false, code: "user_notfound" });
 
     const verify = verifyResetPasswordToken(token);
 
     if (!verify) return res.send("Invalid Token");
-
-    res.redirect(`http://localhost:5173/reset-password/${id}`); // change
+    res.redirect(`http://localhost:5173/reset-password/${id}`); // hash id
   } catch (error) {
-    res.json({ success: false, msg: "User doesn't verified" });
+    res.json({ success: false, code: "user_unverified" });
   }
 };
 
