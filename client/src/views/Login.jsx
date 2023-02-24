@@ -2,10 +2,11 @@ import { useState } from "react";
 import logo from "../assets/senvii-logo.svg";
 import { login } from "../services";
 import { Link } from "react-router-dom";
-import gridBg from "../assets/prama.jpg";
-import { Background } from "../components";
+import { Background, ResponsiveSideBanner } from "../components";
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 const Login = () => {
+  const [isVisible, setVisible] = useState(false);
   const initialForm = {
     email: "",
     password: "",
@@ -22,7 +23,7 @@ const Login = () => {
 
   return (
     // deleted class => loginBg
-    <div className="h-screen grid place-items-center lg:grid-cols-3">
+    <div className="login-pages-container">
       <Background className="h-screen absolute left-0 w-full" />
       {/* login container */}
       <div className="login-container">
@@ -40,14 +41,26 @@ const Login = () => {
             className="form-input shadow-sm"
             name="email"
             onChange={onChange}
+            value={form.email}
           />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            className="form-input shadow-sm"
-            name="password"
-            onChange={onChange}
-          />
+          <div className="form-input-layout flex">
+            <input
+              type={isVisible ? "text" : "password"}
+              placeholder="Contraseña"
+              className="form-input-shape"
+              name="password"
+              onChange={onChange}
+              value={form.password}
+            />
+            <span
+              // type="button"
+              className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+              onClick={() => setVisible(!isVisible)}
+            >
+              {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </span>
+          </div>
+
           <input
             type="submit"
             value="Iniciar Sesión"
@@ -71,14 +84,7 @@ const Login = () => {
         </div>
       </div>
       {/* image (lg) container */}
-      <div className="bg-dark-800 w-full h-full hidden lg:block relative col-span-2">
-        <img
-          src={gridBg}
-          alt="prama"
-          className="absolute w-full h-full object-cover top-0"
-        />
-        <div className="absolute w-full h-full bg-black/60 top-0"></div>
-      </div>
+      <ResponsiveSideBanner />
     </div>
   );
 };

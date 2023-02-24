@@ -1,30 +1,67 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Background, ResponsiveSideBanner } from "../components";
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 const ResetPassword = () => {
   const { id } = useParams();
-
+  const [isVisible, setVisible] = useState(false);
+  const [form, setForm] = useState({
+    password: "",
+    _confirmed_password: "",
+  });
+  const onChange = ({ target }) => {
+    setForm({ ...form, [target.name]: target.value });
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(form);
+    // validar y cambiar contraseña
+  };
   return (
-    <div className="h-screen bg-slate-800 grid items-center shadow-lg loginBg">
-      <div className="backdrop-blur-sm bg-slate-800/60 text-white w-[90%] mx-auto text-center p-10 space-y-2 flex flex-col justify-center items-center rounded-lg">
-        <div>
-          <h1 className="text-xl">Cambiar contraseña</h1>
-        </div>
+    <div className="login-pages-container">
+      <Background className="h-screen absolute left-0 w-full" />
 
-        <form action="" className="flex flex-col gap-y-1">
-          <input
-            type="text"
-            placeholder="Nueva contraseña"
-            className="p-2 border-2 border-blue-400 text-slate-900 font-medium"
-          />
-          <input
-            type="text"
-            placeholder="Reingrese contraseña"
-            className="p-2 border-2 border-blue-400 text-slate-900 font-medium"
-          />
+      <div className="login-container">
+        <h1 className="text-lg">Cambiar contraseña</h1>
+
+        <form onSubmit={onSubmit} className="flex flex-col gap-y-2">
+          <div className="form-input-layout flex">
+            <input
+              type={isVisible ? "text" : "password"}
+              placeholder="Contraseña"
+              className="form-input-shape"
+              name="password"
+              onChange={onChange}
+              value={form.password}
+            />
+            <span
+              className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+              onClick={() => setVisible(!isVisible)}
+            >
+              {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </span>
+          </div>
+          <div className="form-input-layout flex">
+            <input
+              type={isVisible ? "text" : "password"}
+              placeholder="Contraseña"
+              className="form-input-shape"
+              name="_confirmed_password"
+              onChange={onChange}
+              value={form._confirmed_password}
+            />
+            <span
+              className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+              onClick={() => setVisible(!isVisible)}
+            >
+              {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </span>
+          </div>
           <input
             type="submit"
-            value="Confirmar"
-            className="p-2 bg-blue-400 rounded-full shadow-lg mt-4"
+            value="Reestablecer contraseña"
+            className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
           />
         </form>
         <div className="text-sm flex flex-col pt-4">
@@ -33,6 +70,8 @@ const ResetPassword = () => {
           </Link>
         </div>
       </div>
+
+      <ResponsiveSideBanner />
     </div>
   );
 };
