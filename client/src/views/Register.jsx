@@ -146,6 +146,7 @@ export default function Register() {
           <div>
             <label className={styles.label}>Nombres y apellidos</label>
             <input
+              className="form-input"
               type="text"
               onChange={({ target }) =>
                 onChange(registerFormModel.userName, target.value)
@@ -157,6 +158,7 @@ export default function Register() {
           <div>
             <label className={styles.label}>Número de identificación</label>
             <input
+              className="form-input"
               type="number"
               onChange={({ target }) =>
                 onChange(registerFormModel.identificationNumber, target.value)
@@ -168,6 +170,7 @@ export default function Register() {
           <div>
             <label className={styles.label}>País de origen</label>
             <input
+              className="form-input"
               type="text"
               onChange={({ target }) =>
                 onChange(registerFormModel.country, target.value)
@@ -214,6 +217,7 @@ export default function Register() {
           <div>
             <label className={styles.label}>Nombre de su entidad</label>
             <input
+              className="form-input"
               type="text"
               onChange={({ target }) =>
                 onChange(registerFormModel.entityName, target.value)
@@ -225,6 +229,7 @@ export default function Register() {
           <div>
             <label className={styles.label}>Número de teléfono</label>
             <input
+              className="form-input"
               type="number"
               onChange={({ target }) =>
                 onChange(registerFormModel.phoneNumber, target.value)
@@ -244,6 +249,7 @@ export default function Register() {
             </div>
 
             <input
+              className="form-input"
               type="email"
               onChange={({ target }) =>
                 onChange(registerFormModel.email, target.value)
@@ -263,6 +269,7 @@ export default function Register() {
             </div>
 
             <input
+              className="form-input"
               type={isVisible ? "text" : "password"}
               onChange={({ target }) =>
                 onChange(registerFormModel.password, target.value)
@@ -284,6 +291,7 @@ export default function Register() {
             </div>
 
             <input
+              className="form-input"
               type={isVisible ? "text" : "password"}
               onChange={({ target }) =>
                 onChange(registerFormModel._confirmed_password, target.value)

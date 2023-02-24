@@ -8,11 +8,8 @@
   font-family: "Lato", sans-serif;
   @apply bg-snow;
 }
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="password"] {
-  @apply border-2 border-zinc-200 w-full h-10 rounded-md mt-1 px-2 focus:border-light-500 transition-all duration-200 ease-out outline-none text-dark-400;
+.form-input {
+  @apply border-2 border-zinc-200 w-full h-10 rounded-md mt-1 px-2 focus:border-light-500 transition-all duration-200 ease-out outline-none text-dark-400 overflow-hidden;
 }
 .loginBg {
   background-image: url("../assets/bg-phone.jpg");
