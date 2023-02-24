@@ -2,22 +2,63 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Background, ResponsiveSideBanner } from "../components";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { useEffect } from "react";
+import { $axios } from "../lib/axiosClient";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [isVisible, setVisible] = useState(false);
   const [form, setForm] = useState({
     password: "",
     _confirmed_password: "",
   });
+
   const onChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value });
   };
-  const onSubmit = (event) => {
+
+  const onSubmit = async (event) => {
     event.preventDefault();
+
+    // verificación
+    if (form.password !== form._confirmed_password) {
+      // toast
+    }
+
     console.log(form);
-    // validar y cambiar contraseña
+    try {
+      const { data } = await $axios.post(
+        "/user/change-password",
+        { id, password: form.password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      // toast
+      return data;
+    } catch (error) {
+      // toast
+      return error.message;
+    }
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await $axios(`/user/${id}`);
+        return data;
+      } catch (error) {
+        navigate("/");
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <div className="login-pages-container">
       <div className="login-container">
