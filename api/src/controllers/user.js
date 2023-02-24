@@ -18,7 +18,8 @@ const changePassword = async (req, res) => {
 
   try {
     const user = await findClientById(id);
-    if (!user.dataValues) return res.status(404).json("notfound");
+    if (!user.dataValues)
+      return res.status(404).json({ success: false, code: "user_notfound" });
     // Hash password
     bcrypt
       .hash(password, 10)
@@ -26,13 +27,13 @@ const changePassword = async (req, res) => {
         User.update({ password: hash }, { where: { id } });
       })
       .then(() => {
-        res.json({ success: true, msg: "passwordchanged" });
+        res.json({ success: true, code: "passwordchanged" });
       })
       .catch((err) => {
         return res.status(400).json({ err });
       });
   } catch (error) {
-    return res.status(404).json("somethinghappened");
+    return res.status(404).json({ success: false, code: "somethingwrong" });
   }
 };
 
