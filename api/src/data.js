@@ -850,9 +850,7 @@ const data = {
             {
               pregunta:
                 "¿La vía cruza intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: [
-                "Banda transversal termoplástica",
-              ],
+              si: ["Banda transversal termoplástica"],
               no: null,
             },
           ],
@@ -883,9 +881,7 @@ const data = {
             {
               pregunta:
                 "¿La vía cruza intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: [
-                "Banda transversal termoplástica",
-              ],
+              si: ["Banda transversal termoplástica"],
               no: null,
             },
           ],
@@ -916,9 +912,7 @@ const data = {
             {
               pregunta:
                 "¿La vía cruza intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: [
-                "Banda transversal termoplástica",
-              ],
+              si: ["Banda transversal termoplástica"],
               no: null,
             },
           ],
@@ -949,9 +943,7 @@ const data = {
             {
               pregunta:
                 "¿La vía cruza intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: [
-                "Banda transversal termoplástica",
-              ],
+              si: ["Banda transversal termoplástica"],
               no: null,
             },
           ],
@@ -960,3 +952,5 @@ const data = {
     },
   },
 };
+
+module.exports = { data };
