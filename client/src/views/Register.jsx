@@ -8,11 +8,13 @@ import {
   isFormCompleted,
   validateFields,
   getImageData,
+  simulateDelay,
 } from "../utils";
 import { register } from "../services";
 import { MiniLoader } from "../components";
 import logo from "../assets/senvii-logo.svg";
 import headerBg from "../assets/prama.jpg";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const initialForm = {
@@ -54,13 +56,13 @@ export default function Register() {
     if (image) {
       image = await getImageData(image);
     }
-    const parsedUser = await validateRegisterSubmit({ ...form, image });
+    // const parsedUser = await validateRegisterSubmit({ ...form, image });
 
-    setForm(initialForm);
-    const response = await register(parsedUser);
+    // const response = await register(parsedUser);
     // await simulateDelay(3);
-    console.log(response);
+    // setForm(initialForm);
     setLoading(false);
+    // console.log(response);
   };
 
   useEffect(() => {
@@ -91,15 +93,15 @@ export default function Register() {
 
           <div className="absolute w-full flex justify-between items-center">
             {/* login anchor */}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="w-fit flex items-center gap-x-2 rounded-full max-sm:bg-zinc-300/40 hover:bg-zinc-300/40 ease-out transition-colors pl-1 py-1 pr-2 duration-500 cursor-pointer text-snow"
             >
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-zinc-600 text-2xl grid place-items-center rounded-full">
                 <BiChevronLeft />
               </div>
               <span className="text-sm">Login</span>
-            </a>
+            </Link>
             {/* icon */}
             <img
               src={logo}
@@ -320,7 +322,7 @@ export default function Register() {
           {/* submit btn */}
           <button
             type="submit"
-            disabled={!completedForm}
+            // disabled={!completedForm}
             className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 flex gap-x-3 items-center justify-center transition-colors"
           >
             Registrarse

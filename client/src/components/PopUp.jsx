@@ -1,4 +1,3 @@
-import React from "react";
 import { HiEnvelope, HiXCircle } from "react-icons/hi2";
 import { motion } from "framer-motion";
 
@@ -35,7 +34,6 @@ const PopUp = ({ open, state }) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4 }}
           >
-            
             <motion.div
               initial={{ x: 0 }}
               animate={{ x: [0, -10, 10, -10, 10, -10, 0, 0, 0, 0, 0] }}
@@ -43,7 +41,6 @@ const PopUp = ({ open, state }) => {
             >
               <HiEnvelope className="text-yellow-500 text-5xl" />
             </motion.div>
-            
           </motion.div>
         ) : (
           <motion.div>
