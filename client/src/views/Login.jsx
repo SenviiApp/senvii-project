@@ -2,6 +2,8 @@ import { useState } from "react";
 import logo from "../assets/senvii-logo.svg";
 import { login } from "../services";
 import { Link } from "react-router-dom";
+import gridBg from "../assets/prama.jpg";
+import { Background } from "../components";
 
 const Login = () => {
   const initialForm = {
@@ -19,7 +21,10 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen grid items-center loginBg">
+    // deleted class => loginBg
+    <div className="h-screen grid place-items-center lg:grid-cols-3">
+      <Background className="h-screen absolute left-0 w-full" />
+      {/* login container */}
       <div className="login-container">
         <div>
           <center>
@@ -64,6 +69,15 @@ const Login = () => {
             </Link>
           </p>
         </div>
+      </div>
+      {/* image (lg) container */}
+      <div className="bg-dark-800 w-full h-full hidden lg:block relative col-span-2">
+        <img
+          src={gridBg}
+          alt="prama"
+          className="absolute w-full h-full object-cover top-0"
+        />
+        <div className="absolute w-full h-full bg-black/60 top-0"></div>
       </div>
     </div>
   );

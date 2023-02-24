@@ -270,15 +270,25 @@ export default function Register() {
               />
             </div>
 
-            <input
-              className="form-input"
-              type={isVisible ? "text" : "password"}
-              onChange={({ target }) =>
-                onChange(registerFormModel.password, target.value)
-              }
-              value={form.password}
-            />
+            <div className="form-input-layout flex">
+              <input
+                className="form-input-shape"
+                type={isVisible ? "text" : "password"}
+                onChange={({ target }) =>
+                  onChange(registerFormModel.password, target.value)
+                }
+                value={form.password}
+              />
+              <button
+                type="button"
+                className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+                onClick={() => setVisible(!isVisible)}
+              >
+                {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </button>
+            </div>
           </div>
+
           {/* confirm password */}
           <div>
             <div className="flex gap-x-2 items-center">
@@ -292,24 +302,25 @@ export default function Register() {
               />
             </div>
 
-            <input
-              className="form-input"
-              type={isVisible ? "text" : "password"}
-              onChange={({ target }) =>
-                onChange(registerFormModel._confirmed_password, target.value)
-              }
-              value={form._confirmed_password}
-            />
+            <div className="form-input-layout flex">
+              <input
+                className="form-input-shape"
+                type={isVisible ? "text" : "password"}
+                onChange={({ target }) =>
+                  onChange(registerFormModel._confirmed_password, target.value)
+                }
+                value={form._confirmed_password}
+              />
+              <button
+                type="button"
+                className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+                onClick={() => setVisible(!isVisible)}
+              >
+                {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </button>
+            </div>
           </div>
-          <span
-            className="flex items-center text-lg gap-x-2 ml-auto bg-light-500 px-2 py-3 rounded-md text-snow cursor-pointer"
-            onClick={() => setVisible(!isVisible)}
-          >
-            {isVisible ? <BsEyeFill /> : <BsEyeSlashFill />}
-            <span className="text-sm">
-              {isVisible ? "Ocultar" : "Mostrar"} contraseñas
-            </span>
-          </span>
+
           <p
             className={`text-[.84rem] transition-colors mt-2 ${
               errors.password ? "text-red-600" : "text-zinc-500"
