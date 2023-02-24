@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/senvii-logo.svg";
 import { login } from "../services";
 
 const Login = () => {
