@@ -27,7 +27,7 @@ const PopUp = ({ open, state }) => {
         } absolute p-6 flex flex-col justify-evenly items-center rounded-lg`}
       >
         <h2 className="text-white text-3xl text-center">
-          {state ? "Enviamos un mail a su correo" : "Email no valido"}
+          {state ? "Enviamos un mail a su correo" : "Email no válido"}
         </h2>
         {state ? (
           <motion.div
