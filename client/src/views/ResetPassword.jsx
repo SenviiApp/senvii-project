@@ -20,54 +20,55 @@ const ResetPassword = () => {
   };
   return (
     <div className="login-pages-container">
-      <Background className="h-screen absolute left-0 w-full" />
-
       <div className="login-container">
-        <h1 className="text-lg">Cambiar contraseña</h1>
+        <Background className="h-screen absolute left-0 w-full" />
+        <div className="login-form-container">
+          <h1 className="text-lg">Cambiar contraseña</h1>
 
-        <form onSubmit={onSubmit} className="flex flex-col gap-y-2">
-          <div className="form-input-layout flex">
+          <form onSubmit={onSubmit} className="flex flex-col gap-y-2">
+            <div className="form-input-layout flex">
+              <input
+                type={isVisible ? "text" : "password"}
+                placeholder="Contraseña"
+                className="form-input-shape"
+                name="password"
+                onChange={onChange}
+                value={form.password}
+              />
+              <span
+                className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+                onClick={() => setVisible(!isVisible)}
+              >
+                {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </span>
+            </div>
+            <div className="form-input-layout flex">
+              <input
+                type={isVisible ? "text" : "password"}
+                placeholder="Contraseña"
+                className="form-input-shape"
+                name="_confirmed_password"
+                onChange={onChange}
+                value={form._confirmed_password}
+              />
+              <span
+                className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
+                onClick={() => setVisible(!isVisible)}
+              >
+                {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </span>
+            </div>
             <input
-              type={isVisible ? "text" : "password"}
-              placeholder="Contraseña"
-              className="form-input-shape"
-              name="password"
-              onChange={onChange}
-              value={form.password}
+              type="submit"
+              value="Reestablecer contraseña"
+              className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
             />
-            <span
-              className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
-              onClick={() => setVisible(!isVisible)}
-            >
-              {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
-            </span>
+          </form>
+          <div className="text-sm flex flex-col mt-3">
+            <Link to="/login" className="text-blue-200 py-2">
+              Login
+            </Link>
           </div>
-          <div className="form-input-layout flex">
-            <input
-              type={isVisible ? "text" : "password"}
-              placeholder="Contraseña"
-              className="form-input-shape"
-              name="_confirmed_password"
-              onChange={onChange}
-              value={form._confirmed_password}
-            />
-            <span
-              className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
-              onClick={() => setVisible(!isVisible)}
-            >
-              {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
-            </span>
-          </div>
-          <input
-            type="submit"
-            value="Reestablecer contraseña"
-            className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
-          />
-        </form>
-        <div className="text-sm flex flex-col pt-4">
-          <Link href="/login" className="text-blue-200 ">
-            Login
-          </Link>
         </div>
       </div>
 
