@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../assets/senvii-logo.svg";
 import { login } from "../services";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const initialForm = {
@@ -19,7 +20,7 @@ const Login = () => {
 
   return (
     <div className="h-screen grid items-center loginBg">
-      <div className="backdrop-blur-sm bg-slate-800/40 text-white mx-auto rounded-lg py-8 px-4 flex flex-col gap-y-2 text-center w-login-form">
+      <div className="login-container">
         <div>
           <center>
             <img src={logo} alt="logo" className="w-40" />
@@ -45,16 +46,23 @@ const Login = () => {
           <input
             type="submit"
             value="Iniciar Sesión"
-            className="p-2 bg-blue-400 rounded-full shadow-md mt-4 w-full"
+            className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
           />
         </form>
-        <div className="text-sm flex flex-col pt-4 gap-y-1">
-          <a href="/forgot-password" className="text-sky-200">
+        <div className="flex flex-col mt-2">
+          <Link
+            to="/forgot-password"
+            className="text-sky-200 py-2 hover:underline"
+          >
             ¿Olvidaste tu contraseña?
-          </a>
-          <a href="/register" className="text-sky-200 ">
-            ¿No tenés cuenta? Registrate
-          </a>
+          </Link>
+          <div className="border-zinc-100/40 border w-full"></div>
+          <p className="flex gap-x-2 items-center justify-center text-sm">
+            ¿No tienes una cuenta?
+            <Link to="/register" className="text-sky-200 py-2 hover:underline">
+              Registrate
+            </Link>
+          </p>
         </div>
       </div>
     </div>

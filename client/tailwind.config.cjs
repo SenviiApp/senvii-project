@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       width: {
         form: "min(40rem, 90%)",
-        "login-form": "min(500px,95%)",
+        "login-form": "min(360px,95%)",
       },
       colors: {
         dark: {

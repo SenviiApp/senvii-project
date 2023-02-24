@@ -2,13 +2,12 @@ import logo from "../assets/logo.png";
 import { FaSearch, FaPowerOff, FaPercent } from "react-icons/fa";
 import { GiArchiveRegister } from "react-icons/gi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-
+import { Link } from "react-router-dom";
 
 export default function home() {
   return (
     <>
       <main className="h-screen w-full loginBg flex flex-col items-center justify-evenly">
-      
         <header className="">
           <img src={logo} alt="" className="w-28 mr-3" />
         </header>
@@ -20,13 +19,15 @@ export default function home() {
               alt="user"
               className="rounded-full w-24 h-24 shadow-2xl"
             />
-            <a href="#" className="text-xs">Editar mis datos</a>
+            <a href="#" className="text-xs">
+              Editar mis datos
+            </a>
           </div>
         </section>
 
         <section id="tools" className="w-full">
           <div className="flex flex-col space-y-4 h-64 w-[90%] mx-auto rounded-lg p-6 justify-around">
-          <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <h2>Hola, Raffo</h2>
               <h3>¿Qué herramienta usarás?</h3>
             </div>
@@ -39,7 +40,7 @@ export default function home() {
               </span>{" "}
               Diagnóstico Vial
               <span className="absolute right-2 top-5">
-                <MdOutlineArrowForwardIos/>
+                <MdOutlineArrowForwardIos />
               </span>
             </a>
             <a
@@ -51,7 +52,7 @@ export default function home() {
               </span>{" "}
               Calculadora de Proyectos
               <span className="absolute right-2 top-5">
-                <MdOutlineArrowForwardIos/>
+                <MdOutlineArrowForwardIos />
               </span>
             </a>
             <a
@@ -59,11 +60,11 @@ export default function home() {
               className="border-light-500 border-2 shadow-lg  py-4 px-4 bg-white rounded-full text-center font-semibold text-light-500 flex justify-center items-center text-sm relative"
             >
               <span className="inline-flex mr-2">
-                <GiArchiveRegister className="text-xl"/>
+                <GiArchiveRegister className="text-xl" />
               </span>{" "}
               Manual de Normas Viales
               <span className="absolute right-2 top-5">
-                <MdOutlineArrowForwardIos/>
+                <MdOutlineArrowForwardIos />
               </span>
             </a>
           </div>
@@ -71,12 +72,12 @@ export default function home() {
 
         <section id="cerrarSesión">
           <div>
-            <a href="/login" className="text-red-500 text flex items-center">
+            <Link to="/login" className="text-red-500 text flex items-center">
               <span className="inline-flex mr-2">
-                <FaPowerOff className="text-lg"/>
+                <FaPowerOff className="text-lg" />
               </span>
               Cerrar sesión
-            </a>
+            </Link>
           </div>
         </section>
       </main>
