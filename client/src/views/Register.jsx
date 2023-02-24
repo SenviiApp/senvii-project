@@ -53,9 +53,7 @@ export default function Register() {
     event.preventDefault();
     setLoading(true);
     let image = document.querySelector("#profile_image").files[0] || null;
-    if (image) {
-      image = await getImageData(image);
-    }
+    if (image) image = await getImageData(image);
     const parsedUser = await validateRegisterSubmit({ ...form, image });
 
     const response = await register(parsedUser);
