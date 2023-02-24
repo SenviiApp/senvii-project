@@ -29,7 +29,7 @@ const createEmailToken = (email, code) => {
       code,
     },
     process.env.JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: "10m" }
   );
 
   return token;
