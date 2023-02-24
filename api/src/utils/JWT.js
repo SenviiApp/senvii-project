@@ -9,7 +9,7 @@ const createLoginToken = (user) => {
 };
 
 const validateLoginToken = (req, res, next) => {
-  const accessToken = req.cookies["access-token"];
+  const accessToken = req.cookies["Access-token"];
 
   if (!accessToken)
     return res.status(400).json({ error: "User not Authenticated!" });
