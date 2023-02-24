@@ -63,6 +63,7 @@ export default function Register() {
     setForm(initialForm);
     setLoading(false);
     console.log(response);
+    //TODO add feedback to user and error validation
   };
 
   useEffect(() => {
@@ -333,7 +334,7 @@ export default function Register() {
           {/* submit btn */}
           <button
             type="submit"
-            // disabled={!completedForm}
+            disabled={!completedForm}
             className="bg-dark-800 text-snow rounded-full h-14 mt-4 disabled:pointer-events-none disabled:bg-zinc-300 flex gap-x-3 items-center justify-center transition-colors"
           >
             Registrarse
