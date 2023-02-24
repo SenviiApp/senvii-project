@@ -56,13 +56,13 @@ export default function Register() {
     if (image) {
       image = await getImageData(image);
     }
-    // const parsedUser = await validateRegisterSubmit({ ...form, image });
+    const parsedUser = await validateRegisterSubmit({ ...form, image });
 
-    // const response = await register(parsedUser);
+    const response = await register(parsedUser);
     // await simulateDelay(3);
-    // setForm(initialForm);
+    setForm(initialForm);
     setLoading(false);
-    // console.log(response);
+    console.log(response);
   };
 
   useEffect(() => {
@@ -279,13 +279,13 @@ export default function Register() {
                 }
                 value={form.password}
               />
-              <button
-                type="button"
+              <span
+                // type="button"
                 className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
                 onClick={() => setVisible(!isVisible)}
               >
                 {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
-              </button>
+              </span>
             </div>
           </div>
 
@@ -311,13 +311,13 @@ export default function Register() {
                 }
                 value={form._confirmed_password}
               />
-              <button
-                type="button"
+              <span
+                // type="button"
                 className="flex items-center justify-center text-lg w-10 h-10 text-light-500 cursor-pointer bg-white"
                 onClick={() => setVisible(!isVisible)}
               >
                 {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
-              </button>
+              </span>
             </div>
           </div>
 
