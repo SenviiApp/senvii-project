@@ -9,7 +9,10 @@ const userRoutes = require("./user");
 //const questionRoutes = require("");
 
 // config router
-router.get("/", (req, res) => res.status(200).json("Hello World"));
+router.get("/", (req, res) => {
+  res.cookie("prueba", "hola mae existo");
+  res.json("cookie-set");
+});
 router.use("/auth", authRoutes);
 //router.use("", answerRoutes);
 router.use("/user", userRoutes);

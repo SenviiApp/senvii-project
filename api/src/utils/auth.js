@@ -16,35 +16,53 @@ const { sendEmail, sendEmailToResetPassword } = require("../utils/mail.config");
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password)
-    return res.status(400).json({ error: "Not Enough Data" });
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      code: "incomplete",
+    });
+  }
 
   const existingUser = await User.findOne({ where: { email } });
 
-  if (!existingUser)
-    return res.status(400).json({ error: "Usuario no existente" });
+  if (!existingUser) {
+    return res.status(400).json({
+      success: false,
+      code: "notfound",
+    });
+  }
 
-  if (!existingUser.verified)
-    return res.status(400).json({ error: "Usuario no verificado" });
+  if (!existingUser.verified) {
+    return res.status(400).json({
+      success: false,
+      code: "unverified",
+    });
+  }
 
   const dbPassword = existingUser.dataValues.password;
-  // verify hashed password
-  const match = await bcrypt.compare(password, dbPassword).then((res) => res);
 
-  if (!match)
-    return res
-      .status(400)
-      .json({ error: "Algún dato proporcionado es incorrecto" });
+  // verify hashed password
+  const match = await bcrypt.compare(password, dbPassword);
+
+  if (!match) {
+    return res.status(400).json({
+      success: false,
+      code: "notfound",
+    });
+  }
 
   const accessToken = createLoginToken(existingUser);
 
-  res.cookie("access-token", accessToken, {
-    httpOnly: true,
-    secure: false,
+  res.cookie("Access-token", JSON.stringify({ token: accessToken }), {
+    // httpOnly: true,
+    // secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
   });
 
-  res.json("LOGGED IN");
+  res.json({
+    success: true,
+    code: "logged",
+  });
 };
 
 const register = async (req, res) => {
