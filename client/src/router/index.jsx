@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect, json } from "react-router-dom";
+import { $axios } from "../lib";
 import {
   App,
   Home,
@@ -17,10 +18,28 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: async () => {
+          let response;
+          try {
+            response = await $axios.get("/auth/login");
+            return json(response.data);
+          } catch (error) {
+            return redirect("/login");
+          }
+        },
       },
       {
         path: "/login",
         element: <Login />,
+        loader: async () => {
+          let response;
+          try {
+            response = await $axios.get("/auth/login");
+            return redirect("/");
+          } catch (error) {
+            return null;
+          }
+        },
       },
       {
         path: "/register",

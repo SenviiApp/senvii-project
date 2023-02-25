@@ -2,9 +2,16 @@ import logo from "../assets/logo.png";
 import { FaSearch, FaPowerOff, FaPercent } from "react-icons/fa";
 import { GiArchiveRegister } from "react-icons/gi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { endSession } from "../utils";
 
 export default function home() {
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    await endSession();
+    navigate("/login");
+  };
   return (
     <>
       <main className="h-screen w-full mx-auto loginBg flex flex-col items-center justify-evenly">
@@ -72,12 +79,15 @@ export default function home() {
 
         <section id="cerrarSesión">
           <div>
-            <Link to="/login" className="text-red-500 text flex items-center">
+            <button
+              onClick={logout}
+              className="text-red-500 text flex items-center"
+            >
               <span className="inline-flex mr-2">
                 <FaPowerOff className="text-lg" />
               </span>
               Cerrar sesión
-            </Link>
+            </button>
           </div>
         </section>
       </main>
