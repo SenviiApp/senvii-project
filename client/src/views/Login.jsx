@@ -1,12 +1,16 @@
 import { useState } from "react";
 import logo from "../assets/senvii-logo.svg";
 import { login } from "../services";
-import { Link } from "react-router-dom";
-import { Background, ResponsiveSideBanner } from "../components";
+import { Link, useNavigate } from "react-router-dom";
+import { Background, ResponsiveSideBanner, MiniLoader } from "../components";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { toast } from "react-hot-toast";
+import { simulateDelay } from "../utils";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isVisible, setVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const initialForm = {
     email: "",
     password: "",
@@ -17,8 +21,22 @@ const Login = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const response = await login(form);
     console.log(response);
+    await simulateDelay(3);
+    if (response.success) {
+      //handle success
+      navigate("/");
+    } else {
+      setLoading(false);
+      if (response.code === "user_unverified") {
+        toast.error("Verifique su usuario antes de continuar");
+      }
+      if (response.code === "user_notfound") {
+        toast.error("Credenciales incorrectas, inténtelo de nuevo");
+      }
+    }
   };
 
   return (
@@ -64,11 +82,14 @@ const Login = () => {
               </span>
             </div>
 
-            <input
+            <button
               type="submit"
-              value="Iniciar Sesión"
-              className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
-            />
+              disabled={!form.password || !form.email}
+              className="py-3 bg-blue-400 rounded-full disabled:pointer-events-none disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg mt-4 w-full"
+            >
+              Iniciar Sesión
+              {isLoading && <MiniLoader />}
+            </button>
           </form>
           <div className="flex flex-col mt-2">
             <Link

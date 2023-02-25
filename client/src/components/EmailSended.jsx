@@ -1,7 +1,14 @@
 import { HiEnvelope } from "react-icons/hi2";
 import { motion } from "framer-motion";
-
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 const EmailSended = ({ email }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    () => {
+      document.body.style.overflow = "auto";
+    };
+  });
   const animation = {
     close: {
       opacity: 0,
@@ -18,7 +25,7 @@ const EmailSended = ({ email }) => {
       exit="close"
       transition={{ duration: 0.2 }}
       variants={animation}
-      className="h-screen w-full bg-black/60 absolute grid place-items-center backdrop-blur-sm"
+      className="h-screen w-full bg-black/60 fixed top-0 grid place-items-center backdrop-blur-sm z-50"
     >
       <div className="w-popup h-72 bg-dark-800 absolute p-6 flex flex-col justify-evenly items-center rounded-lg shadow-lg">
         <div className="text-center">
@@ -28,6 +35,7 @@ const EmailSended = ({ email }) => {
             Asegúrate de revisar tanto tu bandeja de entrada como la carpeta de
             spam
           </p>
+          <p className="text-snow mt-2">Puede cerrar esta ventana</p>
         </div>
 
         <motion.div
@@ -43,6 +51,10 @@ const EmailSended = ({ email }) => {
             <HiEnvelope className="text-light-300 text-5xl" />
           </motion.div>
         </motion.div>
+
+        <Link className="text-sky-200 hover:underline p-2" to="/login">
+          Volver al login
+        </Link>
       </div>
     </motion.div>
   );

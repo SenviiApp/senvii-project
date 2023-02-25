@@ -1,25 +1,23 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Background, ResponsiveSideBanner, EmailSended } from "../components";
 import { AnimatePresence } from "framer-motion";
 import { sendEmailVerification } from "../services";
 import { simulateDelay } from "../utils";
+import { toast } from "react-hot-toast";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
-
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState({ email: "" });
 
   const modalHandler = async (e) => {
     e.preventDefault();
     const response = await sendEmailVerification(email);
-    setOpen(true);
     if (response.responseStatus) {
-      // await simulateDelay(5);
-      // navigate("/login");
+      setOpen(true);
+      await simulateDelay(5);
     } else {
-      await simulateDelay(2);
+      toast("El correo no está asociado a ningún usuario");
       // setOpen(false);
       //handle failure with a toast
     }
@@ -41,9 +39,10 @@ const ForgotPassword = () => {
               onChange={({ target }) => setEmail({ email: target.value })}
             />
             <input
+              disabled={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
               type="submit"
               onClick={modalHandler}
-              className="p-2 bg-blue-400 rounded-full shadow-lg cursor-pointer"
+              className="p-2 bg-blue-400 rounded-full shadow-lg cursor-pointer disabled:cursor-not-allowed"
               value="Restablecer"
             />
           </form>

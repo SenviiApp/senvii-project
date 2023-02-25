@@ -18,6 +18,6 @@ router.post("/register", postRegister);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password/:id", resetPassPost);
 router.get("/reset-password/:id/:token", resetPassword);
-router.get("/confirm/:token", confirmAccount);
+router.get("/confirm", confirmAccount);
 
 module.exports = router;

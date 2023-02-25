@@ -11,12 +11,16 @@ import {
   simulateDelay,
 } from "../utils";
 import { register } from "../services";
-import { MiniLoader } from "../components";
+import { MiniLoader, EmailSended } from "../components";
 import logo from "../assets/senvii-logo.svg";
 import headerBg from "../assets/prama.jpg";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { AnimatePresence } from "framer-motion";
 
 export default function Register() {
+  const [open, setOpen] = useState(false);
+
   const initialForm = {
     userName: "",
     identificationNumber: "",
@@ -55,13 +59,15 @@ export default function Register() {
     let image = document.querySelector("#profile_image").files[0] || null;
     if (image) image = await getImageData(image);
     const parsedUser = await validateRegisterSubmit({ ...form, image });
-
+    await simulateDelay(3);
     const response = await register(parsedUser);
-    // await simulateDelay(3);
-    setForm(initialForm);
     setLoading(false);
-    console.log(response);
-    //TODO add feedback to user and error validation
+
+    if (response.success) {
+      setOpen(true);
+    } else {
+      toast.error(response.code);
+    }
   };
 
   useEffect(() => {
@@ -340,6 +346,9 @@ export default function Register() {
           </button>
         </form>
       </section>
+      <AnimatePresence>
+        {open && <EmailSended email={form.email} />}
+      </AnimatePresence>
     </>
   );
 }
