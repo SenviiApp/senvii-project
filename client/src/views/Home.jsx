@@ -2,11 +2,12 @@ import logo from "../assets/logo.png";
 import { FaSearch, FaPowerOff, FaPercent } from "react-icons/fa";
 import { GiArchiveRegister } from "react-icons/gi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import { endSession } from "../utils";
 
 export default function home() {
   const navigate = useNavigate();
+  const { id, userName } = useLoaderData();
 
   const logout = async () => {
     await endSession();
@@ -35,7 +36,10 @@ export default function home() {
         <section id="tools" className="w-full">
           <div className="flex flex-col space-y-4 h-64 w-[90%] mx-auto rounded-lg p-6 justify-around">
             <div className="flex flex-col items-center">
-              <h2>Hola, Raffo</h2>
+              <h2>
+                Hola,{" "}
+                <span className="font-bold text-dark-800">{userName}</span>
+              </h2>
               <h3>¿Qué herramienta usarás?</h3>
             </div>
             <a
