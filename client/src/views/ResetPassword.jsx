@@ -5,6 +5,7 @@ import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { useEffect } from "react";
 import { $axios } from "../lib/axiosClient";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const ResetPassword = () => {
   const { id } = useParams();
@@ -27,17 +28,17 @@ const ResetPassword = () => {
       // toast
     }
 
-    console.log(form);
     try {
       const { data } = await $axios.post("/user/change-password", {
         id,
         password: form.password,
       });
-      // toast
+      if (data.success) {
+        toast.success("contraseña cambiada con exito");
+      }
       return data;
     } catch (error) {
-      // toast
-      return error.message;
+      toast.error(error.toString());
     }
   };
 
@@ -45,8 +46,8 @@ const ResetPassword = () => {
     async function fetchData() {
       try {
         const { data } = await $axios(`/user/${id}`);
-        return data;
       } catch (error) {
+        console.log(error);
         navigate("/");
       }
     }
@@ -99,11 +100,9 @@ const ResetPassword = () => {
               className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
             />
           </form>
-          <div className="text-sm flex flex-col mt-3">
-            <Link to="/login" className="text-blue-200 py-2">
-              Login
-            </Link>
-          </div>
+          <Link to="/login" className="text-blue-200 py-2">
+            Login
+          </Link>
         </div>
       </div>
 

@@ -19,26 +19,22 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         loader: async () => {
-          let response;
-          try {
-            response = await $axios.get("/auth/login");
-            return json(response.data);
-          } catch (error) {
+          const { data } = await $axios.get("/auth/login");
+          if (!data.success) {
             return redirect("/login");
           }
+          return json(data);
         },
       },
       {
         path: "/login",
         element: <Login />,
         loader: async () => {
-          let response;
-          try {
-            response = await $axios.get("/auth/login");
-            return redirect("/");
-          } catch (error) {
+          const { data } = await $axios.get("/auth/login");
+          if (!data.success) {
             return null;
           }
+          return redirect("/");
         },
       },
       {

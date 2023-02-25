@@ -24,9 +24,8 @@ const Login = () => {
     setLoading(true);
     const response = await login(form);
     console.log(response);
-    await simulateDelay(3);
+    await simulateDelay(2);
     if (response.success) {
-      //handle success
       navigate("/");
     } else {
       setLoading(false);
