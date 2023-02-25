@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 import { BsEmojiSmile } from "react-icons/bs";
-import { Cursor, useTypewriter } from "react-simple-typewriter";
 
 const MailConfirmed = () => {
-
   const navigate = useNavigate();
 
-  const [text, count] = useTypewriter({
-    words: [
-      "Redirigiendo..."
-    ],
-    delaySpeed: 800,
-    loop: true
-  });
-
   useEffect(() => {
-    setTimeout(() => {navigate("/login")}, 5000)
-  }, [])
+    setTimeout(() => {
+      navigate("/login");
+    }, 5000);
+  }, []);
 
   return (
-    <div className="h-screen bg-slate-800 grid items-center loginBg">
+    <div className="h-screen bg-zinc-600 grid place-items-center">
       <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
+        initial={{ opacity: 0.6, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
           default: {
-            duration: 0.3,
-            ease: [0, 0.71, 0.2, 1.01],
+            duration: 0.4,
+            ease: [0, 0.71, 0.2, 1],
           },
           scale: {
             type: "spring",
@@ -37,23 +29,33 @@ const MailConfirmed = () => {
             restDelta: 0.001,
           },
         }}
-        className="backdrop-blur-sm bg-light-500/70 text-white w-[90%] md:w-[60%] lg:w-[50%] md:h-96 mx-auto text-center p-5 space-y-6 lg:space-y-10 xl:space-y-20 flex flex-col justify-center items-center rounded-lg"
+        className="bg-light-500/70 text-white w-popup text-center py-5 flex flex-col gap-y-6 justify-center items-center rounded-md"
       >
-        <motion.h1 className="text-xl md:text-4xl text-center">
+        <motion.h1 className="text-xl text-center">
           Mail confirmado con éxito!
         </motion.h1>
 
         <motion.div
-          initial={{ rotateZ: 0 }}
-          animate={{ rotateZ: [0, 15, 30, 15, 0, -15, -30, -15, 0, 15, 30, 15, 0] }}
-          transition={{ duration: .8, delay: 1 }}
+          animate={{
+            rotateZ: [0, -30, 30, -20, 20, -10, 10, 0],
+          }}
+          transition={{ duration: 1.3, delay: 0.3, ease: "easeOut" }}
         >
           <BsEmojiSmile className="text-5xl md:text-7xl " />
         </motion.div>
-        <h2 className="text-xl md:text-3xl">
-        <span>{text}</span>
-        <Cursor cursorColor="#2A2E33" />    
-        </h2>
+
+        <motion.h2
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{
+            duration: 1.4,
+            repeat: Infinity,
+            ease: easeOut,
+          }}
+          className="text-lg"
+        >
+          Redirigiendo al Login...
+        </motion.h2>
       </motion.div>
     </div>
   );

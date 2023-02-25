@@ -29,16 +29,10 @@ const ResetPassword = () => {
 
     console.log(form);
     try {
-      const { data } = await $axios.post(
-        "/user/change-password",
-        { id, password: form.password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const { data } = await $axios.post("/user/change-password", {
+        id,
+        password: form.password,
+      });
       // toast
       return data;
     } catch (error) {

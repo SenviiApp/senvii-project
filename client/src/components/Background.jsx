@@ -14,12 +14,12 @@ export default function Background({ className }) {
         <img
           src={detail_1}
           alt=""
-          className="w-[160px] object-cover absolute top-0 left-0"
+          className="min-w-[160px] w-1/4 object-cover absolute top-0 left-0"
         />
         <img
           src={detail_2}
           alt=""
-          className="w-[160px] object-cover absolute top-0 right-0"
+          className="min-w-[160px] w-1/4 object-cover absolute top-0 right-0"
         />
       </div>
     </div>
