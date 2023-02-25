@@ -12,15 +12,13 @@ const validateLoginToken = (req, res, next) => {
   const accessToken = req.cookies["Access-token"];
 
   if (!accessToken)
-    return res
-      .status(400)
-      .json({ success: false, msg: "user_notauthenticated" });
+    return res.status(200).json({ success: false, msg: "token_notfound" });
 
   try {
     const validToken = verify(accessToken, process.env.JWT_SECRET);
     if (validToken) return next();
   } catch (error) {
-    return res.status(400).json({ error });
+    return res.status(200).json({ success: false, msg: "token_notfound" });
   }
 };
 
