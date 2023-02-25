@@ -12,7 +12,9 @@ const validateLoginToken = (req, res, next) => {
   const accessToken = req.cookies["Access-token"];
 
   if (!accessToken)
-    return res.status(400).json({ error: "User not Authenticated!" });
+    return res
+      .status(400)
+      .json({ success: false, msg: "user_notauthenticated" });
 
   try {
     const validToken = verify(accessToken, process.env.JWT_SECRET);

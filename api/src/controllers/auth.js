@@ -67,6 +67,15 @@ const postLogin = async (req, res) => {
   });
 };
 
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("Access-token");
+  } catch (error) {
+    return res.json({ succes: false, msg: "cookie_notfound" });
+  }
+  res.json({ success: true, msg: "cookie_deleted" });
+};
+
 // REGISTER
 const postRegister = async (req, res) => {
   const {
@@ -269,4 +278,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   resetPassPost,
+  logout,
 };

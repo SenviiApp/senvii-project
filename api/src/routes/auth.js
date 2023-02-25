@@ -11,9 +11,11 @@ const {
   forgotPassword,
   resetPassword,
   resetPassPost,
+  logout
 } = require("../controllers/auth");
 
 router.route("/login").get(validateLoginToken, getProfile).post(postLogin);
+router.post('/logout', logout)
 router.post("/register", postRegister);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password/:id", resetPassPost);
