@@ -2,7 +2,7 @@ import { $axios } from "../lib";
 
 export const sendEmailVerification = async (email) => {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!EMAIL_REGEX.test(email))
+  if (!EMAIL_REGEX.test(email.email))
     return {
       responseStatus: false,
       message: "Introduzca un email válido",

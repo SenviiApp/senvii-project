@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Background, ResponsiveSideBanner, EmailSended } from "../components";
+import {
+  Background,
+  ResponsiveSideBanner,
+  EmailSended,
+  MiniLoader,
+} from "../components";
 import { AnimatePresence } from "framer-motion";
 import { sendEmailVerification } from "../services";
 import { simulateDelay } from "../utils";
@@ -9,17 +14,18 @@ import { toast } from "react-hot-toast";
 const ForgotPassword = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState({ email: "" });
+  const [isLoading, setLoading] = useState(false);
 
   const modalHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const response = await sendEmailVerification(email);
+    setLoading(false);
     if (response.responseStatus) {
       setOpen(true);
-      await simulateDelay(5);
     } else {
-      toast("El correo no está asociado a ningún usuario");
-      // setOpen(false);
-      //handle failure with a toast
+      // toast("El correo no está asociado a ningún usuario");
+      toast.error(response.message);
     }
   };
 
@@ -38,13 +44,15 @@ const ForgotPassword = () => {
               value={email.email}
               onChange={({ target }) => setEmail({ email: target.value })}
             />
-            <input
-              disabled={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
-              type="submit"
+            <button
+              disabled={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.email)}
               onClick={modalHandler}
-              className="p-2 bg-blue-400 rounded-full shadow-lg cursor-pointer disabled:cursor-not-allowed"
-              value="Restablecer"
-            />
+              type="submit"
+              className="py-3 bg-blue-400 rounded-full disabled:pointer-events-none disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg w-full"
+            >
+              Reestablecer
+              {isLoading && <MiniLoader />}
+            </button>
           </form>
           <Link
             to="/login"
