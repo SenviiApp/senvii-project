@@ -2,15 +2,20 @@ const { sign, verify } = require("jsonwebtoken");
 require("dotenv").config();
 
 const createLoginToken = (user) => {
+  // take data
   const { id, userName } = user;
+
+  // create token
   const accessToken = sign({ userName, id }, process.env.JWT_SECRET);
 
   return accessToken;
 };
 
 const validateLoginToken = (req, res, next) => {
+  // take token
   const accessToken = req.cookies["Access-token"];
 
+  // verify token
   if (!accessToken)
     return res.status(200).json({ success: false, msg: "token_notfound" });
 
@@ -23,6 +28,7 @@ const validateLoginToken = (req, res, next) => {
 };
 
 const createEmailToken = (email, code) => {
+  // create token
   const token = sign(
     {
       email,
@@ -45,18 +51,22 @@ const verifyEmailToken = (token) => {
 };
 
 const createForgotPasswordToken = (user) => {
+  // take data
   const { id, email } = user;
 
+  // create token
   const token = sign({ email, id }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
 
+  // crete link for email
   const link = `http://localhost:3001/api/auth/reset-password/${id}/${token}`;
 
   return link;
 };
 
 const verifyResetPasswordToken = (token) => {
+  // verify token
   const data = verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return null;
     return decoded;

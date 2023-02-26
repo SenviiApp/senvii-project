@@ -22,6 +22,7 @@ const postLogin = async (req, res) => {
     });
   }
 
+  // verify user
   const existingUser = await User.findOne({ where: { email } });
 
   if (!existingUser) {
@@ -31,6 +32,7 @@ const postLogin = async (req, res) => {
     });
   }
 
+  // verify email
   if (!existingUser.verified) {
     return res.status(400).json({
       success: false,
@@ -50,8 +52,10 @@ const postLogin = async (req, res) => {
     });
   }
 
+  // create token
   const accessToken = createLoginToken(existingUser);
 
+  // create cookie
   res.cookie("Access-token", accessToken, {
     httpOnly: true,
     secure: false,
@@ -68,6 +72,7 @@ const postLogin = async (req, res) => {
 };
 
 const logout = async (req, res) => {
+  // delete token
   try {
     res.clearCookie("Access-token");
   } catch (error) {
@@ -102,6 +107,7 @@ const postRegister = async (req, res) => {
   )
     return res.status(400).json({ sucess: false, code: "register_incomplete" });
 
+  // verify unique data
   const existingUser = await User.findOne({ where: { email } });
   const existingIdentification = await User.findOne({
     where: { identificationNumber },
@@ -122,11 +128,14 @@ const postRegister = async (req, res) => {
         where: { entityName },
         defaults: { country, entityType },
       });
+
+      // default image
       let jsonProfilePicture = {
         public_id: "userPicture/sp5dq8c8igvxki0b8kaq",
         url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png",
       };
 
+      // if there is a image, create image by cloudinary
       if (image) {
         const upToCloud = await cloudinary.uploader.upload(image, {
           folder: "userPicture",
@@ -194,6 +203,7 @@ const confirmAccount = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
+  // verify user
   const user = verify(req.cookies["Access-token"], process.env.JWT_SECRET);
   const { userName, id } = user;
 
@@ -201,14 +211,17 @@ const getProfile = async (req, res) => {
 };
 
 const forgotPassword = async (req, res) => {
+  // take data
   const { email } = req.body;
 
   try {
+    // verify user
     const existingUser = await User.findOne({ where: { email } });
 
     if (!existingUser)
       return res.json({ success: false, msg: "user_notfound" });
 
+    // create token
     const link = createForgotPasswordToken(existingUser);
 
     // Send email
@@ -221,14 +234,17 @@ const forgotPassword = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
+  // take data
   const { id, token } = req.params;
 
   try {
+    // verify user
     const existingUser = await User.findOne({ where: { id } });
 
     if (!existingUser)
       return res.json({ success: false, code: "user_notfound" });
 
+    // verify token
     const verify = verifyResetPasswordToken(token);
 
     if (!verify) return res.send("Invalid Token");
@@ -239,14 +255,16 @@ const resetPassword = async (req, res) => {
 };
 
 const resetPassPost = async (req, res) => {
+  // take data
   const { id } = req.params;
   const { password } = req.body;
 
   try {
     const existingUser = await User.findOne({ where: { id } });
 
+    // verify user
     if (!existingUser)
-      return res.json({ success: false, msg: "User doesn't exist" });
+      return res.json({ success: false, code: "User doesn't exist" });
 
     // Hash password
     bcrypt
@@ -256,17 +274,15 @@ const resetPassPost = async (req, res) => {
         await User.update({ password: hash }, { where: { id } });
       })
       .then(() => {
-        res.json({ success: true, msg: "Password updated" });
+        return res.json({ success: true, code: "password_updated" });
       })
       .catch((err) => {
         return res
           .status(400)
-          .json({ success: false, msg: "Something went wrong" });
+          .json({ success: false, code: "Something went wrong" });
       });
-
-    res.redirect("http://localhost:5173"); // change
   } catch (error) {
-    res.json({ success: false, msg: "User doesn't verified" });
+    res.json({ success: false, code: "User doesn't verified" });
   }
 };
 
