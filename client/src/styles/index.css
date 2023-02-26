@@ -20,7 +20,17 @@
 
 .login-pages-container {
   /* wrapper for all page */
-  @apply h-screen grid place-items-center lg:grid-cols-3;
+  @apply h-screen grid place-items-center;
+}
+@media (min-width: 1024px) {
+  .login-pages-container {
+    grid-template-columns: 40% 30% 30%;
+  }
+}
+@media (min-width: 1440px) {
+  .login-pages-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .login-container {
   /* login cell container */

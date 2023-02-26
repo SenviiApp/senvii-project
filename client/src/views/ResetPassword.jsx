@@ -42,18 +42,6 @@ const ResetPassword = () => {
     }
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await $axios(`/user/${id}`);
-      } catch (error) {
-        console.log(error);
-        navigate("/");
-      }
-    }
-
-    fetchData();
-  }, []);
   return (
     <div className="login-pages-container">
       <div className="login-container">

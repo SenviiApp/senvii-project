@@ -1,9 +1,9 @@
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { FaSearch, FaPowerOff, FaPercent } from "react-icons/fa";
 import { GiArchiveRegister } from "react-icons/gi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate, useLoaderData } from "react-router-dom";
-import { endSession } from "../utils";
+import { endSession } from "../../utils";
 
 export default function Home() {
   const navigate = useNavigate();

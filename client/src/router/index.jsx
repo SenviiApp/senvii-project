@@ -1,30 +1,32 @@
 import { createBrowserRouter, redirect, json } from "react-router-dom";
 import { $axios } from "../lib";
 import {
-  App,
-  Home,
+  Root,
   Login,
+  App,
   Register,
   ForgotPassword,
   ResetPassword,
   MailConfirmed,
+  Home,
 } from "../views";
+
+const userMiddleware = async () => {
+  const { data } = await $axios.get("/auth/login");
+  if (!data.success) {
+    return redirect("/login");
+  }
+  return json(data);
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
     children: [
       {
         index: true,
-        element: <Home />,
-        loader: async () => {
-          const { data } = await $axios.get("/auth/login");
-          if (!data.success) {
-            return redirect("/login");
-          }
-          return json(data);
-        },
+        loader: async () => redirect("/app"),
       },
       {
         path: "/login",
@@ -48,10 +50,31 @@ const router = createBrowserRouter([
       {
         path: "/reset-password/:id",
         element: <ResetPassword />,
+        loader: async ({ params: { id } }) => {
+          return $axios(`/user/${id}`)
+            .then(() => null)
+            .catch((err) => redirect("/"));
+        },
       },
       {
         path: "/mail-confirmed",
         element: <MailConfirmed />,
+      },
+      {
+        path: "/app",
+        element: <App />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+            loader: userMiddleware,
+          },
+          {
+            path: "diagnose",
+            element: <h1>Hola desde coso</h1>,
+            loader: userMiddleware,
+          },
+        ],
       },
     ],
   },
