@@ -43,7 +43,7 @@ export default function Home() {
               <h3>¿Qué herramienta usarás?</h3>
             </div>
             <a
-              href="#"
+              href="/app/diagnose"
               className="border-light-500 border-2 shadow-lg py-4 px-4 bg-white rounded-full text-center font-semibold text-light-500 flex justify-center items-center text-sm relative"
             >
               <span className="inline-flex mr-2">
@@ -94,6 +94,8 @@ export default function Home() {
             </button>
           </div>
         </section>
+
+     
       </main>
     </>
   );
