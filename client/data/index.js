@@ -3,10 +3,23 @@ const data = {
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
-      { callesYjirones: "máximo 30 Km/h" },
-      { avenidas: "máximo 50 km/h" },
-      { zonasComEscHosp: "máximo 30 km/h" },
-      { zonasResidenciales: "máximo 50km/h" },
+      {
+        name: "Calles y jirones",
+        descripcion: "máximo 30 Km/h",
+      },
+      ,
+      { name: "Avenidas", descripcion: "máximo 50 km/h" },
+
+      {
+        name: "Zonas comerciales",
+        descripcion: "máximo 30 km/h",
+      },
+      ,
+      {
+        name: "Zonas residenciales",
+        descripcion: "máximo 50km/h",
+      },
+      ,
     ],
     cuatrocientos: {
       via: {
@@ -334,10 +347,23 @@ const data = {
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
-      { callesYjirones: "máximo 30 Km/h" },
-      { avenidas: "máximo 50 km/h" },
-      { zonasComEscHosp: "máximo 30 km/h" },
-      { zonasResidenciales: "máximo 50km/h" },
+      {
+        name: "Calles y jirones",
+        descripcion: "máximo 30 Km/h",
+      },
+      ,
+      { name: "Avenidas", descripcion: "máximo 50 km/h" },
+
+      {
+        name: "Zonas comerciales",
+        descripcion: "máximo 30 km/h",
+      },
+      ,
+      {
+        name: "Zonas residenciales",
+        descripcion: "máximo 50km/h",
+      },
+      ,
     ],
     cuatromilAseismil: {
       via: {
@@ -647,10 +673,23 @@ const data = {
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
-      { callesYjirones: "máximo 30 Km/h" },
-      { avenidas: "máximo 50 km/h" },
-      { zonasComEscHosp: "máximo 30 km/h" },
-      { zonasResidenciales: "máximo 50km/h" },
+      {
+        name: "Calles y jirones",
+        descripcion: "máximo 30 Km/h",
+      },
+      ,
+      { name: "Avenidas", descripcion: "máximo 50 km/h" },
+
+      {
+        name: "Zonas comerciales",
+        descripcion: "máximo 30 km/h",
+      },
+      ,
+      {
+        name: "Zonas residenciales",
+        descripcion: "máximo 50km/h",
+      },
+      ,
     ],
     cuatrocientos: {
       via: {
@@ -953,4 +992,4 @@ const data = {
   },
 };
 
-module.exports = { data };
+export default data;
