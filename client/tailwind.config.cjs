@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       width: {
+        main: "min(50rem, 90%)",
         form: "min(40rem, 90%)",
         "login-form": "min(360px,95%)",
         popup: "min(500px, 95%)",
