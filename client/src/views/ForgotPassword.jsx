@@ -48,7 +48,7 @@ const ForgotPassword = () => {
               disabled={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.email)}
               onClick={modalHandler}
               type="submit"
-              className="py-3 bg-blue-400 rounded-full disabled:pointer-events-none disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg w-full"
+              className="py-3 bg-blue-400 rounded-full disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg w-full"
             >
               Reestablecer
               {isLoading && <MiniLoader />}

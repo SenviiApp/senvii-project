@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Background, ResponsiveSideBanner } from "../components";
+import { Background, ResponsiveSideBanner, MiniLoader } from "../components";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
-import { useEffect } from "react";
-import { $axios } from "../lib/axiosClient";
+import { $axios } from "../lib";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { simulateDelay } from "../utils";
 
 const ResetPassword = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isVisible, setVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
   const [form, setForm] = useState({
     password: "",
     _confirmed_password: "",
@@ -22,10 +24,12 @@ const ResetPassword = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     // verificación
     if (form.password !== form._confirmed_password) {
       // toast
+      setLoading(false);
+      return toast.error("???");
     }
 
     try {
@@ -35,8 +39,9 @@ const ResetPassword = () => {
       });
       if (data.success) {
         toast.success("contraseña cambiada con exito");
+        await simulateDelay(2);
+        navigate("/login");
       }
-      return data;
     } catch (error) {
       toast.error(error.toString());
     }
@@ -82,11 +87,18 @@ const ResetPassword = () => {
                 {isVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
               </span>
             </div>
-            <input
+            <button
               type="submit"
-              value="Reestablecer contraseña"
-              className="p-2 bg-blue-400 rounded-full shadow-lg mt-4 w-full"
-            />
+              disabled={
+                !form.password ||
+                !form._confirmed_password ||
+                form.password !== form._confirmed_password
+              }
+              className="py-3 bg-blue-400 rounded-full disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg mt-4 w-full"
+            >
+              Reestablecer contraseña
+              {isLoading && <MiniLoader />}
+            </button>
           </form>
           <Link to="/login" className="text-blue-200 py-2">
             Login

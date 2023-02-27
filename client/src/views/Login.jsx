@@ -84,7 +84,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={!form.password || !form.email}
-              className="py-3 bg-blue-400 rounded-full disabled:pointer-events-none disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg mt-4 w-full"
+              className="py-3 bg-blue-400 rounded-full disabled:cursor-not-allowed flex gap-x-3 items-center justify-center transition-colors shadow-lg mt-4 w-full"
             >
               Iniciar Sesión
               {isLoading && <MiniLoader />}

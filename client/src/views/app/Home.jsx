@@ -8,7 +8,7 @@ import { endSession } from "../../utils";
 
 export default function Home() {
   const navigate = useNavigate();
-  const { id, userName } = useLoaderData();
+  const { id, userName, image } = useLoaderData();
 
   const logout = async () => {
     await endSession();
@@ -24,9 +24,9 @@ export default function Home() {
         <section id="user" className="w-full">
           <div className="flex flex-col items-center space-y-1">
             <img
-              src="https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png"
+              src={image.url}
               alt="user"
-              className="rounded-full w-24 h-24 shadow-2xl"
+              className="rounded-full w-24 h-24 shadow-2xl object-cover object-center"
             />
             <a href="#" className="text-xs">
               Editar mis datos
