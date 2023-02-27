@@ -68,9 +68,9 @@ export default function Diagnose() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 2 }}
           href=""
-          className="bg-black text-white py-2 px-10 rounded-full"
+          className="bg-black text-white py-2 px-14 rounded-full"
         >
-          CONTINUAR
+          Continuar
         </motion.a>
       </motion.div>
     </div>
