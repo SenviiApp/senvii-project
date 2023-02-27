@@ -5,6 +5,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { endSession } from "../../utils";
 
+
 export default function Home() {
   const navigate = useNavigate();
   const { id, userName, image } = useLoaderData();
@@ -94,6 +95,7 @@ export default function Home() {
             </button>
           </div>
         </section>
+
       </main>
     </>
   );
