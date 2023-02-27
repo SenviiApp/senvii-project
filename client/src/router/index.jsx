@@ -9,6 +9,7 @@ import {
   ResetPassword,
   MailConfirmed,
   Home,
+  Diagnose
 } from "../views";
 
 const userMiddleware = async () => {
@@ -71,9 +72,10 @@ const router = createBrowserRouter([
           },
           {
             path: "diagnose",
-            element: <h1>Hola desde coso</h1>,
+            element: <Diagnose/>,
             loader: userMiddleware,
           },
+
         ],
       },
     ],
