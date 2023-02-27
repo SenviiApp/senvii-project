@@ -5,7 +5,6 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { endSession } from "../../utils";
 
-
 export default function Home() {
   const navigate = useNavigate();
   const { id, userName, image } = useLoaderData();
@@ -16,7 +15,7 @@ export default function Home() {
   };
   return (
     <>
-      <main className="h-screen w-full mx-auto loginBg flex flex-col items-center justify-evenly">
+      <main className="h-screen w-main mx-auto loginBg flex flex-col items-center justify-evenly">
         <header className="">
           <img src={logo} alt="" className="w-28" />
         </header>
@@ -35,7 +34,7 @@ export default function Home() {
         </section>
 
         <section id="tools" className="w-full">
-          <div className="flex flex-col space-y-4 h-64 w-[90%] mx-auto rounded-lg p-6 justify-around">
+          <div className="flex flex-col space-y-4 h-64 mx-auto rounded-lg p-6 justify-around">
             <div className="flex flex-col items-center">
               <h2>
                 Hola,{" "}
@@ -95,7 +94,6 @@ export default function Home() {
             </button>
           </div>
         </section>
-
       </main>
     </>
   );
