@@ -24,7 +24,7 @@ export default function Diagnose() {
         {/* character container */}
         <div className="h-[20vh] fixed top-0 w-full bg-zinc-600 left-0">
           <div className="mx-auto w-main h-full grid grid-character gap-3">
-            <img src={senvii} alt="senvii" className="w-24 h-24 self-center" />
+            <img src={senvii} alt="senvii" className="w-22 h-22 self-center object-cover" />
             <h1 className="text-dark-600 p-2 text-md text-center bg-white mr-2 rounded-md h-fit mt-8 w-fit relative">
               <div className="h-4 w-4 absolute -left-4 bg-white path-triangle top-3" />
 
