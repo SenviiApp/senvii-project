@@ -1,4 +1,5 @@
 import { createBrowserRouter, redirect, json } from "react-router-dom";
+import DocumentPDF from "../components/DocumentPDF";
 import { $axios } from "../lib";
 import {
   Root,
@@ -9,7 +10,7 @@ import {
   ResetPassword,
   MailConfirmed,
   Home,
-  Diagnose
+  Diagnose,
 } from "../views";
 
 const userMiddleware = async () => {
@@ -72,10 +73,14 @@ const router = createBrowserRouter([
           },
           {
             path: "diagnose",
-            element: <Diagnose/>,
+            element: <Diagnose />,
             loader: userMiddleware,
           },
-
+          {
+            path: "doc",
+            element: <DocumentPDF />,
+            loader: userMiddleware,
+          },
         ],
       },
     ],
