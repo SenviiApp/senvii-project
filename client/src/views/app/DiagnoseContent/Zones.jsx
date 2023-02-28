@@ -29,7 +29,7 @@ export default function Zones({ setStep, selectZone }) {
       transition={{ duration: 0.8, bounce: 1, delay: 0.1 }}
       className="overflow-hidden"
     >
-      <div className="w-main bg-white mx-auto flex flex-col justify-between items-center py-6 rounded-md h-full">
+      <div className="w-main bg-white mx-auto flex flex-col justify-between items-center py-6 rounded-md h-[70vh]">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
