@@ -355,6 +355,7 @@ const data = {
   },
   // =========================== AUTOPISTA =================================
   autopista: {
+    name: "autopista",
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
@@ -687,6 +688,7 @@ const data = {
   },
   // ========================== CARRETERA RURAL ============================
   rural: {
+    name: "rural",
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
