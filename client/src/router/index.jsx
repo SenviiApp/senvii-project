@@ -28,8 +28,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>Aqui va la landing</h1>,
-        // loader: async () => redirect("/app"),
+        // element: <h1>Aqui va la landing</h1>,
+        loader: async () => redirect("/app"),
       },
       {
         path: "/login",
