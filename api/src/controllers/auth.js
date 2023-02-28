@@ -205,7 +205,7 @@ const confirmAccount = async (req, res) => {
 const getProfile = async (req, res) => {
   // verify user
   const user = verify(req.cookies["Access-token"], process.env.JWT_SECRET);
-  const { id, userName, image } = user;
+  const { id, userName, image, email } = user;
 
   res.json({ id, userName, image, success: true });
 };
