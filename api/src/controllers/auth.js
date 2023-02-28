@@ -207,7 +207,7 @@ const getProfile = async (req, res) => {
   const user = verify(req.cookies["Access-token"], process.env.JWT_SECRET);
   const { id, userName, image, email } = user;
 
-  res.json({ id, userName, image, success: true });
+  res.json({ id, userName, image, email, success: true });
 };
 
 const forgotPassword = async (req, res) => {
