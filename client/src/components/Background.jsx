@@ -16,12 +16,12 @@ export default function Background({ className, plain = false }) {
             <img
               src={detail_1}
               alt=""
-              className="min-w-[160px] w-1/4 object-cover absolute top-0 left-0"
+              className="min-w-[160px] w-1/4 max-w-[16rem] object-cover absolute top-0 left-0"
             />
             <img
               src={detail_2}
               alt=""
-              className="min-w-[160px] w-1/4 object-cover absolute top-0 right-0"
+              className="min-w-[160px] w-1/4 max-w-[16rem] object-cover absolute top-0 right-0"
             />
           </>
         )}
