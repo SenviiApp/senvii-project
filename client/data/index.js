@@ -1,5 +1,6 @@
 const data = {
-  zonaUrbana: {
+  urbana: {
+    name: "zona urbana",
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
@@ -21,326 +22,336 @@ const data = {
       },
       ,
     ],
-    cuatrocientos: {
-      via: {
-        nombre: "Locales",
-        descripcion:
-          "Sirven a los distritos y su función principal es permitir el acceso a las propiedades urbanas. La mayoría de las vías locales tienen dos carriles para ambas direcciones y generalmente son llamadas calles o jirones",
-        mejoras: [
-          "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
-          "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
-          "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
-        ],
-        mejorasSimples: [
-          "Señales preventivas",
-          "Instalción de tachas",
-          "Instalación de gibas",
-          "Señales reglamentarias",
-          "Señales informativas",
-        ],
-      },
-      señalizaciones: [
-        {
-          nombre: "Líneas continuas y discontinuas",
-          mejoras: ["Aplicación de pintura acrílica"],
+    transito: [
+      {
+        id: "cuatrocientos",
+        name: "Menor a 400",
+        via: {
+          nombre: "Locales",
+          descripcion:
+            "Sirven a los distritos y su función principal es permitir el acceso a las propiedades urbanas. La mayoría de las vías locales tienen dos carriles para ambas direcciones y generalmente son llamadas calles o jirones",
+          mejoras: [
+            "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+            "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+            "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+          ],
+          mejorasSimples: [
+            "Señales preventivas",
+            "Instalción de tachas",
+            "Instalación de gibas",
+            "Señales reglamentarias",
+            "Señales informativas",
+          ],
         },
-        {
-          nombre: "Cruceros peatonales y líneas de pare",
-          mejoras: ["Aplicación de pintura acrílica"],
-        },
-        {
-          nombre: "Símbolos, flechas y letras",
-          mejoras: ["Aplicación de pintura acrílica"],
-        },
-      ],
-    },
-    cuatrocientosAdosmil: {
-      via: {
-        nombre: "Colectoras",
-        descripcion:
-          "Están conectadas con las vías locales por intersecciones a nivel para las entrada y las salidas a nivel generalmente no semaforizadas y su función es conectar el tránsito de estas vías con las vías arteriales. Generalmente se llaman avenidas y tienen un total de 4 carriles para ambas direcciones.",
-        mejoras: [
-          "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
-          "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
-          "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
-        ],
-        mejorasSimples: [
-          "Señales preventivas",
-          "Instalción de tachas",
-          "Instalación de gibas",
-          "Señales reglamentarias",
-          "Señales informativas",
+        señalizaciones: [
+          {
+            nombre: "Líneas continuas y discontinuas",
+            mejoras: ["Aplicación de pintura acrílica"],
+          },
+          {
+            nombre: "Cruceros peatonales y líneas de pare",
+            mejoras: ["Aplicación de pintura acrílica"],
+          },
+          {
+            nombre: "Símbolos, flechas y letras",
+            mejoras: ["Aplicación de pintura acrílica"],
+          },
         ],
       },
-      señalizaciones: [
-        {
-          nombre: "Líneas continuas y discontinuas",
+      {
+        id: "cuatrocientosAdosmil",
+        name: "Entre 401 y 2000",
+        via: {
+          nombre: "Colectoras",
+          descripcion:
+            "Están conectadas con las vías locales por intersecciones a nivel para las entrada y las salidas a nivel generalmente no semaforizadas y su función es conectar el tránsito de estas vías con las vías arteriales. Generalmente se llaman avenidas y tienen un total de 4 carriles para ambas direcciones.",
           mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Spray",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
+            "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+            "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+            "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+          ],
+          mejorasSimples: [
+            "Señales preventivas",
+            "Instalción de tachas",
+            "Instalación de gibas",
+            "Señales reglamentarias",
+            "Señales informativas",
           ],
         },
-        {
-          nombre: "Cruceros peatonales y líneas de pare",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Extrusión",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Símbolos, flechas y letras",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Extrusión",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Intersecciones y óvalos",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Spray",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-      ],
-    },
-    dosmilAcuatromil: {
-      via: {
-        nombre: "Arteriales",
-        descripcion:
-          "Tienen la función de servir al tránsito originado en las vías colectoras y son llamadas Avenidas o Corredores Viales. Las intersecciones de las vías arteriales con las vías expresas o entre dos vías arteriales son a desnivel.  Complementan el ordenamiento de la mano de semáforos y policias.",
-        mejoras: [
-          "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
-          "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
-          "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
-        ],
-        mejorasSimples: [
-          "Señales preventivas",
-          "Instalción de tachas",
-          "Señales reglamentarias",
-          "Señales informativas",
-        ],
-      },
-      señalizaciones: [
-        {
-          nombre: "Líneas continuas y discontinuas",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Spray",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Cruceros peatonales y líneas de pare",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: [
-                "Aplicación de pintura Termoplástica Extrusión",
-                "Termoplástico preformado",
-              ],
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Símbolos, flechas y letras",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: [
-                "Aplicación de pintura Termoplástica Extrusión",
-                "Termoplástico preformado",
-              ],
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Intersecciones y óvalos",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Spray",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-      ],
-    },
-    masCuatromil: {
-      via: {
-        nombre: "Express",
-        descripcion:
-          "Las vías expresas son para el tránsito de paso, altos volúmenes y considerable velocidad en las que las entradas y salidas son controladas por intercambios, que se conectan con otras vías expresas o vías arteriales por intersecciones a desnivel. De acuerdo a las características de uso, existen 3 tipos de vías expresas como se explica a continuación.",
-        mejoras: [
-          "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
-          "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
-          "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
-        ],
-        mejorasSimples: [
-          "Señales preventivas",
-          "Instalción de tachas",
-          "Instalación de gibas",
-          "Señales reglamentarias",
-          "Señales informativas",
+        señalizaciones: [
+          {
+            nombre: "Líneas continuas y discontinuas",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Spray",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Cruceros peatonales y líneas de pare",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Extrusión",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Símbolos, flechas y letras",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Extrusión",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Intersecciones y óvalos",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Spray",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
         ],
       },
-      señalizaciones: [
-        {
-          nombre: "Líneas continuas y discontinuas",
+      {
+        id: "dosmilAcuatromil",
+        name: "Entre 2001 a 4000",
+        via: {
+          nombre: "Arteriales",
+          descripcion:
+            "Tienen la función de servir al tránsito originado en las vías colectoras y son llamadas Avenidas o Corredores Viales. Las intersecciones de las vías arteriales con las vías expresas o entre dos vías arteriales son a desnivel.  Complementan el ordenamiento de la mano de semáforos y policias.",
           mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Banda transversa termoplástica",
-              no: null,
-            },
-            {
-              pregunta:
-                "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: "Banda transversal Termoplástica",
-              no: null,
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
+            "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+            "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+            "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+          ],
+          mejorasSimples: [
+            "Señales preventivas",
+            "Instalción de tachas",
+            "Señales reglamentarias",
+            "Señales informativas",
           ],
         },
-        {
-          nombre: "Cruceros peatonales y líneas de pare",
+        señalizaciones: [
+          {
+            nombre: "Líneas continuas y discontinuas",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Spray",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Cruceros peatonales y líneas de pare",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: [
+                  "Aplicación de pintura Termoplástica Extrusión",
+                  "Termoplástico preformado",
+                ],
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Símbolos, flechas y letras",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: [
+                  "Aplicación de pintura Termoplástica Extrusión",
+                  "Termoplástico preformado",
+                ],
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Intersecciones y óvalos",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Spray",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "masCuatromil",
+        name: "Más de 4000",
+        via: {
+          nombre: "Express",
+          descripcion:
+            "Las vías expresas son para el tránsito de paso, altos volúmenes y considerable velocidad en las que las entradas y salidas son controladas por intercambios, que se conectan con otras vías expresas o vías arteriales por intersecciones a desnivel. De acuerdo a las características de uso, existen 3 tipos de vías expresas como se explica a continuación.",
           mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Extrusión",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta:
-                "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: "Banda transversal termoplástica",
-              no: null,
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
+            "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+            "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+            "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+          ],
+          mejorasSimples: [
+            "Señales preventivas",
+            "Instalción de tachas",
+            "Instalación de gibas",
+            "Señales reglamentarias",
+            "Señales informativas",
           ],
         },
-        {
-          nombre: "Símbolos, flechas y letras",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: [
-                "Aplicación de pintura Termoplástica Extrusión",
-                "Termoplástico preformado",
-              ],
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta:
-                "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: "Banda transversal termoplástica",
-              no: null,
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-        {
-          nombre: "Intersecciones y óvalos",
-          mejoras: [
-            {
-              pregunta:
-                "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
-              si: "Aplicación de pintura Termoplástica Spray",
-              no: "Aplicación de pintura acrílica",
-            },
-            {
-              pregunta:
-                "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
-              si: "Banda transversal termoplástica",
-              no: null,
-            },
-            {
-              pregunta: "¿El pavimento presenta grieta o fracturas?",
-              si: "Sellado de fisuras",
-              no: null,
-            },
-          ],
-        },
-      ],
-    },
+        señalizaciones: [
+          {
+            nombre: "Líneas continuas y discontinuas",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Banda transversa termoplástica",
+                no: null,
+              },
+              {
+                pregunta:
+                  "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
+                si: "Banda transversal Termoplástica",
+                no: null,
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Cruceros peatonales y líneas de pare",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Extrusión",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta:
+                  "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
+                si: "Banda transversal termoplástica",
+                no: null,
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Símbolos, flechas y letras",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: [
+                  "Aplicación de pintura Termoplástica Extrusión",
+                  "Termoplástico preformado",
+                ],
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta:
+                  "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
+                si: "Banda transversal termoplástica",
+                no: null,
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+          {
+            nombre: "Intersecciones y óvalos",
+            mejoras: [
+              {
+                pregunta:
+                  "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
+                si: "Aplicación de pintura Termoplástica Spray",
+                no: "Aplicación de pintura acrílica",
+              },
+              {
+                pregunta:
+                  "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
+                si: "Banda transversal termoplástica",
+                no: null,
+              },
+              {
+                pregunta: "¿El pavimento presenta grieta o fracturas?",
+                si: "Sellado de fisuras",
+                no: null,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   // =========================== AUTOPISTA =================================
   autopista: {
@@ -669,7 +680,7 @@ const data = {
     },
   },
   // ========================== CARRETERA RURAL ============================
-  carreteraRural: {
+  rural: {
     descripcion:
       "Son consideradas vías urbanas, las calles o plazas que componen la red interior de comunicaciones de una población.",
     velocidades: [
