@@ -53,9 +53,9 @@ const editProfile = async (req, res) => {
     return res.status(400).json({ success: false, code: "user_doesn't_exist" });
 
   // verify fields
-  const verify = req.body.some((data) => data === "");
+  //const verify = req.body.some((data) => data === "");
 
-  if (verify) res.status(400).json({ success: false, code: "not_enoughdata" });
+  //if (verify) res.status(400).json({ success: false, code: "not_enoughdata" });
 
   // verify unique data
   if (userName) {

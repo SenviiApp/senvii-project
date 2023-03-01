@@ -4,12 +4,12 @@ import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { registerFormModel } from "../models";
 import {
-  validateRegisterSubmit,
   isFormCompleted,
   validateFields,
   getImageData,
   simulateDelay,
 } from "../utils";
+import { validateEditProfile } from "../utils/validateEditProfile";
 import { MiniLoader, EmailSended } from "../components";
 import logo from "../assets/senvii-logo.svg";
 import headerBg from "../assets/prama.jpg";
@@ -23,13 +23,11 @@ export default function Register() {
   const [open, setOpen] = useState(false);
 
   const data = useLoaderData();
-  console.log(data);
 
   const initialForm = {
     id: data.id,
     userName: data.userName,
     phoneNumber: data.phoneNumber,
-    password: "",
     image: data.image,
     entityName: data.institution.entityName
   };
@@ -50,9 +48,9 @@ export default function Register() {
     setLoading(true);
     let image = document.querySelector("#profile_image").files[0] || null;
     if (image) image = await getImageData(image);
-    const parsedUser = await validateRegisterSubmit({ ...form, image });
+    const parsedUser = await validateEditProfile({ ...form, image });
     await simulateDelay(3);
-    const response = await editProfile(parsedUser);
+    const response = await editProfile(parsedUser, data.id);
     setLoading(false);
 
     if (response.success) {
