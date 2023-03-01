@@ -11,6 +11,7 @@ import {
   MailConfirmed,
   Home,
   Diagnose,
+  EditProfile,
 } from "../views";
 
 const userMiddleware = async () => {
@@ -81,6 +82,18 @@ const router = createBrowserRouter([
             path: "doc",
             element: <DocumentPDF />,
             loader: userMiddleware,
+          },
+          {
+            path: "edit-profile",
+            element: <EditProfile />,
+            loader: async () => {
+              const { data } = await $axios.get("/auth/login");
+              if (!data.success) {
+                return redirect("/login");
+              }
+              const { data: response } = await $axios.get(`/user/${data.id}`);
+              return json(response);
+            },
           },
         ],
       },
