@@ -50,7 +50,7 @@ const editProfile = async (req, res) => {
   const existingUser = User.findOne({ where: { id } });
 
   if (!existingUser)
-    res.status(400).json({ success: false, code: "user_doesn't_exist" });
+    return res.status(400).json({ success: false, code: "user_doesn't_exist" });
 
   // verify fields
   const verify = req.body.some((data) => data === "");
@@ -62,13 +62,13 @@ const editProfile = async (req, res) => {
     const existingUser = User.findOne({ where: { userName } });
 
     if (existingUser)
-      res.status(400).json({ success: false, code: "user_alreadyexist" });
+      return res.status(400).json({ success: false, code: "user_alreadyexist" });
   }
   if (phoneNumber) {
     const existingUser = User.findOne({ where: { phoneNumber } });
 
     if (existingUser)
-      res.status(400).json({ success: false, code: "user_alreadyexist" });
+      return res.status(400).json({ success: false, code: "user_alreadyexist" });
   }
 
   // find or create an institution
