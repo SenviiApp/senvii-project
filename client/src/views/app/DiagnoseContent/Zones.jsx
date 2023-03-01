@@ -69,8 +69,8 @@ export default function Zones({ setStep, selectZone }) {
             </div>
           </motion.div>
         </motion.div>
-        <span onClick={() => moveSlider(frame + 1)}>CLICKEA PUTO</span>
-        <span onClick={() => moveSlider(frame - 1)}>CLICKEA PUTO (-)</span>
+        <span onClick={() => moveSlider(frame + 1)}>(+)</span>
+        <span onClick={() => moveSlider(frame - 1)}>(-)</span>
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

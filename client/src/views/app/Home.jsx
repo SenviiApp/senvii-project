@@ -27,7 +27,7 @@ export default function Home() {
               alt="user"
               className="rounded-full w-24 h-24 shadow-2xl object-cover object-center"
             />
-            <a href="#" className="text-xs">
+            <a href="/app/edit-profile" className="text-xs">
               Editar mis datos
             </a>
           </div>
