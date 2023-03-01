@@ -3,10 +3,10 @@ require("dotenv").config();
 
 const createLoginToken = (user) => {
   // take data
-  const { id, userName, image, email } = user;
+  const { id, userName, image } = user;
 
   // create token
-  const accessToken = sign({ id, userName, image, email }, process.env.JWT_SECRET);
+  const accessToken = sign({ id, userName, image }, process.env.JWT_SECRET);
 
   return accessToken;
 };
