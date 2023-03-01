@@ -45,34 +45,31 @@ const changePassword = async (req, res) => {
 const editProfile = async (req, res) => {
   // get data
   const { id } = req.params;
+  const { userName, phoneNumber, image } = req.body;
 
-  /*  if (
-    !userName ||
-    !identificationNumber ||
-    !entityName ||
-    !phoneNumber ||
-    !entityType ||
-    !country
-  )
-    return res.status(400).json({ sucess: false, code: "register_incomplete" }); */
-  if (req.body.identificationNumber) {
-  }
-  if (req.body.userName) {
-  }
-  if (req.body.phoneNumber) {
-  }
+  const existingUser = User.findOne({ where: { id } });
+
+  if (!existingUser)
+    res.status(400).json({ success: false, code: "user_doesn't_exist" });
+
+  // verify fields
+  const verify = req.body.some((data) => data === "");
+
+  if (verify) res.status(400).json({ success: false, code: "not_enoughdata" });
 
   // verify unique data
-  const existingUser = await User.findOne({ where: { id } });
-  const existingIdentification = await User.findOne({
-    where: { identificationNumber },
-  });
-  const existingPhoneNumber = await User.findOne({
-    where: { phoneNumber },
-  });
+  if (userName) {
+    const existingUser = User.findOne({ where: { userName } });
 
-  if (existingUser || existingIdentification || existingPhoneNumber)
-    return res.status(400).json({ success: false, code: "user_alreadyexist" });
+    if (existingUser)
+      res.status(400).json({ success: false, code: "user_alreadyexist" });
+  }
+  if (phoneNumber) {
+    const existingUser = User.findOne({ where: { phoneNumber } });
+
+    if (existingUser)
+      res.status(400).json({ success: false, code: "user_alreadyexist" });
+  }
 
   // find or create an institution
   const [institution, created] = await Institution.findOrCreate({
@@ -80,30 +77,30 @@ const editProfile = async (req, res) => {
     defaults: { country, entityType },
   });
 
-  // default image
-  let jsonProfilePicture = {
-    public_id: "userPicture/sp5dq8c8igvxki0b8kaq",
-    url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1677183559/userPicture/sp5dq8c8igvxki0b8kaq.png",
-  };
-
   // if there is a image, create image by cloudinary
   if (image) {
     const upToCloud = await cloudinary.uploader.upload(image, {
       folder: "userPicture",
     });
-    jsonProfilePicture = {
+    const jsonProfilePicture = {
       public_id: upToCloud.public_id,
       url: upToCloud.secure_url,
     };
+
+    User.update(
+      {
+        ...req.body,
+        image: jsonProfilePicture,
+        institutionId: institution.id,
+      },
+      { where: { id } }
+    );
   }
 
   // update user
   User.update(
     {
-      userName,
-      identificationNumber,
-      phoneNumber,
-      image: jsonProfilePicture,
+      ...req.body,
       institutionId: institution.id,
     },
     { where: { id } }
