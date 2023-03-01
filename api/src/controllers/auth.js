@@ -126,7 +126,7 @@ const postRegister = async (req, res) => {
       // find or create an institution
       const [institution, created] = await Institution.findOrCreate({
         where: { entityName },
-        defaults: { country, entityType },
+        defaults: { entityType },
       });
 
       // default image
@@ -152,6 +152,7 @@ const postRegister = async (req, res) => {
         password: hash,
         email,
         phoneNumber,
+        country,
         image: jsonProfilePicture,
         institutionId: institution.id,
       });
@@ -205,9 +206,9 @@ const confirmAccount = async (req, res) => {
 const getProfile = async (req, res) => {
   // verify user
   const user = verify(req.cookies["Access-token"], process.env.JWT_SECRET);
-  const { id, userName, image, } = user;
+  const { id, userName, image } = user;
 
-  res.json({ id, userName, image,  success: true });
+  res.json({ id, userName, image, success: true });
 };
 
 const forgotPassword = async (req, res) => {
