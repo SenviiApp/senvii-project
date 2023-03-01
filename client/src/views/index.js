@@ -7,3 +7,4 @@ export * from "./_root";
 export { default as Home } from "./app/Home";
 export { default as App } from "./app/_app";
 export {default as Diagnose} from "./app/Diagnose"
+export {default as EditProfile} from "./EditProfile"
