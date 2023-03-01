@@ -8,7 +8,6 @@ const findClientById = async (id) => {
     include: [
       {
         model: Institution,
-        as: "entity",
       },
     ],
   });
