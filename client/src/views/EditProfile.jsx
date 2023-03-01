@@ -10,7 +10,7 @@ import {
   simulateDelay,
 } from "../utils";
 import { validateEditProfile } from "../utils/validateEditProfile";
-import { MiniLoader, EmailSended } from "../components";
+import { MiniLoader } from "../components";
 import logo from "../assets/senvii-logo.svg";
 import headerBg from "../assets/prama.jpg";
 import { Link } from "react-router-dom";
@@ -20,16 +20,13 @@ import { useNavigate, useLoaderData } from "react-router-dom";
 import { editProfile } from "../services/editProfile";
 
 export default function Register() {
-  const [open, setOpen] = useState(false);
-
   const data = useLoaderData();
 
   const initialForm = {
-    id: data.id,
-    userName: data.userName,
-    phoneNumber: data.phoneNumber,
-    image: data.image,
-    entityName: data.institution.entityName
+    userName: "",
+    phoneNumber: "",
+    image: "",
+    entityName: "",
   };
 
   // form handlers
@@ -51,10 +48,14 @@ export default function Register() {
     const parsedUser = await validateEditProfile({ ...form, image });
     await simulateDelay(3);
     const response = await editProfile(parsedUser, data.id);
+    console.log(
+      "🚀 ~ file: EditProfile.jsx:54 ~ onSubmit ~ response:",
+      response
+    );
     setLoading(false);
 
     if (response.success) {
-      setOpen(true);
+      toast.success("User updated")
     } else {
       toast.error(response.code);
     }
@@ -114,7 +115,7 @@ export default function Register() {
                 onChange={onImageChange}
               />
               <img
-                src={imagePreview || form.image.url}
+                src={imagePreview || data.image.url}
                 alt="profile picture"
                 className="rounded-full h-28 w-28 bg-zinc-800 mb-2 shadow-md object-cover object-center shadow-black"
               />
@@ -143,6 +144,7 @@ export default function Register() {
                 onChange(registerFormModel.userName, target.value)
               }
               value={form.userName}
+              placeholder={data.userName}
             />
           </div>
 
@@ -156,6 +158,7 @@ export default function Register() {
                 onChange(registerFormModel.phoneNumber, target.value)
               }
               value={form.phoneNumber}
+              placeholder={data.phoneNumber}
             />
           </div>
           {/* entityName */}
@@ -168,9 +171,10 @@ export default function Register() {
                 onChange(registerFormModel.entityName, target.value)
               }
               value={form.entityName}
+              placeholder={data.institution.entityName}
             />
           </div>
-       
+
           {/* submit btn */}
           <button
             type="submit"
@@ -187,9 +191,6 @@ export default function Register() {
           </button>
         </form>
       </section>
-      <AnimatePresence>
-        {open && <EmailSended email={form.email} />}
-      </AnimatePresence>
     </>
   );
 }
