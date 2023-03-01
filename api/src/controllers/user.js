@@ -45,7 +45,7 @@ const changePassword = async (req, res) => {
 const editProfile = async (req, res) => {
   // get data
   const { id } = req.params;
-  const { userName, phoneNumber, image } = req.body;
+  const { userName, phoneNumber, image, entityName } = req.body;
 
   const existingUser = User.findOne({ where: { id } });
 
@@ -72,10 +72,26 @@ const editProfile = async (req, res) => {
   }
 
   // find or create an institution
-  const [institution, created] = await Institution.findOrCreate({
-    where: { entityName },
-    defaults: { country, entityType },
-  });
+  if (entityName) {
+    const institution = await Institution.findOne({
+      where: { entityName },
+    });
+
+    // update user
+
+    if (institution) {
+      User.update(
+        {
+          institutionId: institution.id,
+        },
+        { where: { id } }
+      );
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, code: "entity_doesn't_exist" });
+    }
+  }
 
   // if there is a image, create image by cloudinary
   if (image) {
@@ -91,20 +107,21 @@ const editProfile = async (req, res) => {
       {
         ...req.body,
         image: jsonProfilePicture,
-        institutionId: institution.id,
       },
       { where: { id } }
     );
-  }
 
-  // update user
-  User.update(
-    {
-      ...req.body,
-      institutionId: institution.id,
-    },
-    { where: { id } }
-  );
+    return res.status(200).json({ success: true, code: "user_updated" });
+  } else {
+    // update user
+    User.update(
+      {
+        ...req.body,
+      },
+      { where: { id } }
+    );
+    return res.status(200).json({ success: true, code: "user_updated" });
+  }
 };
 
 module.exports = { getUser, changePassword, editProfile };
