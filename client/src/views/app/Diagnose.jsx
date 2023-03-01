@@ -5,20 +5,18 @@ import Transit from "./DiagnoseContent/Transit";
 import { useEffect, useState } from "react";
 import { Background } from "../../components";
 import senvii from "../../assets/senvii01.png";
-import { Cursor, useTypewriter } from "react-simple-typewriter";
+import { Cursor } from "react-simple-typewriter";
 import data from "../../../data";
 import { AnimatePresence, motion } from "framer-motion";
+import { useWriter } from "../../hooks/useWriter";
 
 export default function Diagnose() {
+  const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
   const [pdf, setPdf] = useState({
     zone: "",
-    carsTraffic: 0,
+    carsTraffic: "",
   });
-  const [text, count] = useTypewriter({
-    words: ["Coméntanos más acerca de la vía"],
-    typeSpeed: 40,
-    delaySpeed: 1500,
-  });
+
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -30,8 +28,8 @@ export default function Diagnose() {
   };
   const selectZone = (zone) => {
     setPdf({ ...pdf, zone });
-    console.log(zone);
   };
+
   return (
     <main>
       <Background
@@ -54,7 +52,8 @@ export default function Diagnose() {
         >
           <div className="mx-auto w-main h-full grid grid-character gap-3">
             <a href="/" className="object-cover self-center">
-              <img
+              <motion.img
+                onViewportEnter={trigger}
                 src={senvii}
                 alt="senvii"
                 className="w-22 h-22 self-center object-cover"
@@ -62,7 +61,6 @@ export default function Diagnose() {
             </a>
             <h1 className="text-dark-600 p-2 text-md text-center bg-white mr-2 rounded-md h-fit mt-8 w-fit relative">
               <div className="h-4 w-4 absolute -left-4 bg-white path-triangle top-3" />
-
               {text}
               <Cursor
                 cursorStyle={<span className="animate-ping">_</span>}
