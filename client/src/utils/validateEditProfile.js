@@ -1,9 +1,9 @@
 import { number, object, string, ValidationError } from "yup";
 
 let registerSchema = object({
-  userName: string().required(),
-  entityName: string().required(),
-  phoneNumber: string().required(),
+  userName: string(),
+  entityName: string(),
+  phoneNumber: string(),
   image: string().nullable(),
 });
 
@@ -16,4 +16,3 @@ export const validateEditProfile = async (data) => {
     console.error(error.message);
   }
 };
-

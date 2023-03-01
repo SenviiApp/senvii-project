@@ -1,4 +1,5 @@
 const { User, Institution } = require("../db");
+const cloudinary = require("../utils/cloudinary");
 const bcrypt = require("bcrypt");
 
 const { findClientById } = require("../utils/user");
@@ -45,30 +46,38 @@ const changePassword = async (req, res) => {
 const editProfile = async (req, res) => {
   // get data
   const { id } = req.params;
-  const { userName, phoneNumber, image, entityName } = req.body;
 
-  const existingUser = User.findOne({ where: { id } });
+  // filter req.body
+  let data = {};
+  for (const prop in req.body) {
+    if (req.body[prop] !== "" && req.body[prop] !== null) {
+      data[prop] = req.body[prop];
+    }
+  }
+
+  const { userName, phoneNumber, image, entityName } = data;
+
+  const existingUser = await User.findOne({ where: { id } });
 
   if (!existingUser)
     return res.status(400).json({ success: false, code: "user_doesn't_exist" });
 
-  // verify fields
-  //const verify = req.body.some((data) => data === "");
-
-  //if (verify) res.status(400).json({ success: false, code: "not_enoughdata" });
-
   // verify unique data
   if (userName) {
-    const existingUser = User.findOne({ where: { userName } });
+    const existingUser = await User.findOne({ where: { userName } });
 
     if (existingUser)
-      return res.status(400).json({ success: false, code: "user_alreadyexist" });
+      return res
+        .status(400)
+        .json({ success: false, code: "user_alreadyexist" });
   }
   if (phoneNumber) {
-    const existingUser = User.findOne({ where: { phoneNumber } });
+    const existingUser = await User.findOne({ where: { phoneNumber } });
 
     if (existingUser)
-      return res.status(400).json({ success: false, code: "user_alreadyexist" });
+      return res
+        .status(400)
+        .json({ success: false, code: "user_alreadyexist" });
   }
 
   // find or create an institution
@@ -80,7 +89,7 @@ const editProfile = async (req, res) => {
     // update user
 
     if (institution) {
-      User.update(
+      await User.update(
         {
           institutionId: institution.id,
         },
@@ -103,9 +112,9 @@ const editProfile = async (req, res) => {
       url: upToCloud.secure_url,
     };
 
-    User.update(
+    await User.update(
       {
-        ...req.body,
+        ...data,
         image: jsonProfilePicture,
       },
       { where: { id } }
@@ -114,9 +123,9 @@ const editProfile = async (req, res) => {
     return res.status(200).json({ success: true, code: "user_updated" });
   } else {
     // update user
-    User.update(
+    await User.update(
       {
-        ...req.body,
+        ...data,
       },
       { where: { id } }
     );
