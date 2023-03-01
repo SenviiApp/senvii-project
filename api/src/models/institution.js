@@ -20,10 +20,6 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
-      country: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     { timestamps: true }
   ); // to create createdAt/updatedAt
