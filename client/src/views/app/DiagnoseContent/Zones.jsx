@@ -3,12 +3,12 @@ import urbana from "../../../assets/urbana.png";
 import rural from "../../../assets/rural.png";
 import autopista from "../../../assets/autopista.png";
 import { useEffect, useState } from "react";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const zones = ["urbana", "autopista", "rural"];
 
 export default function Zones({ setStep, selectZone }) {
   const [zone, setZone] = useState(zones[0]);
-
   const [translate, setTranslate] = useState(0);
   const [frame, setFrame] = useState(0);
 
@@ -39,38 +39,53 @@ export default function Zones({ setStep, selectZone }) {
         </motion.h2>
 
         <motion.div
-          className="mx-auto w-[200px] overflow-hidden rounded-md"
+          className="flex"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <motion.div
-            className="flex w-fit"
-            animate={{ x: -translate }}
-            transition={{ bounce: false }}
+          <button
+            onClick={() => moveSlider(frame - 1)}
+            className="text-2xl p-4 text-dark-800"
           >
-            <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
-              <img src={urbana} alt="" className="w-36 h-36 object-contain" />
-              <h3>Zona Urbana</h3>
-            </div>
+            <BsChevronLeft />
+          </button>
 
-            <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
-              <img
-                src={autopista}
-                alt=""
-                className="w-36 h-36 object-contain"
-              />
-              <h3>Autopista</h3>
-            </div>
+          <div className="mx-auto w-[200px] overflow-hidden rounded-md">
+            <motion.div
+              className="flex w-fit"
+              animate={{ x: -translate }}
+              transition={{ bounce: false }}
+            >
+              <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
+                <img src={urbana} alt="" className="w-36 h-36 object-contain" />
+                <h3>Zona Urbana</h3>
+              </div>
 
-            <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
-              <img src={rural} alt="" className="w-36 h-36 object-contain" />
-              <h3>Carretera Rural</h3>
-            </div>
-          </motion.div>
+              <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
+                <img
+                  src={autopista}
+                  alt=""
+                  className="w-36 h-36 object-contain"
+                />
+                <h3>Autopista</h3>
+              </div>
+
+              <div className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow">
+                <img src={rural} alt="" className="w-36 h-36 object-contain" />
+                <h3>Carretera Rural</h3>
+              </div>
+            </motion.div>
+          </div>
+
+          <button
+            onClick={() => moveSlider(frame + 1)}
+            className="text-2xl p-4 text-dark-800"
+          >
+            <BsChevronRight />
+          </button>
         </motion.div>
-        <span onClick={() => moveSlider(frame + 1)}>(+)</span>
-        <span onClick={() => moveSlider(frame - 1)}>(-)</span>
+
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
