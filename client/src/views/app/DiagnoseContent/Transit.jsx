@@ -51,10 +51,8 @@ export default function Zones({ setStep, data }) {
             })}
           </motion.div>
         </motion.div>
-        <span onClick={() => setTranslate(translate + 200)}>CLICKEA PUTO</span>
-        <span onClick={() => setTranslate(translate - 200)}>
-          CLICKEA PUTO (-)
-        </span>
+        <span onClick={() => setTranslate(translate + 200)}>(+)</span>
+        <span onClick={() => setTranslate(translate - 200)}>(-)</span>
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
