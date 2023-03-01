@@ -14,7 +14,6 @@ export default function Diagnose() {
     zone: "",
     carsTraffic: 0,
   });
-  
   const [text, count] = useTypewriter({
     words: ["Coméntanos más acerca de la vía"],
     typeSpeed: 40,
@@ -54,22 +53,22 @@ export default function Diagnose() {
           className="h-[20vh] fixed top-0 w-full bg-zinc-600 left-0 z-50"
         >
           <div className="mx-auto w-main h-full grid grid-character gap-3">
-            <img
-              src={senvii}
-              alt="senvii"
-              className="w-22 h-22 self-center object-cover"
-            />
-            {step > 1 ? (
-              <h1 className="text-dark-600 p-2 text-md text-center bg-white mr-2 rounded-md h-fit mt-8 w-fit relative">
-                <div className="h-4 w-4 absolute -left-4 bg-white path-triangle top-3" />
+            <a href="/" className="object-cover self-center">
+              <img
+                src={senvii}
+                alt="senvii"
+                className="w-22 h-22 self-center object-cover"
+              />
+            </a>
+            <h1 className="text-dark-600 p-2 text-md text-center bg-white mr-2 rounded-md h-fit mt-8 w-fit relative">
+              <div className="h-4 w-4 absolute -left-4 bg-white path-triangle top-3" />
 
-                {text}
-                <Cursor
-                  cursorStyle={<span className="animate-ping">_</span>}
-                  cursorBlinking={false}
-                />
-              </h1>
-            ) : null}
+              {text}
+              <Cursor
+                cursorStyle={<span className="animate-ping">_</span>}
+                cursorBlinking={false}
+              />
+            </h1>
           </div>
         </motion.div>
 
