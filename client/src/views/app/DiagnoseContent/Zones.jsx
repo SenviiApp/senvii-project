@@ -7,7 +7,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const zones = ["urbana", "autopista", "rural"];
 
-export default function Zones({ setStep, selectZone }) {
+export default function Zones({ setCurrent, setForm }) {
   const [zone, setZone] = useState(zones[0]);
   const [translate, setTranslate] = useState(0);
   const [frame, setFrame] = useState(0);
@@ -91,8 +91,12 @@ export default function Zones({ setStep, selectZone }) {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
           onClick={() => {
-            selectZone(zone);
-            setStep(2);
+            setForm((form) => {
+              const newForm = { ...form, zone };
+              console.log(newForm);
+              return newForm;
+            });
+            setCurrent("transit");
           }}
           className="bg-black text-white py-2 px-14 rounded-full"
         >

@@ -1,5 +1,5 @@
 export const dataOptions = {
-  zone: [
+  zones: [
     {
       name: "urbana",
       transit: [
@@ -20,37 +20,46 @@ export const dataOptions = {
   ],
   signalingTypes: [
     {
-      name: "type1",
+      id: 1,
       content: "Líneas continuas y discontinuas",
-      notAvailableFor: "null",
+      notAvailableFor: "",
     },
     {
-      name: "type2",
+      id: 2,
       content: "Cruceros peatonales y líneas de pare",
-      notAvailableFor: "null",
+      notAvailableFor: "",
     },
     {
-      name: "type1",
+      id: 3,
       content: "Símbolos, flechas y letras",
-      notAvailableFor: "null",
+      notAvailableFor: "",
     },
     {
-      name: "type1",
+      id: 4,
       content: "Intersecciones y ovalos",
-      notAvailableFor: "rural;urbana",
+      notAvailableFor: "0/400",
     },
   ],
 };
+export const getAvailableSignaling = ({ transit }) => {
+  return dataOptions.signalingTypes.filter(
+    (type) => !type.notAvailableFor.includes(transit)
+  );
+};
+export const getTransitOptions = ({ zone }) => {
+  return dataOptions.zones.find((obj) => obj.name === zone)?.transit;
+};
 
-export const getinitialForm = (zone, transit) => ({
-  zone,
-  transit,
+export const getinitialForm = () => ({
+  zone: "",
+  transit: "",
   signalingTypes: [],
   consider: [],
 });
 
 export const questions = [
   {
+    id: 1,
     content:
       "¿La durabilidad en la pintura en la señalización vial es poca y se desgasta rápidamente?",
     availableFor: [
@@ -62,12 +71,9 @@ export const questions = [
       "rural-400/2000",
       "rural-2000/4000",
     ],
-    response: {
-      yes: "",
-      no: "Aplicación de pintura acrílica",
-    },
   },
   {
+    id: 2,
     content: "¿El pavimento presenta grieta o fracturas?",
     availableFor: [
       "urbana-400/2000",
@@ -80,6 +86,7 @@ export const questions = [
     ],
   },
   {
+    id: 3,
     content:
       "¿La vía cruza son intersecciones como acceso a ciudades, pueblos y óvalos?",
     availableFor: [
@@ -90,6 +97,7 @@ export const questions = [
     ],
   },
   {
+    id: 4,
     content:
       "Presenta zonas de accidentes recurrentes causados por niebla, curvas peligrosas o similares?",
     availableFor: [
@@ -101,9 +109,8 @@ export const questions = [
   },
 ];
 
-const getAvailableQuestions = (zone, transit) => {
+export const getAvailableQuestions = ({ zone, transit }) => {
   if (transit === "0/400") {
-    //return the direct considerations
     return [];
   }
   return questions.filter((question) => {
@@ -111,5 +118,43 @@ const getAvailableQuestions = (zone, transit) => {
   });
 };
 
+//recieves form
+export const getConsiderations = ({ signalingTypes, questions, zone }) => {
+  if (!questions.length) {
+    return ["Aplicación de pintura acrílica"];
+  }
+  const findSignalingTypes = (...ids) => {
+    signalingTypes.find((type) => ids.join(";").includes(type.id));
+  };
+  const recomendations = [];
+  questions.forEach((question) => {
+    if (question.id === 1) {
+      if (question.response === "no") {
+        recomendations.push("Aplicación de pintura Termoplástica Extrusión");
+      } else if (findSignalingTypes(1, 4)) {
+        recomendations.push("Aplicación de pintura Termoplástica Spray");
+      } else if (findSignalingTypes(2, 3)) {
+        recomendations.push("Aplicación de pintura Termoplástica Extrusión");
+      }
+      if (zone === "autopista" && question.response === "yes") {
+        recomendations.push("Termoplástico preformado");
+      }
+    }
+    if (question.id === 2 && question.response === "yes") {
+      recomendations.push("Sellado de fisuras");
+    }
+    if (question.id === 3 && question.response === "yes") {
+      recomendations.push("Banda transversal Termoplástica");
+    }
+    if (question.id === 4 && question.response === "yes") {
+      recomendations.push(
+        "Aplicación de Termoplástico  Rib Line",
+        "Instalación de tachas solares"
+      );
+    }
+  });
+  return recomendations;
+  // 1 || 4
+};
 // unicos casos excepcionales:
 // 0/400

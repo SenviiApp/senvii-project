@@ -2,22 +2,26 @@ import Report from "../../components/Report";
 import Start from "../app/DiagnoseContent/Start";
 import Zones from "./DiagnoseContent/Zones";
 import Transit from "./DiagnoseContent/Transit";
+import Questions from "./DiagnoseContent/Questions";
 import { useEffect, useState } from "react";
 import { Background } from "../../components";
 import senvii from "../../assets/senvii01.png";
 import { Cursor } from "react-simple-typewriter";
-import data from "../../../data";
+import {
+  getTransitOptions,
+  getinitialForm,
+  getAvailableQuestions,
+  getAvailableSignaling,
+} from "../../../data/options";
 import { AnimatePresence, motion } from "framer-motion";
 import { useWriter } from "../../hooks/useWriter";
+import SignalingTypes from "./DiagnoseContent/SignalingTypes";
 
 export default function Diagnose() {
   const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
-  const [pdf, setPdf] = useState({
-    zone: "",
-    carsTraffic: "",
-  });
+  const [form, setForm] = useState(getinitialForm());
 
-  const [step, setStep] = useState(0);
+  const [current, setCurrent] = useState("start");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -25,9 +29,6 @@ export default function Diagnose() {
   const scrollToSection = (id) => {
     let sec = document.getElementById(id);
     sec?.scrollIntoView(true);
-  };
-  const selectZone = (zone) => {
-    setPdf({ ...pdf, zone });
   };
 
   return (
@@ -37,7 +38,7 @@ export default function Diagnose() {
         plain={true}
       />
       <section id="start" className="h-screen grid place-content-center">
-        <Start scrollToSection={scrollToSection} setStep={setStep} />
+        <Start scrollToSection={scrollToSection} setCurrent={setCurrent} />
       </section>
 
       <section id="main" className="h-screen pb-4 pt-[22vh] relative">
@@ -45,7 +46,7 @@ export default function Diagnose() {
         <motion.div
           initial={{ y: -200 }}
           animate={{
-            y: step > 0 ? 0 : -200,
+            y: current !== "start" ? 0 : -200,
           }}
           transition={{ bounce: false }}
           className="h-[20vh] fixed top-0 w-full bg-zinc-600 left-0 z-50"
@@ -72,13 +73,33 @@ export default function Diagnose() {
 
         {/* form container */}
         <AnimatePresence>
-          {step < 2 && <Zones setStep={setStep} selectZone={selectZone} />}
-        </AnimatePresence>
-        <AnimatePresence>
-          {step === 2 && (
-            <Transit setStep={setStep} data={data[pdf.zone]?.transito} />
+          {(current === "start" || current === "zone") && (
+            <Zones setCurrent={setCurrent} setForm={setForm} />
           )}
         </AnimatePresence>
+        <AnimatePresence>
+          {current === "transit" && (
+            <Transit
+              setCurrent={setCurrent}
+              data={getTransitOptions(form)}
+              setForm={setForm}
+            />
+          )}
+        </AnimatePresence>
+        {current === "signalingTypes" && (
+          <SignalingTypes
+            data={getAvailableSignaling(form)}
+            setForm={setForm}
+            setCurrent={setCurrent}
+          />
+        )}
+        {current === "questions" && (
+          <Questions
+            data={getAvailableQuestions(form)}
+            setForm={setForm}
+            setCurrent={setCurrent}
+          />
+        )}
       </section>
 
       <section id="report" className="h-screen grid place-content-center">
