@@ -14,7 +14,7 @@ export const useWriter = (textInput) => {
       }
       setIndex(index + 1);
       setText(textInput.slice(0, index));
-    }, 80);
+    }, 50);
     return () => clearInterval(interval);
   }, [isStarted, text]);
 

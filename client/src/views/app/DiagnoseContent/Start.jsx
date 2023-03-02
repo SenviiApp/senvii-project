@@ -1,7 +1,7 @@
 import Background from "../../../components/Background";
 import senvii from "../../../assets/senvii01.png";
 
-export default function Start({ scrollToSection, setStep }) {
+export default function Start({ scrollToSection, setCurrent }) {
   return (
     <>
       <div className="flex flex-col items-center p-4 bg-white/30 z-10 w-[90%] mx-auto rounded-lg backdrop-blur-sm shadow-lg">
@@ -14,7 +14,7 @@ export default function Start({ scrollToSection, setStep }) {
       <button
         onClick={() => {
           scrollToSection("main");
-          setStep(1);
+          setCurrent("zone");
         }}
         className="z-10 bg-dark-800 text-white mx-5 mt-6 px-4 text-center py-2 rounded-full"
       >
