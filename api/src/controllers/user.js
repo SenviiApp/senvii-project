@@ -133,4 +133,6 @@ const editProfile = async (req, res) => {
   }
 };
 
-module.exports = { getUser, changePassword, editProfile };
+const uploadPDF = async (req, res) => {};
+
+module.exports = { getUser, changePassword, editProfile, uploadPDF };
