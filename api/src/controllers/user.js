@@ -1,4 +1,4 @@
-const { User, Institution } = require("../db");
+const { User, Institution, Pdf } = require("../db");
 const cloudinary = require("../utils/cloudinary");
 const bcrypt = require("bcrypt");
 
@@ -133,6 +133,30 @@ const editProfile = async (req, res) => {
   }
 };
 
-const uploadPDF = async (req, res) => {};
+const uploadPDF = async (req, res) => {
+  const pdf = req.file;
+  const { id } = req.params;
+
+  try {
+    const result = await cloudinary.uploader.upload(pdf.path, {
+      folder: "pdfs",
+      /* upload_preset: "tu_upload_preset", */
+    });
+
+    Pdf.create({
+      file: {
+        public_id: result.public_id,
+        url: result.secure_url,
+      },
+      userId: id,
+    });
+
+    res.status(200).json({ success: true, code: "pdf_created" });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ success: false, code: "pdf_doesn't_created" });
+  }
+};
 
 module.exports = { getUser, changePassword, editProfile, uploadPDF };
