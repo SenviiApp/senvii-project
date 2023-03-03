@@ -14,7 +14,7 @@ export default function Start({ scrollToSection, setCurrent }) {
       <button
         onClick={() => {
           scrollToSection("main");
-          setCurrent("zone");
+          setCurrent("initialForm");
         }}
         className="z-10 bg-dark-800 text-white mx-5 mt-6 px-4 text-center py-2 rounded-full"
       >

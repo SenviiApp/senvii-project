@@ -16,12 +16,13 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { useWriter } from "../../hooks/useWriter";
 import SignalingTypes from "./DiagnoseContent/SignalingTypes";
+import InitialForm from "./DiagnoseContent/InitialForm";
 
 export default function Diagnose() {
   const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
   const [form, setForm] = useState(getinitialForm());
 
-  const [current, setCurrent] = useState("start");
+  const [current, setCurrent] = useState("initialForm");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -72,6 +73,12 @@ export default function Diagnose() {
         </motion.div>
 
         {/* form container */}
+        <AnimatePresence>
+          {current === "initialForm" && (
+            <InitialForm setCurrent={setCurrent} setForm={setForm} />
+          )}
+        </AnimatePresence>
+
         <AnimatePresence>
           {(current === "start" || current === "zone") && (
             <Zones setCurrent={setCurrent} setForm={setForm} />
