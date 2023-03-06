@@ -38,11 +38,11 @@ export default function Diagnose() {
         className="h-screen fixed left-0 w-full -z-10 top-0"
         plain={true}
       />
-      <section id="start" className="h-screen grid place-content-center">
+      <section id="start" className="h-screen flex flex-col items-center justify-center">
         <Start scrollToSection={scrollToSection} setCurrent={setCurrent} />
       </section>
 
-      <section id="main" className="h-screen pb-4 pt-[22vh] relative">
+      <section id="main" className="h-screen pb-4 pt-[22vh] relative flex items-center justify-center">
         {/* character container */}
         <motion.div
           initial={{ y: -200 }}

@@ -1,10 +1,9 @@
-import Background from "../../../components/Background";
-import senvii from "../../../assets/senvii01.png";
+import senvii from "../../../assets/senviiAnimated.gif";
 
 export default function Start({ scrollToSection, setCurrent }) {
   return (
     <>
-      <div className="flex flex-col items-center p-4 bg-white/30 z-10 w-[90%] mx-auto rounded-lg backdrop-blur-sm shadow-lg">
+      <div className="flex flex-col items-center p-4 bg-white/30 z-10 w-[90%] mx-auto rounded-lg backdrop-blur-sm shadow-lg mt-24 max-w-[600px]">
         <img src={senvii} alt="" className="z-10 w-52" />
         <h2 className="text-center p-4 z-10">
           Hola, soy <span className="font-semibold">senvii</span> y te ayudaré a{" "}
