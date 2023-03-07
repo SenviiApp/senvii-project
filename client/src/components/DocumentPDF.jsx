@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Image,
+  Font,
   PDFViewer,
 } from "@react-pdf/renderer";
 
@@ -21,6 +22,7 @@ import cloud2 from "../assets/pdf/nube_2.png";
 import ondas_montanosas from "../assets/pdf/ondas_montañas.png";
 
 const date = new Date();
+
 const DocumentPDF = () => (
   <PDFViewer style={{ width: "100%", height: "100vh" }}>
     <Document>
@@ -59,7 +61,9 @@ const DocumentPDF = () => (
             </View>
           </View>
           <View>
-            <Text style={{ color: "#fff" }}>www.senviiapp.com</Text>
+            <Text style={{ color: "#fff", fontWeight: "extralight" }}>
+              www.senviiapp.com
+            </Text>
           </View>
         </View>
         {/* Image of mountain waves */}
