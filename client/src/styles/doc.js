@@ -1,43 +1,43 @@
 import { StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
-  page: {
-    /* padding: 1, */
-    fontFamily: "Helvetica",
-    fontSize: 15,
+  page1: {
+    width: "100vw",
+    height: "100vh",
+    paddingVertical: "0",
+    paddingHorizontal: "40px",
   },
-  header: {
-    fontSize: 32,
-    textAlign: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height:"100vh"
-  },
-  headerSpan: {
-    color: "#BBDCE8",
-  },
-  headerImage: {
+  imagePage1: {
     width: "100vw",
     height: "100vh",
     position: "absolute",
-    zIndex: "-1",
+    zIndex: "-100",
   },
-  title: {
-    fontSize: 34,
-    marginBottom: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 10
-  },
-  image: {
+  imageCommonPage1: {
     width: "100%",
-    height: 300,
-    marginBottom: 20,
+    height: "100%",
+    objectFit: "contain",
   },
-  paragraph: {
-    padding: 10
-  }
+  titlePage1: {
+    color: "#fff",
+    fontSize: "30",
+    fontWeight: "extrabold",
+  },
+  titleSpanPage1: {
+    color: "#fff",
+    fontSize: "40",
+    fontWeight: "extrabold",
+  },
+  headerContainerPage1: {
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+    marginBottom: "10",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
 });
 
 export default styles;
