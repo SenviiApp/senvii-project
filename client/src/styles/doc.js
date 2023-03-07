@@ -4,8 +4,9 @@ const styles = StyleSheet.create({
   page1: {
     width: "100vw",
     height: "100vh",
-    paddingVertical: "0",
-    paddingHorizontal: "40px",
+    paddingVertical: "10",
+    paddingHorizontal: "40",
+    fontFamily: "Helvetica",
   },
   imagePage1: {
     width: "100vw",
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: "30",
     fontWeight: "extrabold",
+    fontFamily: "Helvetica-Bold",
   },
   titleSpanPage1: {
     color: "#fff",
