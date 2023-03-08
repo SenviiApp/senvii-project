@@ -14,6 +14,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: "-100",
   },
+  imagePage2: {
+    height: "75",
+    width: "75",
+    position: "absolute",
+    top: "-50",
+    left: "100",
+  },
+  image2Page2: {
+    height: "75",
+    width: "75",
+    position: "absolute",
+    top: "90",
+    left: "100",
+  },
   imageCommonPage1: {
     width: "100%",
     height: "100%",
@@ -26,6 +40,11 @@ const styles = StyleSheet.create({
   titlePage1: {
     color: "#fff",
     fontSize: "30",
+    fontWeight: "extrabold",
+    fontFamily: "Helvetica-Bold",
+  },
+  titlePage2: {
+    fontSize: "26",
     fontWeight: "extrabold",
     fontFamily: "Helvetica-Bold",
   },
@@ -72,6 +91,28 @@ const styles = StyleSheet.create({
     height: "450",
     position: "absolute",
     top: "5",
+  },
+  bodyContainerPage2: {
+    backgroundColor: "#795FFF",
+    height: "250",
+    width: "275",
+    position: "absolute",
+    borderRadius: "7",
+    top: "180",
+    left: "60",
+  },
+  bodyContainer2Page2: {
+    height: "300",
+    width: "410",
+    position: "absolute",
+    borderRadius: "7",
+    top: "130",
+    right: "20",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent:"space-between",
+    gap:"40"
   },
 });
 
