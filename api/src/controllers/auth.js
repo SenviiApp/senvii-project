@@ -10,6 +10,7 @@ const {
   verifyResetPasswordToken,
 } = require("../utils/JWT");
 const { sendEmail, sendEmailToResetPassword } = require("../utils/mail.config");
+const { findClientById } = require("../utils/user");
 
 // LOGIN
 const postLogin = async (req, res) => {
@@ -206,7 +207,10 @@ const confirmAccount = async (req, res) => {
 const getProfile = async (req, res) => {
   // verify user
   const user = verify(req.cookies["Access-token"], process.env.JWT_SECRET);
-  const { id, userName, image } = user;
+  const { id } = user;
+
+  const userData = await findClientById(id);
+  const { userName, image } = userData;
 
   res.json({ id, userName, image, success: true });
 };
