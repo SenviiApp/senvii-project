@@ -22,14 +22,16 @@ export default function Diagnose() {
   const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
   const [form, setForm] = useState(getinitialForm());
 
-  const [current, setCurrent] = useState("initialForm");
+  const [current, setCurrent] = useState(null);
 
   useEffect(() => {
+    // scrollTo({ top: 0 });
     document.body.style.overflow = "hidden";
   }, []);
+
   const scrollToSection = (id) => {
     let sec = document.getElementById(id);
-    sec?.scrollIntoView(true);
+    sec?.scrollIntoView({ block: "start" });
   };
 
   return (
@@ -38,16 +40,27 @@ export default function Diagnose() {
         className="h-screen fixed left-0 w-full -z-10 top-0"
         plain={true}
       />
-      <section id="start" className="h-screen flex flex-col items-center justify-center">
+      <section id="start" className="h-screen grid place-items-center w-full">
         <Start scrollToSection={scrollToSection} setCurrent={setCurrent} />
       </section>
 
-      <section id="main" className="h-screen pb-4 pt-[22vh] relative flex items-center justify-center">
+      <section
+        id="initialForm"
+        className="h-screen grid place-items-center w-full"
+      >
+        <InitialForm
+          setCurrent={setCurrent}
+          setForm={setForm}
+          scrollToSection={scrollToSection}
+        />
+      </section>
+
+      <section id="main" className="h-screen pb-4 pt-[22vh] relative">
         {/* character container */}
         <motion.div
           initial={{ y: -200 }}
           animate={{
-            y: current !== "start" ? 0 : -200,
+            y: current ? 0 : -200,
           }}
           transition={{ bounce: false }}
           className="h-[20vh] fixed top-0 w-full bg-zinc-600 left-0 z-50"
@@ -73,44 +86,56 @@ export default function Diagnose() {
         </motion.div>
 
         {/* form container */}
-        <AnimatePresence>
-          {current === "initialForm" && (
-            <InitialForm setCurrent={setCurrent} setForm={setForm} />
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {(current === "start" || current === "zone") && (
-            <Zones setCurrent={setCurrent} setForm={setForm} />
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {current === "transit" && (
-            <Transit
-              setCurrent={setCurrent}
-              data={getTransitOptions(form)}
-              setForm={setForm}
-            />
-          )}
-        </AnimatePresence>
-        {current === "signalingTypes" && (
-          <SignalingTypes
-            data={getAvailableSignaling(form)}
-            setForm={setForm}
-            setCurrent={setCurrent}
-          />
-        )}
-        {current === "questions" && (
-          <Questions
-            data={getAvailableQuestions(form)}
-            setForm={setForm}
-            setCurrent={setCurrent}
-          />
-        )}
+        <motion.div
+          initial={{ height: 0 }}
+          whileInView={{ height: "70vh" }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 1,
+            delay: 0.2,
+            type: "spring",
+            bounce: false,
+          }}
+          className="overflow-hidden w-main bg-white mx-auto rounded-md h-[70vh] flex justify-center items-center relative"
+        >
+          <AnimatePresence>
+            {(current === "start" || current === "zone") && (
+              <Zones setCurrent={setCurrent} setForm={setForm} />
+            )}
+          </AnimatePresence>
+          <AnimatePresence>
+            {current === "transit" && (
+              <Transit
+                setCurrent={setCurrent}
+                data={getTransitOptions(form)}
+                setForm={setForm}
+              />
+            )}
+          </AnimatePresence>
+          <AnimatePresence>
+            {current === "signalingTypes" && (
+              <SignalingTypes
+                data={getAvailableSignaling(form)}
+                setForm={setForm}
+                setCurrent={setCurrent}
+              />
+            )}
+          </AnimatePresence>
+          <AnimatePresence>
+            {current === "questions" && (
+              <Questions
+                data={getAvailableQuestions(form)}
+                setForm={setForm}
+                setCurrent={setCurrent}
+                scrollToSection={scrollToSection}
+              />
+            )}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       <section id="report" className="h-screen grid place-content-center">
-        <Report />
+        <Report form={form} />
       </section>
     </main>
   );
