@@ -28,21 +28,17 @@ const DocumentPDF = () => (
     <Document>
       {/* First Page */}
       <Page size="A4" orientation="landscape" style={styles.page1}>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        {/* LOGOS CONTAINER */}
+        <View style={styles.logoContainer}>
           <View style={{ width: "150", height: "150" }}>
-            <Image src={logo_senvii} style={styles.imageLogoPage1} />
+            <Image src={logo_senvii} style={styles.commonImage} />
           </View>
           <View style={{ width: "150", height: "150" }}>
-            <Image src={logo_prama} style={styles.imageLogoPage1} />
+            <Image src={logo_prama} style={styles.commonImage} />
           </View>
         </View>
 
+        {/* TEXT CONTAINER */}
         <View style={styles.headerContainerPage1}>
           <View
             style={{
@@ -67,14 +63,79 @@ const DocumentPDF = () => (
           </View>
         </View>
         {/* Image of mountain waves */}
+        <View style={styles.mountainWaves}>
+          <Image
+            src={ondas_montanosas}
+            style={{ width: "100vw", height: "100%" }}
+          />
+        </View>
+        {/* Image of the cloud left */}
         <View
           style={{
-            width: "100%",
-            height: "450",
+            width: "125",
+            height: "125",
             position: "absolute",
-            top: "5",
+            top: "110",
+            left: "50",
           }}
         >
+          <Image src={cloud1} style={styles.imageCommonPage1} />
+        </View>
+        {/* Image of the cloud right  */}
+        <View
+          style={{
+            width: "125",
+            height: "125",
+            position: "absolute",
+            top: "110",
+            right: "150",
+          }}
+        >
+          <Image src={cloud2} style={styles.imageCommonPage1} />
+        </View>
+        {/* Image of the city */}
+        <View
+          style={{
+            width: "450",
+            height: "450",
+            position: "absolute",
+            right: "50",
+            top: "50",
+          }}
+        >
+          <Image src={city} style={styles.imageCommonPage1} />
+        </View>
+        <Image src={bg_purple} style={styles.imagePage1} />
+      </Page>
+      {/* Final Page */}
+      <Page size="A4" orientation="landscape" style={styles.page1}>
+        {/* LOGOS */}
+        <View style={styles.logoContainer}>
+          <View style={{ width: "150", height: "150" }}>
+            <Image src={logo_senvii} style={styles.commonImage} />
+          </View>
+          <View style={{ width: "150", height: "150" }}>
+            <Image src={logo_prama} style={styles.commonImage} />
+          </View>
+        </View>
+        {/* TEXT CONTAINER */}
+        <View style={styles.headerContainerPage5}>
+          <View>
+            <View style={{ fontSize: "1" }}>
+              <Text style={styles.titlePage5}>Somos una solución digital</Text>
+              <Text style={styles.titlePage5}>que ayuda a mejorar la</Text>
+              <Text style={styles.titlePage5}>seguridad vial en el Perú.</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={{ color: "#fff", fontWeight: "extralight" }}>
+              www.senviiapp.com
+            </Text>
+          </View>
+        </View>
+
+        {/* Image of mountain waves */}
+        <View style={styles.mountainWaves}>
           <Image
             src={ondas_montanosas}
             style={{ width: "100vw", height: "100%" }}
