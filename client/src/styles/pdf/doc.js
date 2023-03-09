@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     width: "100vw",
     height: "100vh",
     paddingVertical: "10",
-    paddingHorizontal: "40",
+    paddingHorizontal: "30",
     fontFamily: "Helvetica",
   },
   imagePage1: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   titlePage5: {
     color: "#fff",
-    fontSize: "24",
+    fontSize: "30",
     fontWeight: "extrabold",
     fontFamily: "Helvetica-Bold",
   },
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     bottom: "0",
     left: "40",
     width: "100%",
-    height: "50%",
+    height: "60%",
     marginBottom: "10",
     display: "flex",
     flexDirection: "column",
