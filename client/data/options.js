@@ -324,55 +324,45 @@ export const getConsiderations = ({ signalingTypes, questions, zone }) => {
   questions.forEach((question) => {
     if (question.id === 1) {
       if (question.response === "no") {
-        recomendations.push([
-          {
-            img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
-            name: "Aplicación de pintura Termoplástica Extrusión",
-          },
-        ]);
+        recomendations.push({
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
+          name: "Aplicación de pintura Termoplástica Extrusión",
+        });
       } else if (findSignalingTypes(1, 4)) {
-        recomendations.push([
-          {
-            img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296247/userPicture/segur_termo_spray_m9jh7g.png",
-            name: "Aplicación de pintura Termoplástica Spray",
-          },
-        ]);
+        recomendations.push({
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296247/userPicture/segur_termo_spray_m9jh7g.png",
+          name: "Aplicación de pintura Termoplástica Spray",
+        });
       } else if (findSignalingTypes(2, 3)) {
-        recomendations.push([
-          {
-            img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
-            name: "Aplicación de pintura Termoplástica Extrusión",
-          },
-        ]);
+        recomendations.push({
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
+          name: "Aplicación de pintura Termoplástica Extrusión",
+        });
       }
       if (zone === "autopista" && question.response === "yes") {
-        recomendations.push([
-          {
-            img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/userPicture/segur_Termo_preformado_zg91m0.png",
-            name: "Termoplástico preformado",
-          },
-        ]);
+        recomendations.push({
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/userPicture/segur_Termo_preformado_zg91m0.png",
+          name: "Termoplástico preformado",
+        });
       }
     }
     if (question.id === 2 && question.response === "yes") {
       recomendations.push("Sellado de fisuras");
     }
     if (question.id === 3 && question.response === "yes") {
-      recomendations.push([
-        {
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296145/userPicture/qww76dosikli7sl0pjvz.png",
-          name: "Banda transversal Termoplástica",
-        },
-      ]);
+      recomendations.push({
+        img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296145/userPicture/qww76dosikli7sl0pjvz.png",
+        name: "Banda transversal Termoplástica",
+      });
     }
     if (question.id === 4 && question.response === "yes") {
-      recomendations.push([
-        "Aplicación de Termoplástico  Rib Line",
+      recomendations.push(
+        { img: "", name: "Aplicación de Termoplástico  Rib Line" },
         {
-          url: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296281/userPicture/sen_tachas_reflectivas_fsslvo.png",
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296281/userPicture/sen_tachas_reflectivas_fsslvo.png",
           name: "Instalación de tachas solares",
-        },
-      ]);
+        }
+      );
     }
   });
   return recomendations;

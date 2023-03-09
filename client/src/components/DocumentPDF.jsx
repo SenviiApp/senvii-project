@@ -342,7 +342,7 @@ const DocumentPDF = ({ form }) => {
           <View
             style={{
               backgroundColor: "#795FFF",
-              borderRadius: "10",
+              borderRadius: "15",
               position: "absolute",
               right: "30",
               top: "40",
@@ -366,30 +366,29 @@ const DocumentPDF = ({ form }) => {
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",
-                justifyContent: "space-between",
-                gap: "5",
+                justifyContent: "space-evenly",
+                gap: "10",
                 marginTop: "10",
               }}
             >
               {form &&
-                form.via.mejorasSimples.map((mejora) => (
+                form.via.mejorasSimples.map((mejora, i) => (
                   <View
-                    key={mejora.name}
+                    key={i}
                     style={{ width: "115", height: "115", marginTop: "10" }}
                   >
                     <Image
-                      src={mejora.img}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      src={
+                        mejora.img ||
+                        "https://res.cloudinary.com/djcc03pyc/image/upload/v1677714839/userPicture/uy9idcdadxuvsnzpb4sm.png"
+                      }
+                      style={styles.imageCommonPage1}
                     />
                     <Text
                       style={{
                         fontSize: "10",
                         color: "#fff",
-                        marginTop: "5",
+                        marginTop: "10",
                         textAlign: "center",
                         fontFamily: "Helvetica-Bold",
                       }}
@@ -401,6 +400,83 @@ const DocumentPDF = ({ form }) => {
             </View>
           </View>
           .{/* SENVII LINK */}
+          <Text
+            style={{
+              fontSize: "14",
+              position: "absolute",
+              right: "40",
+              bottom: "10",
+            }}
+          >
+            www.senviapp.com
+          </Text>
+        </Page>
+
+        {/* Fourth Page */}
+        <Page size="A4" orientation="landscape" style={styles.page1}>
+          {/* Header Title */}
+          <View style={{ marginTop: "20" }}>
+            <Text style={styles.titlePage2}>
+              Mejoras en la seguridad de la vía
+            </Text>
+          </View>
+
+          {/* Text recommendations */}
+          <View style={{ marginTop: "20" }}>
+            <Text style={{ fontSize: "11" }}>
+              En base a la información obtenida durante la recopilación de datos
+              sobre la señalización actual de su vía.{" "}
+              {form && form.via.mejoras.join(" ")}
+            </Text>
+          </View>
+
+          {/* Graphic recommendations */}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "space-evenly",
+              gap: "10",
+              marginTop: "50",
+            }}
+          >
+            {form &&
+              form.consider.map((up, i) => (
+                <View
+                  key={i}
+                  style={{
+                    width: "150",
+                    height: "150",
+                    marginTop: "10",
+                    backgroundColor: "#795FFF",
+                    padding: "25",
+                    borderRadius: "15",
+                  }}
+                >
+                  <Image
+                    src={
+                      up.img ||
+                      "https://res.cloudinary.com/djcc03pyc/image/upload/v1677714839/userPicture/uy9idcdadxuvsnzpb4sm.png"
+                    }
+                    style={styles.imageCommonPage1}
+                  />
+                  <Text
+                    style={{
+                      fontSize: "10",
+                      color: "#fff",
+                      marginTop: "10",
+                      textAlign: "center",
+                      fontFamily: "Helvetica-Bold",
+                    }}
+                  >
+                    {up.name}
+                  </Text>
+                </View>
+              ))}
+          </View>
+
+          {/* SENVII Link */}
           <Text
             style={{
               fontSize: "14",
