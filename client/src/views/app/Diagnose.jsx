@@ -17,15 +17,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useWriter } from "../../hooks/useWriter";
 import SignalingTypes from "./DiagnoseContent/SignalingTypes";
 import InitialForm from "./DiagnoseContent/InitialForm";
+import DocumentPDF from "../../components/DocumentPDF";
 
 export default function Diagnose() {
   const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
   const [form, setForm] = useState(getinitialForm());
-
+  const [previewRendered, setPreview] = useState(false);
   const [current, setCurrent] = useState(null);
 
   useEffect(() => {
-    // scrollTo({ top: 0 });
+    scrollTo({ top: 0 });
     document.body.style.overflow = "hidden";
   }, []);
 
@@ -33,7 +34,12 @@ export default function Diagnose() {
     let sec = document.getElementById(id);
     sec?.scrollIntoView({ block: "start" });
   };
-
+  useEffect(() => {
+    previewRendered && alert(JSON.stringify(form, null, 2));
+  }, [previewRendered]);
+  if (previewRendered) {
+    return <DocumentPDF form={form} />;
+  }
   return (
     <main>
       <Background
@@ -135,7 +141,7 @@ export default function Diagnose() {
       </section>
 
       <section id="report" className="h-screen grid place-content-center">
-        <Report form={form} />
+        <Report form={form} setPreview={setPreview} setForm={setForm} />
       </section>
     </main>
   );

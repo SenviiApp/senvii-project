@@ -41,6 +41,196 @@ export const dataOptions = {
     },
   ],
 };
+const mejoras = {
+  "Señales preventivas": {
+    name: "Señales preventivas",
+    img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296264/userPicture/sen_senal_preventiva_smx7im.png",
+  },
+  "Instalción de tachas": {
+    name: "Instalción de tachas",
+    img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296281/userPicture/sen_tachas_reflectivas_fsslvo.png",
+  },
+  "Instalación de gibas": {
+    name: "Instalación de gibas",
+    img: null,
+  },
+  "Señales reglamentarias": {
+    name: "Señales reglamentarias",
+    img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296272/userPicture/sen_senal_reglamentaria_fo2dno.png",
+  },
+  "Señales informativas": {
+    name: "Señales informativas",
+    img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296259/userPicture/sen_senal_informativa_kyvoff.png",
+  },
+  "Señales de servicios generales": {
+    name: "Señales de servicios generales",
+    img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296275/userPicture/sen_senal_servicio_general_nwea2b.png",
+  },
+};
+
+const descriptions = [
+  {
+    id: "urbana;0/400",
+    nombre: "Locales",
+    descripcion:
+      "Sirven a los distritos y su función principal es permitir el acceso a las propiedades urbanas. La mayoría de las vías locales tienen dos carriles para ambas direcciones y generalmente son llamadas calles o jirones",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Instalación de gibas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "urbana;400/2000",
+    nombre: "Colectoras",
+    descripcion:
+      "Están conectadas con las vías locales por intersecciones a nivel para las entrada y las salidas a nivel generalmente no semaforizadas y su función es conectar el tránsito de estas vías con las vías arteriales. Generalmente se llaman avenidas y tienen un total de 4 carriles para ambas direcciones.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Instalación de gibas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "urbana;2000/4000",
+    nombre: "Arteriales",
+    descripcion:
+      "Tienen la función de servir al tránsito originado en las vías colectoras y son llamadas Avenidas o Corredores Viales. Las intersecciones de las vías arteriales con las vías expresas o entre dos vías arteriales son a desnivel.  Complementan el ordenamiento de la mano de semáforos y policias.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "urbana;4000/+",
+    nombre: "Express",
+    descripcion:
+      "Las vías expresas son para el tránsito de paso, altos volúmenes y considerable velocidad en las que las entradas y salidas son controladas por intercambios, que se conectan con otras vías expresas o vías arteriales por intersecciones a desnivel. De acuerdo a las características de uso, existen 3 tipos de vías expresas como se explica a continuación.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Instalación de gibas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "autopista;4000/6000",
+    nombre: "Autopista de 2° Clase",
+    descripcion:
+      "Son carreteras con un IMDA entre 6.000 y 4.001 veh/día, de calzadas divididas por medio de un separador central que puede variar de 6,00 m hasta 7,00 m, en cuyo caso se instalará un sistema de contención vehicular; cada una de las calzadas debe contar con dos o más carriles de 3,60 m de ancho como mínimo, con control parcial de accesos (ingresos y salidas) que proporcionan flujos vehiculares continuos; pueden tener cruces o pasos vehiculares a nivel y puentes peatonales en zonas urbanas. La superficie de rodadura de estas carreteras debe ser pavimentada",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Señales de servicios generales"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "autopista;6000/+",
+    nombre: "Autopista de 1° Clase",
+    descripcion:
+      "Son carreteras con IMDA (Índice Medio Diario Anual) mayor a 6.000 veh/día, de calzadas divididas por medio de un separador central mínimo de 6,00 m; cada una de las calzadas debe contar con dos o más carriles de 3,60 m de ancho como mínimo, con control total de accesos (ingresos y salidas) que proporcionan flujos vehiculares continuos, sin cruces o pasos a nivel y con puentes peatonales en zonas urbanas. La superficie de rodadura de estas carreteras debe ser pavimentada",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Señales de servicios generales"],
+      mejoras["Señales informativas"],
+      mejoras["Señales reglamentarias"],
+    ],
+  },
+  {
+    id: "rural;0/400",
+    nombre: "Carretera de 3ra clase",
+    descripcion:
+      "Son carreteras con IMDA menores a 400 veh/día, con calzada de dos carriles de 3,00 m de ancho como mínimo. De manera excepcional estas vías podrán tener carriles hasta de 2,50 m, contando con el sustento técnico correspondiente. Estas carreteras pueden funcionar con soluciones denominadas básicas o económicas, consistentes en la aplicación de estabilizadores de suelos, emulsiones asfálticas y/o micro pavimentos; o en afirmado, en la superficie de rodadura. La superficie de rodadura de estas carreteras debe ser pavimentada.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Instalación de gibas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "rural;400/2000",
+    nombre: "Carretera de 2da clase",
+    descripcion:
+      "Son carreteras con un IMDA entre 4.000 y 2.001 veh/día, con una calzada de dos carriles de 3,60 m de ancho como mínimo. Puede tener cruces o pasos vehiculares a nivel y en zonas urbanas es recomendable que se cuente con puentes peatonales o en su defecto con dispositivos de seguridad vial, que permitan velocidades de operación, con mayor seguridad. La superficie de rodadura de estas carreteras debe ser pavimentada.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Instalación de gibas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+  {
+    id: "rural;2000/4000",
+    nombre: "Carretera 1ra clase",
+    descripcion:
+      "Son carreteras con un IMDA entre 4.000 y 2.001 veh/día, con una calzada de dos carriles de 3,60 m de ancho como mínimo. Puede tener cruces o pasos vehiculares a nivel y en zonas urbanas es recomendable que se cuente con puentes peatonales o en su defecto con dispositivos de seguridad vial, que permitan velocidades de operación, con mayor seguridad. La superficie de rodadura de estas carreteras debe ser pavimentada.",
+    mejoras: [
+      "Se recomienda repintados periódicos cada 4 o 6 meses de la señalización en el pavimento para guiar el tránsito de conductores y peatones.",
+      "Mantener un adecuado uso de señales de tránsito para el beneficio de la ciudadanía.",
+      "Para la mejora de la vía se recomienda materiales que garanticen la durabilidad de la señalización.",
+    ],
+    mejorasSimples: [
+      mejoras["Señales preventivas"],
+      mejoras["Instalción de tachas"],
+      mejoras["Señales reglamentarias"],
+      mejoras["Señales informativas"],
+    ],
+  },
+];
+
 export const getAvailableSignaling = ({ transit }) => {
   return dataOptions.signalingTypes.filter(
     (type) => !type.notAvailableFor.includes(transit)
@@ -116,6 +306,10 @@ export const getAvailableQuestions = ({ zone, transit }) => {
   return questions.filter((question) => {
     return !!question.availableFor.find((key) => key === `${zone}-${transit}`);
   });
+};
+
+export const getSelectionDescription = ({ zone, transit }) => {
+  return descriptions.find((item) => item.id === `${zone};${transit}`);
 };
 
 //recieves form
