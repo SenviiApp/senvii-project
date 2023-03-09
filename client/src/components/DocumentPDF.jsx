@@ -10,13 +10,14 @@ import {
 } from "@react-pdf/renderer";
 
 import styles from "../styles/pdf/doc";
-import senviiBg from "../assets/bg-oficial.jpg";
+import logo_senvi_icon from "../assets/pdf/icono_senvii_logo_solo.png";
 import data from "../../data";
 import bg_purple from "../assets/pdf/color_795FFF.jpg";
 import logo_senvii from "../assets/pdf/logo_senvii_ico.png";
 import logo_prama from "../assets/pdf/prama_logo_ico.png";
 import lens from "../assets/pdf/lupa_grafico.png";
 import city from "../assets/pdf/ciudad_pista_graficos.png";
+import city2 from "../assets/pdf/ciudad_pista_graficos_2.png";
 import cloud1 from "../assets/pdf/nube.png";
 import cloud2 from "../assets/pdf/nube_2.png";
 import ondas_montanosas from "../assets/pdf/ondas_montañas.png";
@@ -27,7 +28,6 @@ import vehicle_icon from "../assets/pdf/icono_transito_vehiculos.png";
 import length_icon from "../assets/pdf/icono_longitud.png";
 import floor_icon from "../assets/pdf/icono_pavimento.png";
 import via_icon from "../assets/pdf/icono_via.png";
-import streetExample from "../assets/pdf/grafico_autopista_2da_clase.png";
 import { useLoaderData } from "react-router-dom";
 import { $axios } from "../lib";
 import { useEffect } from "react";
@@ -304,12 +304,25 @@ const DocumentPDF = ({ form }) => {
             style={{
               fontSize: "14",
               position: "absolute",
-              right: "40",
+              right: "30",
               bottom: "10",
             }}
           >
             www.senviapp.com
           </Text>
+
+          {/* SENVII LOGO ICON */}
+          <View
+            style={{
+              width: "50",
+              height: "50",
+              position: "absolute",
+              bottom: "10",
+              left: "30",
+            }}
+          >
+            <Image src={logo_senvi_icon} style={styles.commonImage} />
+          </View>
         </Page>
 
         {/* Third Page */}
@@ -321,13 +334,16 @@ const DocumentPDF = ({ form }) => {
 
             {/* Conditional */}
             <View style={{ width: "200", height: "200", left: "30" }}>
-              <Image src={streetExample} style={styles.imageCommonPage1} />
+              <Image
+                src={form && form.via.image}
+                style={styles.imageCommonPage1}
+              />
             </View>
 
             {/* Description */}
             <Text
               style={{
-                fontSize: "11",
+                fontSize: "13",
                 textAlign: "left",
                 width: "300",
                 letterSpacing: ".5",
@@ -404,12 +420,24 @@ const DocumentPDF = ({ form }) => {
             style={{
               fontSize: "14",
               position: "absolute",
-              right: "40",
+              right: "30",
               bottom: "10",
             }}
           >
             www.senviapp.com
           </Text>
+          {/* SENVII LOGO ICON */}
+          <View
+            style={{
+              width: "50",
+              height: "50",
+              position: "absolute",
+              bottom: "10",
+              left: "30",
+            }}
+          >
+            <Image src={logo_senvi_icon} style={styles.commonImage} />
+          </View>
         </Page>
 
         {/* Fourth Page */}
@@ -423,7 +451,7 @@ const DocumentPDF = ({ form }) => {
 
           {/* Text recommendations */}
           <View style={{ marginTop: "20" }}>
-            <Text style={{ fontSize: "11" }}>
+            <Text style={{ fontSize: "14" }}>
               En base a la información obtenida durante la recopilación de datos
               sobre la señalización actual de su vía.{" "}
               {form && form.via.mejoras.join(" ")}
@@ -446,8 +474,8 @@ const DocumentPDF = ({ form }) => {
                 <View
                   key={i}
                   style={{
-                    width: "150",
-                    height: "150",
+                    width: "175",
+                    height: "175",
                     marginTop: "10",
                     backgroundColor: "#795FFF",
                     padding: "25",
@@ -481,12 +509,25 @@ const DocumentPDF = ({ form }) => {
             style={{
               fontSize: "14",
               position: "absolute",
-              right: "40",
+              right: "30",
               bottom: "10",
             }}
           >
             www.senviapp.com
           </Text>
+
+          {/* SENVII LOGO ICON */}
+          <View
+            style={{
+              width: "50",
+              height: "50",
+              position: "absolute",
+              bottom: "10",
+              left: "30",
+            }}
+          >
+            <Image src={logo_senvi_icon} style={styles.commonImage} />
+          </View>
         </Page>
 
         {/* Final Page */}
@@ -500,18 +541,13 @@ const DocumentPDF = ({ form }) => {
               <Image src={logo_prama} style={styles.commonImage} />
             </View>
           </View>
+
           {/* TEXT CONTAINER */}
           <View style={styles.headerContainerPage5}>
             <View>
-              <View style={{ fontSize: "1" }}>
-                <Text style={styles.titlePage5}>
-                  Somos una solución digital
-                </Text>
-                <Text style={styles.titlePage5}>que ayuda a mejorar la</Text>
-                <Text style={styles.titlePage5}>
-                  seguridad vial en el Perú.
-                </Text>
-              </View>
+              <Text style={styles.titlePage5}>Somos una solución digital</Text>
+              <Text style={styles.titlePage5}>que ayuda a mejorar la</Text>
+              <Text style={styles.titlePage5}>seguridad vial en el Perú.</Text>
             </View>
             <View>
               <Text style={{ color: "#fff", fontWeight: "extralight" }}>
@@ -554,14 +590,14 @@ const DocumentPDF = ({ form }) => {
           {/* Image of the city */}
           <View
             style={{
-              width: "450",
-              height: "450",
+              width: "420",
+              height: "420",
               position: "absolute",
-              right: "50",
-              top: "50",
+              right: "10",
+              top: "60",
             }}
           >
-            <Image src={city} style={styles.imageCommonPage1} />
+            <Image src={city2} style={styles.imageCommonPage1} />
           </View>
           <Image src={bg_purple} style={styles.imagePage1} />
         </Page>
