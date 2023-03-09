@@ -46,8 +46,8 @@ const mejoras = {
     name: "Señales preventivas",
     img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296264/userPicture/sen_senal_preventiva_smx7im.png",
   },
-  "Instalción de tachas": {
-    name: "Instalción de tachas",
+  "Instalación de tachas": {
+    name: "Instalación de tachas",
     img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296281/userPicture/sen_tachas_reflectivas_fsslvo.png",
   },
   "Instalación de gibas": {
@@ -81,7 +81,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Instalación de gibas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -99,7 +99,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Instalación de gibas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -117,7 +117,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
     ],
@@ -134,7 +134,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Instalación de gibas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -152,7 +152,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Señales de servicios generales"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -170,7 +170,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Señales de servicios generales"],
       mejoras["Señales informativas"],
       mejoras["Señales reglamentarias"],
@@ -188,7 +188,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Instalación de gibas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -206,7 +206,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Instalación de gibas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
@@ -224,7 +224,7 @@ const descriptions = [
     ],
     mejorasSimples: [
       mejoras["Señales preventivas"],
-      mejoras["Instalción de tachas"],
+      mejoras["Instalación de tachas"],
       mejoras["Señales reglamentarias"],
       mejoras["Señales informativas"],
     ],

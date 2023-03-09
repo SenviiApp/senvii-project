@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
     fontWeight: "extrabold",
     fontFamily: "Helvetica-Bold",
   },
+  subTitlePage3: {
+    fontSize: "20",
+    fontWeight: "extrabold",
+    fontFamily: "Helvetica-Bold",
+    marginTop:"7"
+  },
   titlePage5: {
     color: "#fff",
     fontSize: "24",
