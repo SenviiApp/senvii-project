@@ -1,24 +1,60 @@
 import { useEffect, useState } from "react";
 
-export const useWriter = (textInput) => {
-  const [text, setText] = useState("");
+const actions = {
+  write: "write",
+  wait: "wait",
+  delete: "delete",
+};
+
+export const useWriter = () => {
+  const [input, setInput] = useState(null);
+  const [renderedText, setRenderedText] = useState("");
   const [index, setIndex] = useState(1);
-  const [isStarted, setStarted] = useState(false);
+  const [action, setAction] = useState(actions.wait);
 
   useEffect(() => {
-    if (!isStarted) return;
-    const interval = setInterval(() => {
-      if (index === textInput.length + 1) {
-        clearInterval(interval);
+    if (action === actions.wait) {
+      setIndex(1);
+      return;
+    }
+    if (action === actions.delete) {
+      //clears render and changes action
+      if (renderedText === "") {
+        console.log("deleting");
+        setTimeout(() => {
+          setAction(actions.write);
+        }, 500);
         return;
+      } else {
+        setTimeout(() => {
+          setRenderedText(renderedText.slice(0, renderedText.length - 1));
+        }, 15);
       }
-      setIndex(index + 1);
-      setText(textInput.slice(0, index));
-    }, 50);
-    return () => clearInterval(interval);
-  }, [isStarted, text]);
+    }
+    if (action === actions.write) {
+      console.log("writing");
+      //ends process
+      if (renderedText === input) {
+        setAction(actions.wait);
+        return;
+      } else {
+        //runs typewrite
+        setTimeout(() => {
+          setRenderedText(input.slice(0, index));
+          setIndex(index + 1);
+        }, 50);
+      }
+    }
+  }, [action, renderedText]);
 
-  const trigger = () => setStarted(true);
+  const render = (textToRender) => {
+    setInput(textToRender);
+    if (input) {
+      setAction(actions.delete);
+    } else {
+      setAction(actions.write);
+    }
+  };
 
-  return { text, trigger };
+  return { output: renderedText, render };
 };

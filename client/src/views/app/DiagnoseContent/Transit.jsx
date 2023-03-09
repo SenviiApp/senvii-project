@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import urbana from "../../../assets/urbana.png";
-// import rural from "../../../assets/rural.png";
-// import autopista from "../../../assets/autopista.png";
 import { useEffect, useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
@@ -9,6 +7,13 @@ export default function Transit({ setCurrent, data, setForm }) {
   const [transit, setTransit] = useState(data[0].name);
   const [translate, setTranslate] = useState(0);
   const [frame, setFrame] = useState(0);
+
+  const getTransit = (name) => {
+    if (name.endsWith("/+")) {
+      return `más de ${name.split("/")[0]}`;
+    }
+    return name.split("/").join(" a ");
+  };
 
   useEffect(() => {
     setTransit(data[frame].name);
@@ -27,7 +32,7 @@ export default function Transit({ setCurrent, data, setForm }) {
       transition={{ duration: 1, type: "spring", bounce: false }}
       className="absolute top-0 w-full max-w-sm h-full flex flex-col items-center justify-center gap-6 mx-auto text-center"
     >
-      <h2>¿Cuántos vehículos diarios transitan la autopista?</h2>
+      <h2>¿Cuántos vehículos diarios transitan?</h2>
 
       <div className="flex">
         <button
@@ -50,7 +55,7 @@ export default function Transit({ setCurrent, data, setForm }) {
                   className="w-[200px] bg-slate-400 flex flex-col items-center gap-2 py-4 text-snow"
                 >
                   <img src={urbana} alt="" className="w-36" />
-                  <h3>{name}</h3>
+                  <h3>{getTransit(name)}</h3>
                 </div>
               );
             })}
