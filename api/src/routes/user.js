@@ -13,6 +13,6 @@ const {
 router.get("/:id", getUser);
 router.post("/change-password", changePassword);
 router.post("/edit-profile/:id", editProfile);
-router.post("/upload/pdf/:id", upload.single("pdf"), uploadPDF);
+router.post("/upload/pdf/:id", uploadPDF);
 
 module.exports = router;
