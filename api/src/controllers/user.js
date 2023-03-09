@@ -134,28 +134,27 @@ const editProfile = async (req, res) => {
 };
 
 const uploadPDF = async (req, res) => {
-  const pdf = req.file;
   const { id } = req.params;
-
+  const { name, email, pdf } = req.body;
+  
+  const response = await cloudinary.uploader.upload(pdf, {
+    folder: "userPdf",
+    tags: ["pdf"],
+  });
   try {
-    const result = await cloudinary.uploader.upload(pdf.path, {
-      folder: "pdfs",
-      /* upload_preset: "tu_upload_preset", */
-    });
-
-    Pdf.create({
+    await Pdf.create({
       file: {
-        public_id: result.public_id,
-        url: result.secure_url,
+        public_id: response.public_id,
+        url: response.secure_url,
       },
       userId: id,
     });
 
-    res.status(200).json({ success: true, code: "pdf_created" });
+    sendEmailToNotifyPdf(name, email, response.secure_url);
+
+    res.status(201).json({ success: true, code: "pdf_created" });
   } catch (error) {
-    return res
-      .status(400)
-      .json({ success: false, code: "pdf_doesn't_created" });
+    return res.status(500).json({ err });
   }
 };
 
