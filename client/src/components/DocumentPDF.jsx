@@ -30,7 +30,7 @@ import via_icon from "../assets/pdf/icono_via.png";
 
 const date = new Date();
 
-const DocumentPDF = () => (
+const DocumentPDF = ({ form }) => (
   <PDFViewer style={{ width: "100%", height: "100vh" }}>
     <Document>
       {/* First Page: Landing */}
