@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function SignalingTypes({ data, setForm, setCurrent }) {
+export default function SignalingTypes({ data, setForm, setCurrent, render }) {
   const [selectedTypes, setTypes] = useState([]);
   const addToSignaling = (type) => {
     const selected = selectedTypes.find((val) => val.id === type.id);
@@ -18,6 +18,7 @@ export default function SignalingTypes({ data, setForm, setCurrent }) {
       exit={{ y: -500 }}
       transition={{ duration: 1, type: "spring", bounce: false }}
       className="absolute top-0 w-full max-w-sm h-full flex flex-col items-center justify-center gap-6 mx-auto text-center px-2"
+      onViewportEnter={() => render("¿Qué vas a señalizar?")}
     >
       {data.map((type) => (
         <div

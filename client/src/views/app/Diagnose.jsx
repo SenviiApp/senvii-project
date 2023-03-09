@@ -20,7 +20,7 @@ import InitialForm from "./DiagnoseContent/InitialForm";
 import DocumentPDF from "../../components/DocumentPDF";
 
 export default function Diagnose() {
-  const { text, trigger } = useWriter("Coméntanos más acerca de la vía");
+  const { output, render } = useWriter("Coméntanos más acerca de la vía");
   const [form, setForm] = useState(getinitialForm());
   const [previewRendered, setPreview] = useState(false);
   const [current, setCurrent] = useState(null);
@@ -35,7 +35,7 @@ export default function Diagnose() {
     sec?.scrollIntoView({ block: "start" });
   };
   useEffect(() => {
-    previewRendered && alert(JSON.stringify(form, null, 2));
+    // previewRendered && alert(JSON.stringify(form, null, 2));
   }, [previewRendered]);
   if (previewRendered) {
     return <DocumentPDF form={form} />;
@@ -74,7 +74,7 @@ export default function Diagnose() {
           <div className="mx-auto w-main h-full grid grid-character gap-3">
             <a href="/" className="object-cover self-center">
               <motion.img
-                onViewportEnter={trigger}
+                onViewportEnter={() => render("Cuéntanos más acerca de la vía")}
                 src={senvii}
                 alt="senvii"
                 className="w-22 h-22 self-center object-cover"
@@ -82,7 +82,7 @@ export default function Diagnose() {
             </a>
             <h1 className="text-dark-600 p-2 text-md text-center bg-white mr-2 rounded-md h-fit mt-8 w-fit relative">
               <div className="h-4 w-4 absolute -left-4 bg-white path-triangle top-3" />
-              {text}
+              {output}
               <Cursor
                 cursorStyle={<span className="animate-ping">_</span>}
                 cursorBlinking={false}
@@ -124,6 +124,7 @@ export default function Diagnose() {
                 data={getAvailableSignaling(form)}
                 setForm={setForm}
                 setCurrent={setCurrent}
+                render={render}
               />
             )}
           </AnimatePresence>
