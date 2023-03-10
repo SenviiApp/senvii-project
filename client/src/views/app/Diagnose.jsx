@@ -18,6 +18,7 @@ import { useWriter } from "../../hooks/useWriter";
 import SignalingTypes from "./DiagnoseContent/SignalingTypes";
 import InitialForm from "./DiagnoseContent/InitialForm";
 import DocumentPDF from "../../components/DocumentPDF";
+import AppReport from "./DiagnoseContent/AppReport";
 
 export default function Diagnose() {
   const { output, render } = useWriter("Coméntanos más acerca de la vía");
@@ -25,15 +26,18 @@ export default function Diagnose() {
   const [previewRendered, setPreview] = useState(false);
   const [current, setCurrent] = useState(null);
 
-  useEffect(() => {
-    scrollTo({ top: 0 });
-    document.body.style.overflow = "hidden";
-  }, []);
-
   const scrollToSection = (id) => {
     let sec = document.getElementById(id);
     sec?.scrollIntoView({ block: "start" });
   };
+  useEffect(() => {
+    //scrollTo({ top: 0 });
+    document.body.style.overflow = "hidden";
+    scrollToSection("appReport")
+  }, []);
+
+
+
   useEffect(() => {
     // previewRendered && alert(JSON.stringify(form, null, 2));
   }, [previewRendered]);
@@ -143,6 +147,10 @@ export default function Diagnose() {
 
       <section id="report" className="h-screen grid place-content-center">
         <Report form={form} setPreview={setPreview} setForm={setForm} />
+      </section>
+
+      <section id="appReport" className="h-screen overflow-hidden">
+        <AppReport/>
       </section>
     </main>
   );

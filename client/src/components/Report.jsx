@@ -1,5 +1,5 @@
 import Background from "./Background";
-import senvii from "../assets/senvii01.png";
+import senvii from "../assets/senviiAnimated.gif";
 import { getSelectionDescription } from "../../data/options";
 import { simulateDelay } from "../utils/simulateDelay";
 
@@ -17,7 +17,7 @@ const Report = ({ form, setPreview, setForm }) => {
         </h2>
       </div>
       <a
-        // href=""
+        href="#appReport"
         className="z-10 bg-black text-white mx-5 mt-6 px-4 text-center py-2 rounded-full"
         onClick={async () => {
           const finalForm = { ...form };
@@ -26,7 +26,7 @@ const Report = ({ form, setPreview, setForm }) => {
 
           //loader para simular
           await simulateDelay(2);
-          setPreview(true);
+          setPreview(false);
         }}
       >
         Generar Reporte
