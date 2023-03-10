@@ -333,7 +333,12 @@ export const getSelectionDescription = ({ zone, transit }) => {
 //recieves form
 export const getConsiderations = ({ signalingTypes, questions, zone }) => {
   if (!questions.length) {
-    return [{ img: "", name: "Aplicación de pintura acrílica" }];
+    return [
+      {
+        img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296253/senvii/sen_marcas_pavimento_kmnhqg.png",
+        name: "Aplicación de pintura acrílica",
+      },
+    ];
   }
   const findSignalingTypes = (...ids) => {
     signalingTypes.find((type) => ids.join(";").includes(type.id));
