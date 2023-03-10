@@ -12,11 +12,11 @@ const {
 } = require("../config.js");
 
 const sequelize = new Sequelize(
-  "u398820495_senvii",
-  "u398820495_senviiapp",
-  "Pokeke1118_",
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
   {
-    host: "89.117.139.154",
+    host: "localhost",
     dialect: "mysql",
   }
 );
