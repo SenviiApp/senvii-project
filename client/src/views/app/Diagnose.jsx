@@ -149,8 +149,8 @@ export default function Diagnose() {
         <Report form={form} setPreview={setPreview} setForm={setForm} />
       </section>
 
-      <section id="appReport" className="h-screen overflow-hidden">
-        <AppReport/>
+      <section id="appReport" className="h-screen overflow-x-hidden">
+        <AppReport form={form} scrollToSection={scrollToSection}/>
       </section>
     </main>
   );
