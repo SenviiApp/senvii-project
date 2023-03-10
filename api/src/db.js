@@ -8,37 +8,19 @@ const {
   DB_PASSWORD,
   DB_HOST,
   DB_NAME,
-  DB_PORT,
+  NODE_ENV,
 } = require("../config.js");
 
-let sequelize =
-  process.env.NODE_ENV === "production"
-    ? new Sequelize({
-        database: DB_NAME,
-        dialect: "postgres",
-        host: DB_HOST,
-        port: DB_PORT,
-        username: DB_USER,
-        password: DB_PASSWORD,
-        pool: {
-          max: 3,
-          min: 1,
-          idle: 10000,
-        },
-        dialectOptions: {
-          ssl: {
-            require: true,
-            // Ref.: https://github.com/brianc/node-postgres/issues/2009
-            rejectUnauthorized: false,
-          },
-          keepAlive: true,
-        },
-        ssl: true,
-      })
-    : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-        { logging: false, native: false }
-      );
+const sequelize = new Sequelize(
+  "u398820495_senvii",
+  "u398820495_senviiapp",
+  "Pokeke1118_",
+  {
+    host: "89.117.139.154",
+    dialect: "mysql",
+  }
+);
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -75,8 +57,8 @@ const { User, Institution, Pdf } = sequelize.models;
 Institution.hasMany(User);
 User.belongsTo(Institution);
 
-User.hasMany(Pdf)
-Pdf.belongsTo(User)
+User.hasMany(Pdf);
+Pdf.belongsTo(User);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
