@@ -82,7 +82,7 @@ const DocumentPDF = ({ form }) => {
             </View>
             <View>
               <Text style={{ color: "#fff", fontWeight: "extralight" }}>
-                www.senviiapp.com
+                www.senvii.com
               </Text>
             </View>
           </View>
@@ -551,7 +551,7 @@ const DocumentPDF = ({ form }) => {
             </View>
             <View>
               <Text style={{ color: "#fff", fontWeight: "extralight" }}>
-                www.senviiapp.com
+                www.senvii.com
               </Text>
             </View>
           </View>
