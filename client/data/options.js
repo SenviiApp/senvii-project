@@ -364,7 +364,7 @@ export const getConsiderations = ({ signalingTypes, questions, zone }) => {
       }
       if (zone === "autopista" && question.response === "yes") {
         recomendations.push({
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/userPicture/segur_Termo_preformado_zg91m0.png",
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/senvii/segur_Termo_preformado_zg91m0.png",
           name: "Termoplástico preformado",
         });
       }
