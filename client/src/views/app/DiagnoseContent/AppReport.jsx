@@ -6,8 +6,11 @@ import { motion } from "framer-motion";
 import lupa from "../../../assets/pdf/lupa_grafico.png";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import DocumentPDF from "../../../components/DocumentPDF";
+import { useNavigate } from "react-router-dom";
 
 const AppReport = ({ form, userData }) => {
+  const navigate = useNavigate();
+
   const getFriendlyDate = () => {
     const fecha = new Date();
     const dia = fecha.getDate().toString().padStart(2, "0");
@@ -15,6 +18,10 @@ const AppReport = ({ form, userData }) => {
     const año = fecha.getFullYear();
 
     return `${dia}-${mes}-${año}`;
+  };
+
+  const backToHome = () => {
+    navigate("/");
   };
   return (
     <>
@@ -78,6 +85,7 @@ const AppReport = ({ form, userData }) => {
               userData.id
             }_${getFriendlyDate()}.pdf`}
             className="uppercase bg-black px-4 py-2 text-sm lg:px-8 lg:py-4 text-white rounded-md lg:text-xl"
+            onClick={backToHome}
           >
             {({ blob, url, loading, error }) =>
               loading ? "Loading document..." : "descargar reporte"

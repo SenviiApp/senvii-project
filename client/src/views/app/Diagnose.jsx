@@ -41,7 +41,6 @@ export default function Diagnose() {
 
   useEffect(() => {
     if (isFormFull) {
-      console.log(form);
       const { toBlob } = pdf(<DocumentPDF form={form} userData={userData} />);
       toBlob().then((res) => console.log(res));
     }
