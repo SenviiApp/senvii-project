@@ -1,9 +1,8 @@
 import Background from "./Background";
 import senvii from "../assets/senviiAnimated.gif";
 import { getSelectionDescription } from "../../data/options";
-import { simulateDelay } from "../utils/simulateDelay";
 
-const Report = ({ form, setPreview, setForm }) => {
+const Report = ({ form, setForm, setCurrent, setFormFull }) => {
   return (
     <>
       <Background className="absolute h-screen w-full z-0" />
@@ -16,21 +15,16 @@ const Report = ({ form, setPreview, setForm }) => {
           </span>
         </h2>
       </div>
-      <a
-        href="#appReport"
+      <button
         className="z-10 bg-black text-white mx-5 mt-6 px-4 text-center py-2 rounded-full"
-        onClick={async () => {
-          const finalForm = { ...form };
-          finalForm.via = getSelectionDescription(form);
-          setForm(finalForm);
-
-          //loader para simular
-          await simulateDelay(2);
-          setPreview(false);
+        onClick={() => {
+          setForm({ ...form, via: getSelectionDescription(form) });
+          setFormFull(true);
+          setCurrent("appReport");
         }}
       >
         Generar Reporte
-      </a>
+      </button>
     </>
   );
 };

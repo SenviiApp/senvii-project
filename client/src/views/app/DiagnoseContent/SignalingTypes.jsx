@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 export default function SignalingTypes({ data, setForm, setCurrent, render }) {
   const [selectedTypes, setTypes] = useState([]);
+
   const addToSignaling = (type) => {
     const selected = selectedTypes.find((val) => val.id === type.id);
     if (selected) {

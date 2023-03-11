@@ -19,11 +19,14 @@ import SignalingTypes from "./DiagnoseContent/SignalingTypes";
 import InitialForm from "./DiagnoseContent/InitialForm";
 import DocumentPDF from "../../components/DocumentPDF";
 import AppReport from "./DiagnoseContent/AppReport";
+import { pdf } from "@react-pdf/renderer";
+import { useLoaderData } from "react-router-dom";
 
 export default function Diagnose() {
+  const userData = useLoaderData();
   const { output, render } = useWriter("Coméntanos más acerca de la vía");
   const [form, setForm] = useState(getinitialForm());
-  const [previewRendered, setPreview] = useState(false);
+  const [isFormFull, setFormFull] = useState(false);
   const [current, setCurrent] = useState(null);
 
   const scrollToSection = (id) => {
@@ -31,19 +34,19 @@ export default function Diagnose() {
     sec?.scrollIntoView({ block: "start" });
   };
   useEffect(() => {
-    //scrollTo({ top: 0 });
+    scrollTo({ top: 0 });
     document.body.style.overflow = "hidden";
-    scrollToSection("appReport")
+    // scrollToSection("appReport")
   }, []);
 
-
-
   useEffect(() => {
-    // previewRendered && alert(JSON.stringify(form, null, 2));
-  }, [previewRendered]);
-  if (previewRendered) {
-    return <DocumentPDF form={form} />;
-  }
+    if (isFormFull) {
+      console.log(form);
+      const { toBlob } = pdf(<DocumentPDF form={form} userData={userData} />);
+      toBlob().then((res) => console.log(res));
+    }
+  }, [isFormFull]);
+
   return (
     <main>
       <Background
@@ -108,11 +111,14 @@ export default function Diagnose() {
           }}
           className="overflow-hidden w-main bg-white mx-auto rounded-md h-[70vh] flex justify-center items-center relative"
         >
+          {/* start section */}
           <AnimatePresence>
             {(current === "start" || current === "zone") && (
               <Zones setCurrent={setCurrent} setForm={setForm} />
             )}
           </AnimatePresence>
+
+          {/* transit section */}
           <AnimatePresence>
             {current === "transit" && (
               <Transit
@@ -122,6 +128,8 @@ export default function Diagnose() {
               />
             )}
           </AnimatePresence>
+
+          {/* signaling section */}
           <AnimatePresence>
             {current === "signalingTypes" && (
               <SignalingTypes
@@ -132,6 +140,8 @@ export default function Diagnose() {
               />
             )}
           </AnimatePresence>
+
+          {/* question questions */}
           <AnimatePresence>
             {current === "questions" && (
               <Questions
@@ -146,12 +156,25 @@ export default function Diagnose() {
       </section>
 
       <section id="report" className="h-screen grid place-content-center">
-        <Report form={form} setPreview={setPreview} setForm={setForm} />
+        <Report
+          form={form}
+          setForm={setForm}
+          setCurrent={setCurrent}
+          setFormFull={setFormFull}
+        />
       </section>
-
-      <section id="appReport" className="h-screen overflow-x-hidden">
-        <AppReport form={form} scrollToSection={scrollToSection}/>
-      </section>
+      <AnimatePresence>
+        {current === "appReport" && (
+          <motion.section
+            id="appReport"
+            className="h-screen overflow-x-hidden fixed z-[9999] w-full top-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <AppReport form={form} userData={userData} />
+          </motion.section>
+        )}
+      </AnimatePresence>
     </main>
   );
   // here goes the app
