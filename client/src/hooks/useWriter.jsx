@@ -20,7 +20,6 @@ export const useWriter = () => {
     if (action === actions.delete) {
       //clears render and changes action
       if (renderedText === "") {
-        console.log("deleting");
         setTimeout(() => {
           setAction(actions.write);
         }, 500);
@@ -32,7 +31,6 @@ export const useWriter = () => {
       }
     }
     if (action === actions.write) {
-      console.log("writing");
       //ends process
       if (renderedText === input) {
         setAction(actions.wait);

@@ -4,21 +4,18 @@ import senviLogo from "../../../assets/logoW.png";
 import pramaLogo from "../../../assets/pdf/prama_logo_ico.png";
 import { motion } from "framer-motion";
 import lupa from "../../../assets/pdf/lupa_grafico.png";
-import { useEffect, useState } from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import DocumentPDF from "../../../components/DocumentPDF";
 
-const AppReport = ({scrollToSection}) => {
+const AppReport = ({ form, userData }) => {
+  const getFriendlyDate = () => {
+    const fecha = new Date();
+    const dia = fecha.getDate().toString().padStart(2, "0");
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const año = fecha.getFullYear();
 
-    const [viewPort, setViewPort] = useState()
-
-    const getViewPort = () => {
-      let {innerWidth: width} = window
-      return width
-    }
-  
-    useEffect(() => {
-      setViewPort(getViewPort())
-    }, [])
-
+    return `${dia}-${mes}-${año}`;
+  };
   return (
     <>
       <section className="h-full w-full relative">
@@ -69,16 +66,24 @@ const AppReport = ({scrollToSection}) => {
           </div>
           <h2 className="text-xs md:text-lg text-white mr-4">www.senvii.com</h2>
         </div>
-        <motion.div 
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{duration: 1, delay: 2}}
-        className="absolute bottom-[5.5rem] md:bottom-10 w-full  flex justify-center">
-          <button
-          onClick={() => {scrollToSection("first")}} 
-          className="bg-black px-4 py-2 text-sm lg:px-8 lg:py-4 text-white rounded-md lg:text-xl">
-            {viewPort < 1000 ? "DESCARGAR REPORTE" : "VER REPORTE"}
-          </button>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="absolute bottom-[5.5rem] md:bottom-10 w-full  flex justify-center"
+        >
+          <PDFDownloadLink
+            document={<DocumentPDF form={form} userData={userData} />}
+            fileName={`${userData.userName}_${
+              userData.id
+            }_${getFriendlyDate()}.pdf`}
+            className="uppercase bg-black px-4 py-2 text-sm lg:px-8 lg:py-4 text-white rounded-md lg:text-xl"
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? "Loading document..." : "descargar reporte"
+            }
+            descargar reporte
+          </PDFDownloadLink>
         </motion.div>
       </section>
     </>

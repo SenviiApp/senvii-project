@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getConsiderations } from "../../../../data/options";
 import { motion } from "framer-motion";
+
 export default function Questions({
   data,
   setForm,
@@ -14,10 +15,12 @@ export default function Questions({
     selected.response = value;
     setQuestions(newQuestions);
   };
-  if (!data.length) {
-    scrollToSection("report");
-    setCurrent(null);
-  }
+  useEffect(() => {
+    if (!data.length) {
+      scrollToSection("report");
+      setCurrent(null);
+    }
+  }, []);
   const emptyQuestions = (obj) => {
     for (let key in obj) {
       if (!obj[key].response) return true;
