@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node _prepare.js && cd client && npm run build && cd ..",
+    "build": "node _prepare.js && cd client && npm i && npm run build && cd ..",
     "start": "node index.js",
     "dev": "node _dev.js && conc \"npm:server-dev\" \"npm:client-dev\"",
     "client-dev": "cd client && npm run dev",
