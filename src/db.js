@@ -1,44 +1,15 @@
-require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 // Env Variables
-const {
-  DB_USER,
-  DB_PASSWORD,
-  DB_HOST,
-  DB_NAME,
-  DB_PORT,
-} = require("../config.js");
+const { DEV_DB_URL, NODE_ENV, DB_URL } = require("../config.js");
 
-const sequelize =
-  process.env.NODE_ENV === "production"
-    ? new Sequelize({
-        database: DB_NAME,
-        dialect: "postgres",
-        host: DB_HOST,
-        port: DB_PORT,
-        username: DB_USER,
-        password: DB_PASSWORD,
-        pool: {
-          max: 3,
-          min: 1,
-          idle: 10000,
-        },
-        dialectOptions: {
-          ssl: {
-            require: true,
-            // Ref.: https://github.com/brianc/node-postgres/issues/2009
-            rejectUnauthorized: false,
-          },
-          keepAlive: true,
-        },
-        ssl: true,
-      })
-    : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-        { logging: false, native: false }
-      );
+const sequelize = new Sequelize(NODE_ENV === "dev" ? DEV_DB_URL : DB_URL, {
+  logging: false,
+  pool: {
+    max: 3,
+  },
+});
 
 const basename = path.basename(__filename);
 
@@ -67,11 +38,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { User, Institution, Pdf } = sequelize.models;
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
-//Example
 
 Institution.hasMany(User);
 User.belongsTo(Institution);
