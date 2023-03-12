@@ -11,11 +11,8 @@ require("./db.js");
 
 const server = express();
 
-if (config.NODE_ENV === "dev") {
-  server.use(cors({ credentials: true, origin: config.CLIENT_URL }));
-} else {
-  server.use(cors({ credentials: true }));
-}
+server.use(cors({ credentials: true, origin: "*" }));
+
 server.use(express.json({ limit: "50mb" }));
 server.use(express.urlencoded({ limit: "50mb", extended: true }));
 server.use(cookieParser());
