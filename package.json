@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -L",
+    "build": "node _prepare.js && cd client && npm run build && cd ..",
     "start": "node index.js",
+    "dev": "node _dev.js && conc \"npm:server-dev\" \"npm:client-dev\"",
+    "client-dev": "cd client && npm run dev",
+    "server-dev": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,6 +33,7 @@
     "sequelize": "^6.28.0"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   }
 }
