@@ -60,7 +60,7 @@ const createForgotPasswordToken = (user) => {
   });
 
   // crete link for email
-  const link = `http://localhost:3001/api/auth/reset-password/${id}/${token}`;
+  const link = `/api/auth/reset-password/${id}/${token}.com`;
 
   return link;
 };
