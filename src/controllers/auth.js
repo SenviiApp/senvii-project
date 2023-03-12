@@ -61,7 +61,7 @@ const postLogin = async (req, res) => {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
-    domain: "/",
+    domain: "senvii.com",
     sameSite: "Strict",
     path: "/",
   });
