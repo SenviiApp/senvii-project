@@ -61,7 +61,7 @@ const postLogin = async (req, res) => {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
-    domain: "localhost",
+    domain: "/",
     sameSite: "Strict",
     path: "/",
   });
@@ -198,7 +198,7 @@ const confirmAccount = async (req, res) => {
     User.update({ verified: true }, { where: { email } });
 
     // redirect to the component
-    res.redirect("http://localhost:5173/mail-confirmed");
+    res.redirect("/mail-confirmed");
   } catch (error) {
     return res.status(400).json({ success: false, code: "somethingwrong" });
   }
@@ -253,7 +253,7 @@ const resetPassword = async (req, res) => {
     const verify = verifyResetPasswordToken(token);
 
     if (!verify) return res.send("Invalid Token");
-    res.redirect(`http://localhost:5173/reset-password/${id}`); // hash id
+    res.redirect(`/reset-password/${id}`); // hash id
   } catch (error) {
     res.json({ success: false, code: "user_unverified" });
   }
