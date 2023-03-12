@@ -31,7 +31,7 @@ const sendEmail = async (email, token) => {
       subject: "Por favor, verifica tu dirección de correo electrónico",
       html: `
         <p>Por favor, haz clic en el siguiente enlace para verificar tu dirección de correo electrónico:</p>
-        <a href="http://localhost:3001/api/auth/confirm?token=${token}" target="_blank">Confirm Account</a>
+        <a href="/api/auth/confirm?token=${token}.com" target="_blank">Confirm Account</a>
         <p>Si no has solicitado esta verificación, puedes ignorar este correo electrónico.</p>
         <p>Saludos,</p>
         <p>Senvii</p>
@@ -105,5 +105,5 @@ const sendEmailToNotifyPdf = async (name, email, link) => {
 module.exports = {
   sendEmail,
   sendEmailToResetPassword,
-  sendEmailToNotifyPdf
+  sendEmailToNotifyPdf,
 };
