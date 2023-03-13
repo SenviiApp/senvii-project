@@ -60,7 +60,7 @@ const createForgotPasswordToken = (user) => {
   });
 
   // crete link for email
-  const link = `senvii/api/auth/reset-password/${id}/${token}.com`;
+  const link = `https://www.senvii.com/api/auth/reset-password/${id}/${token}`;
 
   return link;
 };
