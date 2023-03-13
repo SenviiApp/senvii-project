@@ -74,13 +74,12 @@ const postLogin = async (req, res) => {
 
 const logout = async (req, res) => {
   // delete token
-  // try {
-  //   res.clearCookie("Access-token");
-  // } catch (error) {
-  //   return res.json({ succes: false, msg: "cookie_notfound" });
-  // }
-  // res.json({ success: true, msg: "cookie_deleted" });
-  res.clearCookie("Access-token", { domain: "senvii.com", path: "/" });
+  try {
+    res.clearCookie("Access-token", { domain: "senvii.com", path: "/" });
+  } catch (error) {
+    return res.status(400).json({ succes: false, msg: "cookie_notfound" });
+  }
+  res.json({ success: true, msg: "cookie_deleted" });
 };
 
 // REGISTER
