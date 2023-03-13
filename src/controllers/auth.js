@@ -80,7 +80,7 @@ const logout = async (req, res) => {
   //   return res.json({ succes: false, msg: "cookie_notfound" });
   // }
   // res.json({ success: true, msg: "cookie_deleted" });
-  res.clearCookie("Access-token");
+  res.clearCookie("Access-token", { domain: "senvii.com", path: "/" });
 };
 
 // REGISTER
