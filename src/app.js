@@ -11,7 +11,12 @@ require("./db.js");
 
 const server = express();
 
-server.use(cors({ credentials: true, origin: "*" }));
+server.use(
+  cors({
+    credentials: true,
+    origin: config.NODE_ENV === "dev" ? "http://localhost:5173" : "*",
+  })
+);
 
 server.use(express.json({ limit: "50mb" }));
 server.use(express.urlencoded({ limit: "50mb", extended: true }));

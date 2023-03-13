@@ -11,6 +11,7 @@ const {
 } = require("../utils/JWT");
 const { sendEmail, sendEmailToResetPassword } = require("../utils/mail.config");
 const { findClientById } = require("../utils/user");
+const config = require("../../config.js");
 
 // LOGIN
 const postLogin = async (req, res) => {
@@ -61,7 +62,7 @@ const postLogin = async (req, res) => {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 30 * 1000,
-    domain: "senvii.com",
+    domain: config.NODE_ENV === "dev" ? "localhost" : "senvii.com",
     sameSite: "Strict",
     path: "/",
   });
@@ -198,7 +199,11 @@ const confirmAccount = async (req, res) => {
     User.update({ verified: true }, { where: { email } });
 
     // redirect to the component
-    res.redirect("/mail-confirmed");
+    res.redirect(
+      config.NODE_ENV === "dev"
+        ? "http://localhost:5173/mail-confirmed"
+        : "/mail-confirmed"
+    );
   } catch (error) {
     return res.status(400).json({ success: false, code: "somethingwrong" });
   }
@@ -253,7 +258,11 @@ const resetPassword = async (req, res) => {
     const verify = verifyResetPasswordToken(token);
 
     if (!verify) return res.send("Invalid Token");
-    res.redirect(`/reset-password/${id}`); // hash id
+    res.redirect(
+      config.NODE_ENV === "dev"
+        ? `http://localhost:5173/reset-password/${id}`
+        : `/reset-password/${id}`
+    ); // hash id
   } catch (error) {
     res.json({ success: false, code: "user_unverified" });
   }

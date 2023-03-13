@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const config = require("../../config.js");
 
 const mail = {
   user: process.env.USER_EMAIL,
@@ -31,7 +32,11 @@ const sendEmail = async (email, token) => {
       subject: "Por favor, verifica tu dirección de correo electrónico",
       html: `
         <p>Por favor, haz clic en el siguiente enlace para verificar tu dirección de correo electrónico:</p>
-        <a href="https://www.senvii.com/api/auth/confirm?token=${token}" target="_blank">Confirm Account</a>
+        <a href="${
+          config.NODE_ENV === "dev"
+            ? `http://localhost:3001/api/auth/confirm?token=${token}`
+            : `https://www.senvii.com/api/auth/confirm?token=${token}`
+        }" target="_blank">Confirm Account</a>
         <p>Si no has solicitado esta verificación, puedes ignorar este correo electrónico.</p>
         <p>Saludos,</p>
         <p>Senvii</p>
