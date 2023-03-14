@@ -21,6 +21,7 @@ import DocumentPDF from "../../components/DocumentPDF";
 import AppReport from "./DiagnoseContent/AppReport";
 import { pdf } from "@react-pdf/renderer";
 import { useLoaderData } from "react-router-dom";
+import stlyes from "../../styles/container.module.css";
 
 export default function Diagnose() {
   const userData = useLoaderData();
@@ -52,13 +53,16 @@ export default function Diagnose() {
         className="h-screen fixed left-0 w-full -z-10 top-0"
         plain={true}
       />
-      <section id="start" className="h-screen grid place-items-center w-full">
+      <section
+        id="start"
+        className={`${stlyes.safe_viewport} grid place-items-center w-full`}
+      >
         <Start scrollToSection={scrollToSection} setCurrent={setCurrent} />
       </section>
 
       <section
         id="initialForm"
-        className="h-screen grid place-items-center w-full"
+        className={`${stlyes.safe_viewport} grid place-items-center w-full`}
       >
         <InitialForm
           setCurrent={setCurrent}
@@ -67,7 +71,10 @@ export default function Diagnose() {
         />
       </section>
 
-      <section id="main" className="h-screen pb-4 pt-[22vh] relative">
+      <section
+        id="main"
+        className={`${stlyes.safe_viewport} pb-4 pt-[22vh] relative`}
+      >
         {/* character container */}
         <motion.div
           initial={{ y: -200 }}
@@ -154,7 +161,10 @@ export default function Diagnose() {
         </motion.div>
       </section>
 
-      <section id="report" className="h-screen grid place-content-center">
+      <section
+        id="report"
+        className={`${stlyes.safe_viewport} grid place-content-center`}
+      >
         <Report
           form={form}
           setForm={setForm}
@@ -166,7 +176,7 @@ export default function Diagnose() {
         {current === "appReport" && (
           <motion.section
             id="appReport"
-            className="h-screen overflow-x-hidden fixed z-[9999] w-full top-0"
+            className={`${stlyes.safe_viewport} overflow-x-hidden fixed z-[9999] w-full top-0`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
