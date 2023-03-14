@@ -1,5 +1,6 @@
 const { sign, verify } = require("jsonwebtoken");
 require("dotenv").config();
+const config = require('../../config.js')
 
 const createLoginToken = (user) => {
   // take data
@@ -60,7 +61,10 @@ const createForgotPasswordToken = (user) => {
   });
 
   // crete link for email
-  const link = `https://www.senvii.com/api/auth/reset-password/${id}/${token}`;
+  const link =
+    config.NODE_ENV === "dev"
+      ? `http://localhost:/api/auth/reset-password/${id}/${token}`
+      : `https://www.senvii.com/api/auth/reset-password/${id}/${token}`;
 
   return link;
 };
