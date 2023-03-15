@@ -37,11 +37,11 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
   };
 
   return (
-    <div className="w-main bg-white mx-auto p-4 justify-center absolute space-y-2 rounded-md">
+    <div className="w-main bg-white mx-auto p-4 justify-center space-y-2 rounded-md">
       <h1 className="w-full text-center text-sky-500">Antes de iniciar...</h1>
       <div className="w-full max-w-sm flex flex-col gap-2 mx-auto">
         {/* TIPO DE VIA */}
-        <div className="flex flex-col gap-1">
+        <div>
           <h2>Tipo de vía:</h2>
           <div className="p-2 bg-dark-400 rounded-md mt-1 h-12 text-sm">
             <div className="rounded-[4px] h-full relative z-10">
@@ -122,7 +122,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
           </div>
         </div>
         {/* ANTIGÛEDAD DE LA VÍA */}
-        <div>
+        <div className="">
           <h2>Antigüedad de la vía:</h2>
           <input
             value={initForm.viaAge}
@@ -133,10 +133,10 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
           />
         </div>
         {/* TIPO DE PAVIMENTO */}
-        <div className="">
+        <div className="flex gap-1 flex-col">
           <h2>Tipo de pavimento:</h2>
           <p className="flex text-sm justify-between mt-1">
-            <label className="flex gap-x-1 flex-row-reverse">
+            <label className="flex gap-x-1 flex-row-reverse font-bold">
               Concreto
               <input
                 name="pavmentType"
@@ -146,7 +146,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
                 onClick={handlePavmentChange}
               />
             </label>
-            <label className="flex gap-x-1 flex-row-reverse">
+            <label className="flex gap-x-1 flex-row-reverse font-bold">
               Asfalto
               <input
                 name="pavmentType"
@@ -156,7 +156,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
                 onClick={handlePavmentChange}
               />
             </label>
-            <label className="flex gap-x-1 flex-row-reverse">
+            <label className="flex gap-x-1 flex-row-reverse font-bold">
               Afirmado
               <input
                 name="pavmentType"
