@@ -141,7 +141,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
               <input
                 name="pavmentType"
                 type="radio"
-                value="Asfalto"
+                value="Concreto"
                 className="w-full bg-slate-400 p-2 outline-none"
                 onClick={handlePavmentChange}
               />
@@ -151,7 +151,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
               <input
                 name="pavmentType"
                 type="radio"
-                value="Concreto"
+                value="Asfalto"
                 className="w-full bg-slate-400 p-2 outline-none"
                 onClick={handlePavmentChange}
               />

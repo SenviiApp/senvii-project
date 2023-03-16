@@ -23,8 +23,7 @@ import { $axios } from "../lib";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const DocumentPDF = ({ form, userData: { id, userName, image } }) => {
-  // console.log("🚀 ~ file: DocumentPDF.jsx:38 ~ DocumentPDF ~ form:", form);
+export default function DocumentPDF({ form, userData: { id } }) {
   const [user, setUser] = useState(null);
   const [date] = useState(new Date());
   useEffect(() => {
@@ -589,6 +588,4 @@ const DocumentPDF = ({ form, userData: { id, userName, image } }) => {
       </Page>
     </Document>
   );
-};
-
-export default DocumentPDF;
+}

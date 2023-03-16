@@ -40,12 +40,9 @@ export default function Diagnose() {
     // scrollToSection("appReport")
   }, []);
 
-  useEffect(() => {
-    if (isFormFull) {
-      const { toBlob } = pdf(<DocumentPDF form={form} userData={userData} />);
-      toBlob().then((res) => console.log(res));
-    }
-  }, [isFormFull]);
+  // useEffect(() => {
+  //   console.log(form);
+  // }, [isFormFull]);
 
   return (
     <main>

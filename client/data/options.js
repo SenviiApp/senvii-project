@@ -307,7 +307,7 @@ export const questions = [
   {
     id: 4,
     content:
-      "Presenta zonas de accidentes recurrentes causados por niebla, curvas peligrosas o similares?",
+      "¿Presenta zonas de accidentes recurrentes causados por niebla, curvas peligrosas o similares?",
     availableFor: [
       "autopista-4000/6000",
       "autopista-6000/+",
@@ -331,7 +331,7 @@ export const getSelectionDescription = ({ zone, transit }) => {
 };
 
 //recieves form
-export const getConsiderations = ({ signalingTypes, questions, zone }) => {
+export const getConsiderations = ({ signalingTypes, questions, transit }) => {
   if (!questions.length) {
     return [
       {
@@ -340,33 +340,37 @@ export const getConsiderations = ({ signalingTypes, questions, zone }) => {
       },
     ];
   }
-  const findSignalingTypes = (...ids) => {
-    signalingTypes.find((type) => ids.join(";").includes(type.id));
-  };
   const recomendations = [];
+
+  const findSignalingTypes = (...ids) => {
+    return signalingTypes.find((type) => ids.join(";").includes(type.id));
+  };
+
   questions.forEach((question) => {
     if (question.id === 1) {
       if (question.response === "no") {
         recomendations.push({
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
-          name: "Aplicación de pintura Termoplástica Extrusión",
-        });
-      } else if (findSignalingTypes(1, 4)) {
-        recomendations.push({
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296247/userPicture/segur_termo_spray_m9jh7g.png",
-          name: "Aplicación de pintura Termoplástica Spray",
-        });
-      } else if (findSignalingTypes(2, 3)) {
-        recomendations.push({
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/userPicture/segur_termo_extrusion_d60sdi.png",
-          name: "Aplicación de pintura Termoplástica Extrusión",
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296253/senvii/sen_marcas_pavimento_kmnhqg.png",
+          name: "Aplicación de pintura acrílica",
         });
       }
-      if (zone === "autopista" && question.response === "yes") {
+      if (question.response === "yes" && findSignalingTypes(1, 4)) {
         recomendations.push({
-          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/senvii/segur_Termo_preformado_zg91m0.png",
-          name: "Termoplástico preformado",
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296247/senvii/segur_termo_spray_m9jh7g.png",
+          name: "Aplicación de pintura Termoplástica Spray",
         });
+      }
+      if (question.response === "yes" && findSignalingTypes(2, 3)) {
+        recomendations.push({
+          img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296219/senvii/segur_termo_extrusion_d60sdi.png",
+          name: "Aplicación de pintura Termoplástica Extrusión",
+        });
+        if ("2000/4000_4000/+_4000/6000_6000/+".includes(transit)) {
+          recomendations.push({
+            img: "https://res.cloudinary.com/djcc03pyc/image/upload/v1678296224/senvii/segur_Termo_preformado_zg91m0.png",
+            name: "Termoplástico preformado",
+          });
+        }
       }
     }
     if (question.id === 2 && question.response === "yes") {

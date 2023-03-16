@@ -34,19 +34,19 @@ const AppReport = ({ form, userData }) => {
           className="absolute top-0 w-full flex p-4 md:p-8 justify-between lg:justify-around"
         >
           <motion.img
-            initial={{ x: -100, opacity: 0 }}
+            initial={{ x: "-170%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             src={senviLogo}
-            alt=""
+            alt="senvii logo"
             className="h-6 md:h-12"
           />
           <motion.img
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ x: "170%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             src={pramaLogo}
-            alt=""
+            alt="prama logo"
             className="h-6 md:h-12"
           />
         </motion.div>
