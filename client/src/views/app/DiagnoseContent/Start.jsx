@@ -1,6 +1,6 @@
 import senvii from "../../../assets/senviiAnimated.gif";
 
-export default function Start({ scrollToSection }) {
+export default function Start({ scrollToSection, setCurrent }) {
   return (
     <>
       <div className="flex flex-col items-center p-4 bg-white/30 z-10 w-[90%] mx-auto rounded-lg backdrop-blur-sm shadow-lg mt-24 max-w-sm">
@@ -12,7 +12,8 @@ export default function Start({ scrollToSection }) {
       </div>
       <button
         onClick={() => {
-          scrollToSection("initialForm");
+          // scrollToSection("");
+          setCurrent("initialForm");
         }}
         className="z-10 bg-dark-800 text-white mx-5 mt-6 px-4 text-center py-2 rounded-full"
       >

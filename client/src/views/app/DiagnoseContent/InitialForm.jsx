@@ -174,8 +174,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
           transition={{ duration: 1 }}
           onClick={() => {
             setForm((form) => ({ ...form, ...initForm }));
-            setCurrent("zone");
-            scrollToSection("main");
+            setCurrent("form");
           }}
           className="bg-black text-white py-2 px-14 rounded-full mt-4 disabled:bg-zinc-400 transition-colors ease-out duration-500"
           disabled={

@@ -18,7 +18,7 @@ export default function Questions({
   useEffect(() => {
     if (!data.length) {
       scrollToSection("report");
-      setCurrent(null);
+      setCurrent("generateReport");
     }
   }, []);
   const emptyQuestions = (obj) => {
@@ -77,8 +77,7 @@ export default function Questions({
                 const newForm = { ...form, questions };
                 return { ...newForm, consider: getConsiderations(newForm) };
               });
-              scrollToSection("report");
-              setCurrent(null);
+              setCurrent("generateReport");
             }}
             disabled={emptyQuestions(questions)}
             className="text-base bg-black text-white py-2 px-14 rounded-full mt-4 disabled:bg-zinc-400 transition-colors ease-out duration-500"
