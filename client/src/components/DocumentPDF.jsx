@@ -277,7 +277,7 @@ export default function DocumentPDF({ form, userData: { id } }) {
             <View>
               {/* Conditional */}
               <Text style={{ fontFamily: "Helvetica-Bold", fontSize: "18" }}>
-                {form && `${form.viaAge} años`}
+                {form && `${form.viaAge} ${form.viaAge > 1 ? "años" : "año"}`}
               </Text>
               <Text style={{ fontSize: "12" }}>Antiguedad del pavimento</Text>
             </View>

@@ -29,11 +29,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
   };
 
   const handlePavmentChange = (e) => {
-    let pavment = document.querySelector(
-      "input[type=radio][name=pavmentType]:checked"
-    );
-    let pavmentType = pavment.value;
-    setInitForm({ ...initForm, viaPavment: pavmentType });
+    setInitForm({ ...initForm, viaPavment: e.target.value });
   };
 
   return (
@@ -123,7 +119,7 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
         </div>
         {/* ANTIGÛEDAD DE LA VÍA */}
         <div className="">
-          <h2>Antigüedad de la vía:</h2>
+          <h2>Antigüedad de la vía (años):</h2>
           <input
             value={initForm.viaAge}
             type="text"
@@ -135,10 +131,17 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
         {/* TIPO DE PAVIMENTO */}
         <div className="flex gap-1 flex-col">
           <h2>Tipo de pavimento:</h2>
-          <p className="flex text-sm justify-between mt-1">
-            <label className="flex gap-x-1 flex-row-reverse font-bold">
+          <p className="flex text-sm justify-between mt-1 text-snow">
+            <label
+              className={`flex gap-x-1 flex-row-reverse py-2 px-3 transition-colors duration-300 ease-out rounded-md ${
+                initForm.viaPavment === "Concreto"
+                  ? "bg-light-500"
+                  : " bg-dark-400"
+              }`}
+            >
               Concreto
               <input
+                hidden
                 name="pavmentType"
                 type="radio"
                 value="Concreto"
@@ -146,9 +149,16 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
                 onClick={handlePavmentChange}
               />
             </label>
-            <label className="flex gap-x-1 flex-row-reverse font-bold">
+            <label
+              className={`flex gap-x-1 flex-row-reverse py-2 px-3 transition-colors duration-300 ease-out rounded-md ${
+                initForm.viaPavment === "Asfalto"
+                  ? "bg-light-500"
+                  : " bg-dark-400"
+              }`}
+            >
               Asfalto
               <input
+                hidden
                 name="pavmentType"
                 type="radio"
                 value="Asfalto"
@@ -156,9 +166,16 @@ const InitialForm = ({ setCurrent, setForm, scrollToSection }) => {
                 onClick={handlePavmentChange}
               />
             </label>
-            <label className="flex gap-x-1 flex-row-reverse font-bold">
+            <label
+              className={`flex gap-x-1 flex-row-reverse py-2 px-3 transition-colors duration-300 ease-out rounded-md ${
+                initForm.viaPavment === "Afirmado"
+                  ? "bg-light-500"
+                  : " bg-dark-400"
+              }`}
+            >
               Afirmado
               <input
+                hidden
                 name="pavmentType"
                 type="radio"
                 value="Afirmado"
